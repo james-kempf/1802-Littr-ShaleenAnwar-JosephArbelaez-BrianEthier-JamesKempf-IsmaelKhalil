@@ -45,8 +45,8 @@ public class Cat {
 	private Image profilePic;
 
 	@ManyToMany
-	@Column(name="C_FRIENDS")
-	private List<Cat> friends;
+	@JoinColumn(name="C_FRIENDS")
+	private List<Friendship> friends;
 
 	@OneToMany
 	@Column(name="C_POSTS")
@@ -55,7 +55,7 @@ public class Cat {
 	public Cat() {}
 
 	public Cat(int id, String username, String password, String catName, String email, String bio, Image profilePic,
-			List<Cat> friends, List<Post> posts) {
+			List<Friendship> friends, List<Post> posts) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -129,11 +129,11 @@ public class Cat {
 		this.profilePic = profilePic;
 	}
 
-	public List<Cat> getFriends() {
+	public List<Friendship> getFriends() {
 		return friends;
 	}
 
-	public void setFriends(List<Cat> friends) {
+	public void setFriends(List<Friendship> friends) {
 		this.friends = friends;
 	}
 
