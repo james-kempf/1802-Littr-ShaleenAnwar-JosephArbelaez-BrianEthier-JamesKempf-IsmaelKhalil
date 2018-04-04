@@ -2,11 +2,14 @@ package com.revature.repository;
 
 import java.util.List;
 
+import javax.persistence.Column;
+
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 
 import com.revature.model.Cat;
+import com.revature.model.Image;
 
 public class CatRepositoryHibernate implements CatRepository {
 	
@@ -22,6 +25,14 @@ public class CatRepositoryHibernate implements CatRepository {
 	public int save(Cat cat) {
 		sessionFactory.getCurrentSession().save(cat);
 	}
+	
+	@Override
+	public boolean update(Cat cat) {
+
+		sessionFactory.getCurrentSession().update(cat);
+		//Hibernate: update cat set username=?, password=?, catName=?, email=?, bio=?, image=? where id=?
+	}
+
 
 	@SuppressWarnings("unchecked")
 	@Override

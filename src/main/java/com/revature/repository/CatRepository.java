@@ -6,6 +6,7 @@ import com.revature.model.Cat;
 
 public interface CatRepository {
 	public int save(Cat cat); 
+	public boolean update(Cat cat);
 	public List<Cat> findAllUsers();
 	public Cat findByName(String name);
 	public Cat findById(int id);
