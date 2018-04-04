@@ -2,14 +2,12 @@ package com.revature.repository;
 
 import java.util.List;
 
-import javax.persistence.Column;
-
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.revature.model.Cat;
-import com.revature.model.Image;
 
 public class CatRepositoryHibernate implements CatRepository {
 	
@@ -22,12 +20,12 @@ public class CatRepositoryHibernate implements CatRepository {
 	}	
 
 	@Override
-	public int save(Cat cat) {
+	public void save(Cat cat) {
 		sessionFactory.getCurrentSession().save(cat);
 	}
 	
 	@Override
-	public boolean update(Cat cat) {
+	public void update(Cat cat) {
 
 		sessionFactory.getCurrentSession().update(cat);
 		//Hibernate: update cat set username=?, password=?, catName=?, email=?, bio=?, image=? where id=?
