@@ -7,8 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="CAT")
@@ -35,12 +40,15 @@ public class Cat {
 	@Column(name="C_BIO")
 	private String bio;
 
-	@Column(name="C_PROFILE_PIC")
+	@OneToOne
+	@JoinColumn(name="C_PROFILE_PIC")
 	private Image profilePic;
 
+	@ManyToMany
 	@Column(name="C_FRIENDS")
 	private List<Cat> friends;
 
+	@OneToMany
 	@Column(name="C_POSTS")
 	List<Post> posts;
 	

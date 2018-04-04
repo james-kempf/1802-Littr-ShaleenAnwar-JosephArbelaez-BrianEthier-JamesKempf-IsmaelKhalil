@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -26,7 +27,8 @@ public class Post {
 	@Column(name="P_USER_ID")
 	private int userId;
 
-	@Column(name="P_IMAGE_POSTED")
+	@OneToOne
+	//@Column(name="P_IMAGE_POSTED")
 	private Image image;
 
 	@Column(name="P_LIKES")
