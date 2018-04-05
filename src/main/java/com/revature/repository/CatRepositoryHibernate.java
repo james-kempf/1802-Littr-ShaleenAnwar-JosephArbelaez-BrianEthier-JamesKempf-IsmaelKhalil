@@ -42,7 +42,7 @@ public class CatRepositoryHibernate implements CatRepository {
 	public Cat findByName(String name) {
 		try {
 			return (Cat) sessionFactory.getCurrentSession().createCriteria(Cat.class)
-					.add(Restrictions.like("name", name))
+					.add(Restrictions.eq("name", name))
 					.list()
 					.get(0);
 		} catch (IndexOutOfBoundsException e) {
@@ -65,12 +65,16 @@ public class CatRepositoryHibernate implements CatRepository {
 
 	@Override
 	public List<Cat> findByNameLike(String pattern) {
-		String hql = "FROM com.revature.model.Cat WHERE catName LIKE :pattern";
-		return sessionFactory.getCurrentSession()
-				.createQuery(hql)
-				.setString("pattern", pattern)
-				.list();
+		try {
+			return (List<Cat>) sessionFactory.getCurrentSession().createCriteria(Cat.class)
+					.add(Restrictions.like("pattern", pattern))
+					.list()
+					.get(0);
+		} catch (IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
+
 
 	@Override
 	public List<Cat> findAllFriends(Cat cat) {

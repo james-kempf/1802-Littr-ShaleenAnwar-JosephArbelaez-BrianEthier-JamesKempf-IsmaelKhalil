@@ -10,6 +10,8 @@ public interface CatRepository {
 	List<Cat> findAllUsers();
 	Cat findByName(String name);
 	Cat findById(int id);
-	List<Cat> findByNameLike(String pattern);
 	List<Cat> findAllFriends(Cat cat);
+	
+	@Query("SELECT u FROM User u WHERE u.firstname like %?1%")
+	List<Cat> findByNameLike(String pattern);
 }
