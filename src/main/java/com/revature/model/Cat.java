@@ -7,8 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="CAT")
@@ -35,19 +40,22 @@ public class Cat {
 	@Column(name="C_BIO")
 	private String bio;
 
-	@Column(name="C_PROFILE_PIC")
+	@OneToOne
+	@JoinColumn(name="C_PROFILE_PIC")
 	private Image profilePic;
 
-	@Column(name="C_FRIENDS")
-	private List<Cat> friends;
+	@ManyToMany
+	@JoinColumn(name="C_FRIENDS")
+	private List<Friendship> friends;
 
+	@OneToMany
 	@Column(name="C_POSTS")
 	List<Post> posts;
 	
 	public Cat() {}
 
 	public Cat(int id, String username, String password, String catName, String email, String bio, Image profilePic,
-			List<Cat> friends, List<Post> posts) {
+			List<Friendship> friends, List<Post> posts) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -121,11 +129,11 @@ public class Cat {
 		this.profilePic = profilePic;
 	}
 
-	public List<Cat> getFriends() {
+	public List<Friendship> getFriends() {
 		return friends;
 	}
 
-	public void setFriends(List<Cat> friends) {
+	public void setFriends(List<Friendship> friends) {
 		this.friends = friends;
 	}
 
