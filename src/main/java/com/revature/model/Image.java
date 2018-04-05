@@ -18,9 +18,6 @@ public class Image {
 	@Column(name="I_ID")
 	private int id;
 
-	@Column(name="I_USER_ID")
-	private int userId;
-
 	@Column(name="I_IMAGE_URL")
 	private String imgURL;
 	
@@ -34,14 +31,6 @@ public class Image {
 		this.id = id;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
 	public String getImgURL() {
 		return imgURL;
 	}
@@ -52,7 +41,7 @@ public class Image {
 
 	@Override
 	public String toString() {
-		return "Image [id=" + id + ", userId=" + userId + ", imgURL=" + imgURL + "]";
+		return "Image [id=" + id + ", imgURL=" + imgURL + "]";
 	}
 
 	@Override
@@ -61,7 +50,6 @@ public class Image {
 		int result = 1;
 		result = prime * result + id;
 		result = prime * result + ((imgURL == null) ? 0 : imgURL.hashCode());
-		result = prime * result + userId;
 		return result;
 	}
 
@@ -81,11 +69,6 @@ public class Image {
 				return false;
 		} else if (!imgURL.equals(other.imgURL))
 			return false;
-		if (userId != other.userId)
-			return false;
 		return true;
 	}
-	
-	
-	
 }
