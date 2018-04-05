@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.revature.model.Cat;
-import com.revature.repository.CatRepositoryHibernate;
+import com.revature.service.CatService;
 
 public class FriendshipTest {
 	
@@ -14,6 +14,8 @@ public class FriendshipTest {
 	public static void main(String[] args) {
 		ApplicationContext applicationContext 
 				= new ClassPathXmlApplicationContext("applicationContext.xml");
+		
+		CatService catService = applicationContext.getBean("catService", CatService.class);
 		
 		logger.trace("Main");
 		Cat c = new Cat(
@@ -24,6 +26,6 @@ public class FriendshipTest {
 				"He flop",
 				null
 				);
-		new CatRepositoryHibernate().save(c);
+		catService.insertCat(c);
 	}
 }
