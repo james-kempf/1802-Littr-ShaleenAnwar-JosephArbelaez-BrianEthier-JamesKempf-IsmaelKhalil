@@ -1,15 +1,11 @@
 package com.revature.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -43,20 +39,19 @@ public class Cat {
 	@OneToOne
 	@JoinColumn(name="C_PROFILE_PIC")
 	private Image profilePic;
-
-	@ManyToMany
-	@JoinColumn(name="C_FRIENDS")
-	private List<Friendship> friends;
-
-	@OneToMany
-	@Column(name="C_POSTS")
-	List<Post> posts;
 	
 	public Cat() {}
+	
+	public Cat(String username, String password, String catName, String email, String bio, Image profilePic) {
+		this.username = username;
+		this.password = password;
+		this.catName = catName;
+		this.email = email;
+		this.bio = bio;
+		this.profilePic = profilePic;
+	}
 
-	public Cat(int id, String username, String password, String catName, String email, String bio, Image profilePic,
-			List<Friendship> friends, List<Post> posts) {
-		super();
+	public Cat(int id, String username, String password, String catName, String email, String bio, Image profilePic) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -64,8 +59,6 @@ public class Cat {
 		this.email = email;
 		this.bio = bio;
 		this.profilePic = profilePic;
-		this.friends = friends;
-		this.posts = posts;
 	}
 	
 	public Cat(String username, String password) {
@@ -129,27 +122,10 @@ public class Cat {
 		this.profilePic = profilePic;
 	}
 
-	public List<Friendship> getFriends() {
-		return friends;
-	}
-
-	public void setFriends(List<Friendship> friends) {
-		this.friends = friends;
-	}
-
-	public List<Post> getPosts() {
-		return posts;
-	}
-
-	public void setPosts(List<Post> posts) {
-		this.posts = posts;
-	}
-
 	@Override
 	public String toString() {
 		return "Cat [id=" + id + ", username=" + username + ", password=" + password + ", catName=" + catName
-				+ ", email=" + email + ", bio=" + bio + ", profilePic=" + profilePic + ", friends=" + friends
-				+ ", posts=" + posts + "]";
+				+ ", email=" + email + ", bio=" + bio + ", profilePic=" + profilePic + "]";
 	}
 
 	@Override
@@ -159,10 +135,8 @@ public class Cat {
 		result = prime * result + ((bio == null) ? 0 : bio.hashCode());
 		result = prime * result + ((catName == null) ? 0 : catName.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((friends == null) ? 0 : friends.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((posts == null) ? 0 : posts.hashCode());
 		result = prime * result + ((profilePic == null) ? 0 : profilePic.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -192,22 +166,12 @@ public class Cat {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (friends == null) {
-			if (other.friends != null)
-				return false;
-		} else if (!friends.equals(other.friends))
-			return false;
 		if (id != other.id)
 			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
 		} else if (!password.equals(other.password))
-			return false;
-		if (posts == null) {
-			if (other.posts != null)
-				return false;
-		} else if (!posts.equals(other.posts))
 			return false;
 		if (profilePic == null) {
 			if (other.profilePic != null)
@@ -221,7 +185,4 @@ public class Cat {
 			return false;
 		return true;
 	}
-	
-	
-	
 }
