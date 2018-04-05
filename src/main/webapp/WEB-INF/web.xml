@@ -6,15 +6,26 @@
   	<welcome-file>login.html</welcome-file>
   </welcome-file-list>
   
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>/WEB-INF/applicationContext.xml</param-value>
+  </context-param>
+  
+  <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
   <servlet>
   	<servlet-name>DispatcherServlet</servlet-name>
-  	<servlet-class>com.revature.request.DispatcherServlet</servlet-class>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<load-on-startup>1</load-on-startup>
   </servlet>
   
   <servlet-mapping>
   	<servlet-name>DispatcherServlet</servlet-name>
   	<!-- * it's a Wildcard (which means "anything") -->
   	<!-- .something it's called Extended Mapping -->
+  	<!-- might need to change to *.app? -->
   	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
   
