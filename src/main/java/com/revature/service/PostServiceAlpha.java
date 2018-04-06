@@ -47,7 +47,7 @@ public class PostServiceAlpha implements PostService {
 		if(cat != null) {
 			if(cat.getId() == search.getId()) {
 				return postRepository.selectUserPosts(cat.getId());
-			} else if (true){
+			} else if (friendshipService.findFriendshipByCat(cat, search)){
 				//check if friends
 				return postRepository.selectUserPosts(cat.getId());
 			} else {
