@@ -68,8 +68,7 @@ public class FriendshipRepositoryHibernate implements FriendshipRepository {
 
 	@Override
 	public boolean denyFriendship(Friendship friendship) {
-		friendship.setStatus(new FriendStatus(3, "DENIED"));
-		sessionFactory.getCurrentSession().update(friendship);
+		sessionFactory.getCurrentSession().delete(friendship);
 		return true;
 	}
 }
