@@ -49,7 +49,7 @@ public class PostServiceAlpha implements PostService {
 				return postRepository.selectUserPosts(cat.getId());
 			} else if (friendshipService.findFriendshipByCat(cat, search)){
 				//check if friends
-				return postRepository.selectUserPosts(cat.getId());
+				return postRepository.selectUserPosts(search.getId());
 			} else {
 				return null;
 			}
