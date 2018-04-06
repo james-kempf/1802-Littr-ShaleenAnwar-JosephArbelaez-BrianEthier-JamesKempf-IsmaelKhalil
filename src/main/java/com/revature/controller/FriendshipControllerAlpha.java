@@ -1,34 +1,54 @@
 package com.revature.controller;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.revature.ajax.ClientMessage;
 import com.revature.model.Cat;
 import com.revature.model.Friendship;
+import com.revature.service.FriendshipService;
+import com.revature.util.ClientMessageUtil;
 
 public class FriendshipControllerAlpha implements FriendshipController {
+	
+	@Autowired
+	FriendshipService friendshipService;
 
 	@Override
-	public List<Cat> getAllFriendships() {
-		// TODO Auto-generated method stub
-		return null;
+	public Object getAllFriendships() {
+		// TODO Implement authentication
+		if (true) {
+			Cat cat = new Cat();
+			return friendshipService.findAllFriendships(cat);
+		}
+		return ClientMessageUtil.SOMETHING_WRONG;
 	}
 
 	@Override
-	public List<Cat> getAllFriends() {
-		// TODO Auto-generated method stub
-		return null;
+	public Object getAllFriends() {
+		// TODO Implement authentication
+		if (true) {
+			Cat cat = new Cat();
+			return friendshipService.findAllFriends(cat);
+		}
+		return ClientMessageUtil.SOMETHING_WRONG;
 	}
 
 	@Override
-	public boolean approveFriendship(Friendship friendship) {
-		// TODO Auto-generated method stub
-		return false;
+	public ClientMessage approveFriendship(Friendship friendship) {
+		// TODO Implement authentication
+		if (true) {
+			friendshipService.approveFriendship(friendship);
+		}
+		return ClientMessageUtil.SOMETHING_WRONG;
 	}
 
 	@Override
-	public boolean denyFriendship(Friendship friendship) {
-		// TODO Auto-generated method stub
-		return false;
+	public ClientMessage denyFriendship(Friendship friendship) {
+		// TODO Implement authentication
+		if (true) {
+			friendshipService.denyFriendship(friendship);
+		}
+		return ClientMessageUtil.SOMETHING_WRONG;
 	}
 
 }

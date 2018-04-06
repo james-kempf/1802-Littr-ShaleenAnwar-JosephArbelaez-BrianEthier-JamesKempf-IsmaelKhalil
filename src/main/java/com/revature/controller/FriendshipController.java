@@ -1,5 +1,6 @@
 package com.revature.controller;
 
+import com.revature.ajax.ClientMessage;
 import com.revature.model.Friendship;
 
 public interface FriendshipController {
@@ -19,10 +20,10 @@ public interface FriendshipController {
 	/**
 	 * Approve friend request
 	 */
-	public abstract boolean approveFriendship(Friendship friendship);
+	public abstract ClientMessage approveFriendship(Friendship friendship);
 	
 	/**
 	 * Deny friend request
 	 */
-	public abstract boolean denyFriendship(Friendship friendship);
+	public abstract ClientMessage denyFriendship(Friendship friendship);
 }
