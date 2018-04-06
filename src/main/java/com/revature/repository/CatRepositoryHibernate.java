@@ -2,8 +2,11 @@ package com.revature.repository;
 
 import java.util.List;
 
+import javax.persistence.ManyToMany;
+
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -42,7 +45,7 @@ public class CatRepositoryHibernate implements CatRepository {
 	public Cat findByName(String name) {
 		try {
 			return (Cat) sessionFactory.getCurrentSession().createCriteria(Cat.class)
-					.add(Restrictions.eq("name", name))
+					.add(Restrictions.like("name", name))
 					.list()
 					.get(0);
 		} catch (IndexOutOfBoundsException e) {
@@ -65,20 +68,14 @@ public class CatRepositoryHibernate implements CatRepository {
 
 	@Override
 	public List<Cat> findByNameLike(String pattern) {
-		try {
-			return (List<Cat>) sessionFactory.getCurrentSession().createCriteria(Cat.class)
-					.add(Restrictions.like("pattern", pattern))
-					.list()
-					.get(0);
-		} catch (IndexOutOfBoundsException e) {
-			return null;
-		}
+	       return (List<Cat>) sessionFactory.getCurrentSession().createCriteria(Cat.class)
+	               .add(Restrictions.like("name", pattern)).list();
 	}
-
-
+	
 	@Override
+
 	public List<Cat> findAllFriends(Cat cat) {
-		// Need mapping for this
-		return null;
+		return (List<Cat>) sessionFactory.getCurrentSession().createCriteria(Cat.class)
+				.add(Restrictions.)
 	}
 }
