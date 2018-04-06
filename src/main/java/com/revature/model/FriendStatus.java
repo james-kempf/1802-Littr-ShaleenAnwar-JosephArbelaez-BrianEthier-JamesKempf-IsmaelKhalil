@@ -10,10 +10,10 @@ import javax.persistence.Table;
 public class FriendStatus {
 
 	@Id
-	@Column(name="F_ID")
+	@Column(name="FS_ID")
 	private int id;
 
-	@Column(name="F_STATUS")
+	@Column(name="FS_STATUS")
 	private String status;
 	
 	public FriendStatus() {}

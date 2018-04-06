@@ -2,16 +2,16 @@ package com.revature.repository;
 
 import java.util.List;
 
-import javax.persistence.ManyToMany;
+import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.revature.model.Cat;
 
+@Transactional
 public class CatRepositoryHibernate implements CatRepository {
 	
 	private static Logger logger = Logger.getLogger(CatRepositoryHibernate.class);

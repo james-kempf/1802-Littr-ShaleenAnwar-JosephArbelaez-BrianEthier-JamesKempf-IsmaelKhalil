@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,32 +22,26 @@ public class Post {
 	@SequenceGenerator(name="postSequence", sequenceName="POST_SEQ")
 	@Column(name="P_ID")
 	private int id;
+	
+	@ManyToOne
+	@JoinColumn(name="C_ID")
+	private Cat poster;
 
 	@Column(name="P_TIME_POSTED")
 	private Timestamp timePosted;
 
-	@Column(name="P_USER_ID")
-	private int userId;
-
-	@Column(name="P_IMAGE_POSTED")
+	@OneToOne
+	@JoinColumn(name="I_ID")
 	private Image image;
-
-	@Column(name="P_LIKES")
-	private int likes;
-
-	@Column(name="P_DISLIKES")
-	private int dislikes;
 	
 	public Post() {}
 
-	public Post(int id, Timestamp timePosted, int userId, Image image, int likes, int dislikes) {
+	public Post(int id, Cat poster, Timestamp timePosted, Image image) {
 		super();
 		this.id = id;
+		this.poster = poster;
 		this.timePosted = timePosted;
-		this.userId = userId;
 		this.image = image;
-		this.likes = likes;
-		this.dislikes = dislikes;
 	}
 
 	public int getId() {
@@ -55,20 +52,20 @@ public class Post {
 		this.id = id;
 	}
 
+	public Cat getPoster() {
+		return poster;
+	}
+
+	public void setPoster(Cat poster) {
+		this.poster = poster;
+	}
+
 	public Timestamp getTimePosted() {
 		return timePosted;
 	}
 
 	public void setTimePosted(Timestamp timePosted) {
 		this.timePosted = timePosted;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public Image getImage() {
@@ -79,38 +76,19 @@ public class Post {
 		this.image = image;
 	}
 
-	public int getLikes() {
-		return likes;
-	}
-
-	public void setLikes(int likes) {
-		this.likes = likes;
-	}
-
-	public int getDislikes() {
-		return dislikes;
-	}
-
-	public void setDislikes(int dislikes) {
-		this.dislikes = dislikes;
-	}
-
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", timePosted=" + timePosted + ", userId=" + userId + ", image=" + image + ", likes="
-				+ likes + ", dislikes=" + dislikes + "]";
+		return "Post [id=" + id + ", poster=" + poster + ", timePosted=" + timePosted + ", image=" + image + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + dislikes;
 		result = prime * result + id;
 		result = prime * result + ((image == null) ? 0 : image.hashCode());
-		result = prime * result + likes;
+		result = prime * result + ((poster == null) ? 0 : poster.hashCode());
 		result = prime * result + ((timePosted == null) ? 0 : timePosted.hashCode());
-		result = prime * result + userId;
 		return result;
 	}
 
@@ -123,8 +101,6 @@ public class Post {
 		if (getClass() != obj.getClass())
 			return false;
 		Post other = (Post) obj;
-		if (dislikes != other.dislikes)
-			return false;
 		if (id != other.id)
 			return false;
 		if (image == null) {
@@ -132,20 +108,16 @@ public class Post {
 				return false;
 		} else if (!image.equals(other.image))
 			return false;
-		if (likes != other.likes)
+		if (poster == null) {
+			if (other.poster != null)
+				return false;
+		} else if (!poster.equals(other.poster))
 			return false;
 		if (timePosted == null) {
 			if (other.timePosted != null)
 				return false;
 		} else if (!timePosted.equals(other.timePosted))
 			return false;
-		if (userId != other.userId)
-			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
 }
