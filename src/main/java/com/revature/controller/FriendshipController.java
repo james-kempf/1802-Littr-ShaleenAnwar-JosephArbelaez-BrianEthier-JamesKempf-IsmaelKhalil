@@ -1,16 +1,20 @@
 package com.revature.controller;
 
-import java.util.List;
-
-import com.revature.model.Cat;
 import com.revature.model.Friendship;
 
 public interface FriendshipController {
+	
+	/**
+	 * Get all friendships of current user
+	 * Returns list if successful, error ClientMessage if not
+	 */
+	public abstract Object getAllFriendships();
 
 	/**
 	 * Get all friends of current user
+	 * Returns list if successful, error ClientMessage if not
 	 */
-	public abstract List<Cat> getAllFriends();
+	public abstract Object getAllFriends();
 	
 	/**
 	 * Approve friend request
