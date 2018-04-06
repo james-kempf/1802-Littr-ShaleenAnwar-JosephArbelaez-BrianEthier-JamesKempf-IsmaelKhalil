@@ -3,6 +3,7 @@ package com.revature.service;
 import java.util.List;
 
 import com.revature.model.Cat;
+import com.revature.model.Friendship;
 
 public interface CatService {
 	
@@ -30,9 +31,4 @@ public interface CatService {
 	 * Returns a list of all Cats in the database
 	 */
 	public abstract List<Cat> findAllCats();
-	
-	/**
-	 * Returns all friends of the given Cat
-	 */
-	public abstract List<Cat> findAllFriends(Cat cat);
 }

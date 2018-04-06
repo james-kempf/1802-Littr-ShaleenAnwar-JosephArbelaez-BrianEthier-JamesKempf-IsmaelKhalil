@@ -2,14 +2,27 @@ package com.revature.service;
 
 import java.util.List;
 
-import com.revature.model.Cat;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.revature.model.Cat;
+import com.revature.model.Friendship;
+import com.revature.repository.CatRepository;
+
+@Service("catService")
 public class CatServiceAlpha implements CatService {
+	
+	private static Logger logger = Logger.getLogger(CatServiceAlpha.class);
+	
+	@Autowired
+	private CatRepository catRepository;
 
 	@Override
 	public boolean insertCat(Cat cat) {
-		// TODO Auto-generated method stub
-		return false;
+		logger.trace("Inerting Cat");
+		catRepository.save(cat);
+		return cat.getId() != 0;
 	}
 
 	@Override
@@ -35,11 +48,4 @@ public class CatServiceAlpha implements CatService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public List<Cat> findAllFriends(Cat cat) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
