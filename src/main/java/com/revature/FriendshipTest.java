@@ -46,6 +46,7 @@ public class FriendshipTest {
 //		catService.insertCat(atlas);
 //		catService.insertCat(koushka);
 //		catService.insertCat(emack);
-		logger.trace(friendshipService.findAllFriends(atlas));
+		logger.info(friendshipService.findAllFriends(atlas));
+		logger.info(friendshipService.findAllFriendships(atlas));
 	}
 }

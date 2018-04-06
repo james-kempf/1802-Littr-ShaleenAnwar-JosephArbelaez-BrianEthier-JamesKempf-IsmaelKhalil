@@ -6,9 +6,14 @@ import com.revature.model.Cat;
 import com.revature.model.Friendship;
 
 public interface FriendshipService {
-
+	
 	/**
-	 * Returns all friends of the given Cat
+	 * Returns a list of Friendships of the given cat
+	 */
+	public abstract List<Friendship> findAllFriendships(Cat cat);
+ 
+	/**
+	 * Returns all friends of the given cat
 	 */
 	public abstract List<Cat> findAllFriends(Cat cat);
 	

@@ -23,11 +23,25 @@ public class FriendshipRepositoryHibernate implements FriendshipRepository {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Friendship> findAllFriendships(Cat cat) {
+		logger.info("Getting all friendships for " + cat.toString());
+		List<Friendship> listA = sessionFactory.getCurrentSession().createCriteria(Friendship.class)
+				.add(Restrictions.eq("catA", cat))
+				.list();
+		List<Friendship> listB = sessionFactory.getCurrentSession().createCriteria(Friendship.class)
+				.add(Restrictions.eq("catB", cat))
+				.list();
+		listA.addAll(listB);
+		return listA;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cat> findAllFriends(Cat cat) {
-		logger.trace("Getting all friends for " + cat.toString());
+		logger.info("Getting all friends for " + cat.toString());
 		List<Friendship> listA = sessionFactory.getCurrentSession().createCriteria(Friendship.class)
 				.add(Restrictions.eq("catA", cat))
 				.list();
@@ -47,7 +61,7 @@ public class FriendshipRepositoryHibernate implements FriendshipRepository {
 
 	@Override
 	public boolean approveFriendship(Friendship friendship) {
-		friendship.setStatus(new FriendStatus(2, "ACCEPTED"));
+		friendship.setStatus(new FriendStatus(2, "APPROVED"));
 		sessionFactory.getCurrentSession().update(friendship);
 		return true;
 	}
