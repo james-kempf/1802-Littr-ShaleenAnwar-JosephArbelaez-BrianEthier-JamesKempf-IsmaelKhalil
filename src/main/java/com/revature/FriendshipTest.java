@@ -54,5 +54,6 @@ public class FriendshipTest {
 		logger.info(friendships);
 		logger.info(friendshipService.approveFriendship(friendships.get(0)));
 		logger.info(friendshipService.denyFriendship(friendships.get(1)));
+		logger.info("Are they friends? " + friendshipService.findFriendshipByCat(atlas, emack));
 	}
 }

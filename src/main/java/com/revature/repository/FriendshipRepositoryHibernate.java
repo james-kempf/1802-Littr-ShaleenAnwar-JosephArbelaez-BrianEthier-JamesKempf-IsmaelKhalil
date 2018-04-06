@@ -71,4 +71,8 @@ public class FriendshipRepositoryHibernate implements FriendshipRepository {
 		sessionFactory.getCurrentSession().delete(friendship);
 		return true;
 	}
+
+	
+
+	
 }

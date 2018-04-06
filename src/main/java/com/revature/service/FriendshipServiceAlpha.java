@@ -42,4 +42,11 @@ public class FriendshipServiceAlpha implements FriendshipService {
 			return friendshipRepository.denyFriendship(friendship);
 		}
 	}
+
+	@Override
+	public boolean findFriendshipByCat(Cat catA, Cat catB) {
+		List<Cat> catAFriends = friendshipRepository.findAllFriends(catA);
+		
+		return catAFriends.contains(catB);
+	}
 }

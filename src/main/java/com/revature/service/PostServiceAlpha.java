@@ -13,7 +13,9 @@ public class PostServiceAlpha implements PostService {
 	
 	@Autowired
 	private PostRepository postRepository;
-	//private FriendshipRepository friendshipRepository;
+	
+	@Autowired
+	private FriendshipService friendshipService;
 	private static Logger logger = Logger.getLogger(PostServiceAlpha.class);
 	
 	@Override
