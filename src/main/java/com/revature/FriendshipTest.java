@@ -1,10 +1,13 @@
 package com.revature;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.revature.model.Cat;
+import com.revature.model.Friendship;
 import com.revature.service.FriendshipService;
 
 public class FriendshipTest {
@@ -47,6 +50,9 @@ public class FriendshipTest {
 //		catService.insertCat(koushka);
 //		catService.insertCat(emack);
 		logger.info(friendshipService.findAllFriends(atlas));
-		logger.info(friendshipService.findAllFriendships(atlas));
+		List<Friendship> friendships = friendshipService.findAllFriendships(atlas);
+		logger.info(friendships);
+		logger.info(friendshipService.approveFriendship(friendships.get(0)));
+		logger.info(friendshipService.denyFriendship(friendships.get(1)));
 	}
 }
