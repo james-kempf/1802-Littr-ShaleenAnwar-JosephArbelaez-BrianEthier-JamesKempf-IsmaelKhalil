@@ -73,10 +73,4 @@ public class CatRepositoryHibernate implements CatRepository {
 				.setString("pattern", pattern)
 				.list();
 	}
-
-	@Override
-	public List<Cat> findAllFriends(Cat cat) {
-		// Need mapping for this
-		return null;
-	}
 }

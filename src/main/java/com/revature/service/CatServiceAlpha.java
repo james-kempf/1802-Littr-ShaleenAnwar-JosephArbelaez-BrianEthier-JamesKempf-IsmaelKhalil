@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Cat;
+import com.revature.model.Friendship;
 import com.revature.repository.CatRepository;
 
 @Service("catService")
@@ -44,12 +45,6 @@ public class CatServiceAlpha implements CatService {
 
 	@Override
 	public List<Cat> findAllCats() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Cat> findAllFriends(Cat cat) {
 		// TODO Auto-generated method stub
 		return null;
 	}

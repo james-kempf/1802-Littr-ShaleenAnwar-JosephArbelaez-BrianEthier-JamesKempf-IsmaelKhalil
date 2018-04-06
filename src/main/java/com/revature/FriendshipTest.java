@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.revature.model.Cat;
-import com.revature.service.CatService;
+import com.revature.service.FriendshipService;
 
 public class FriendshipTest {
 	
@@ -15,10 +15,11 @@ public class FriendshipTest {
 		ApplicationContext applicationContext 
 				= new ClassPathXmlApplicationContext("applicationContext.xml");
 		
-		CatService catService = applicationContext.getBean("catService", CatService.class);
+		FriendshipService friendshipService = applicationContext.getBean("friendshipService", FriendshipService.class);
 		
 		logger.trace("Main");
-		Cat c = new Cat(
+		Cat atlas = new Cat(
+				200,
 				"atlas",
 				"p4ssw0rd",
 				"Atlas",
@@ -26,6 +27,25 @@ public class FriendshipTest {
 				"He flop",
 				null
 				);
-		catService.insertCat(c);
+		Cat koushka = new Cat(
+				"koushka",
+				"p4ssw0rd",
+				"Koushla",
+				"koushka@gmail.com",
+				"Such purr",
+				null
+				);
+		Cat emack = new Cat(
+				"emack",
+				"p4ssw0rd",
+				"Emack",
+				"emack@gmail.com",
+				"Expert hunter",
+				null
+				);
+//		catService.insertCat(atlas);
+//		catService.insertCat(koushka);
+//		catService.insertCat(emack);
+		logger.trace(friendshipService.findAllFriends(atlas));
 	}
 }
