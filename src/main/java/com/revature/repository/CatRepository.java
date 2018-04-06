@@ -2,6 +2,8 @@ package com.revature.repository;
 
 import java.util.List;
 
+import org.hibernate.SQLQuery;
+
 import com.revature.model.Cat;
 
 public interface CatRepository {
@@ -12,6 +14,7 @@ public interface CatRepository {
 	Cat findById(int id);
 	List<Cat> findAllFriends(Cat cat);
 	
-	@Query("SELECT u FROM User u WHERE u.firstname like %?1%")
 	List<Cat> findByNameLike(String pattern);
+	
+	SQLQuery getPasswordHash(Cat cat);
 }
