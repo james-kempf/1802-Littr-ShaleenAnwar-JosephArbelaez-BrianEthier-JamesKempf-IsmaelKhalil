@@ -37,16 +37,20 @@ public class FriendshipControllerAlpha implements FriendshipController {
 	public ClientMessage approveFriendship(Friendship friendship) {
 		// TODO Implement authentication
 		if (true) {
-			friendshipService.approveFriendship(friendship);
+			if (friendshipService.approveFriendship(friendship)) {
+				return ClientMessageUtil.FRIENDSHIP_APPROVED;
+			}
 		}
 		return ClientMessageUtil.SOMETHING_WRONG;
 	}
-
+	
 	@Override
-	public ClientMessage denyFriendship(Friendship friendship) {
+	public ClientMessage deleteFriendship(Friendship friendship) {
 		// TODO Implement authentication
 		if (true) {
-			friendshipService.denyFriendship(friendship);
+			if(friendshipService.deleteFriendship(friendship)) {
+				return ClientMessageUtil.FRIENDSHIP_DELETED;
+			}
 		}
 		return ClientMessageUtil.SOMETHING_WRONG;
 	}

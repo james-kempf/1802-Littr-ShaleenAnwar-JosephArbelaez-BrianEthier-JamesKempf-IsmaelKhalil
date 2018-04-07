@@ -28,7 +28,7 @@ public interface FriendshipRepository {
 	public abstract boolean approveFriendship(Friendship friendship);
 	
 	/**
-	 * Set FriendStatus to denied, returns if successful
+	 * Delete a friendship, returns if successful
 	 */
-	public abstract boolean denyFriendship(Friendship friendship);
+	public abstract boolean deleteFriendship(Friendship friendship);
 }
