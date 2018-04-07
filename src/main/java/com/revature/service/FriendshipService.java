@@ -25,5 +25,5 @@ public interface FriendshipService {
 	/**
 	 * Deny friend request
 	 */
-	public abstract boolean denyFriendship(Friendship friendship);
+	public abstract boolean deleteFriendship(Friendship friendship);
 }
