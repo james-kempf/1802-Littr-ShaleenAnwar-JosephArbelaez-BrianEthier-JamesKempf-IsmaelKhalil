@@ -34,15 +34,20 @@ public class Post {
 	@JoinColumn(name="I_ID")
 	private Image image;
 	
+	@Column(name="P_Text")
+	private String text;
+	
 	public Post() {}
 
-	public Post(int id, Cat poster, Timestamp timePosted, Image image) {
+	public Post(int id, Cat poster, Timestamp timePosted, Image image, String text) {
 		super();
 		this.id = id;
 		this.poster = poster;
 		this.timePosted = timePosted;
 		this.image = image;
+		this.text = text;
 	}
+
 
 	public int getId() {
 		return id;
@@ -76,9 +81,12 @@ public class Post {
 		this.image = image;
 	}
 
-	@Override
-	public String toString() {
-		return "Post [id=" + id + ", poster=" + poster + ", timePosted=" + timePosted + ", image=" + image + "]";
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	@Override
@@ -88,6 +96,7 @@ public class Post {
 		result = prime * result + id;
 		result = prime * result + ((image == null) ? 0 : image.hashCode());
 		result = prime * result + ((poster == null) ? 0 : poster.hashCode());
+		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		result = prime * result + ((timePosted == null) ? 0 : timePosted.hashCode());
 		return result;
 	}
@@ -113,11 +122,22 @@ public class Post {
 				return false;
 		} else if (!poster.equals(other.poster))
 			return false;
+		if (text == null) {
+			if (other.text != null)
+				return false;
+		} else if (!text.equals(other.text))
+			return false;
 		if (timePosted == null) {
 			if (other.timePosted != null)
 				return false;
 		} else if (!timePosted.equals(other.timePosted))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Post [id=" + id + ", poster=" + poster + ", timePosted=" + timePosted + ", image=" + image + ", text="
+				+ text + "]";
 	}
 }

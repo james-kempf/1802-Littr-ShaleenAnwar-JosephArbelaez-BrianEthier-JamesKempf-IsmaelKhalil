@@ -1,46 +1,80 @@
 package com.revature.service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
-import com.revature.model.Cat;
-import com.revature.model.Post;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.revature.model.Cat;
+import com.revature.model.Image;
+import com.revature.model.Post;
+import com.revature.repository.PostRepository;
+
+@Service("postService")
 public class PostServiceAlpha implements PostService {
+
+	@Autowired
+	PostRepository postRepository;
+	private static Logger logger = Logger.getLogger(PostServiceAlpha.class);
 
 	@Override
 	public boolean insertPost(Post post) {
-		// TODO Auto-generated method stub
-		return false;
+		logger.trace("Inserting Post.");
+		postRepository.save(post);	
+		if (post.getId() != 0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	@Override
 	public boolean updatePost(Post post) {
-		// TODO Auto-generated method stub
-		return false;
+		logger.trace("Updating Post.");
+		Post post2 = post;
+
+		// Find previous version of post
+		Post post1 = postRepository.selectSinglePost(post.getId());
+		logger.trace("Post present in database");
+
+		postRepository.update(post);
+		// Compare to previous to see if update occurred.
+
+		if (post1.equals(post2)){
+			return false;
+		}
+		return true;
 	}
 
 	@Override
 	public Post findPost(Post post) {
-		// TODO Auto-generated method stub
-		return null;
+		logger.trace("PostServiceAlpha - Find Post");
+		return postRepository.selectSinglePost(post.getId());
 	}
 
 	@Override
 	public List<Post> findAllPosts() {
-		// TODO Auto-generated method stub
-		return null;
+		logger.trace("PostServiceAlpha - Find All Posts");
+		return postRepository.selectAll();
 	}
 
 	@Override
 	public List<Post> findPostsByCat(Cat cat) {
-		// TODO Auto-generated method stub
-		return null;
+		logger.trace("PostServiceAlpha - Find Posts by Cat");
+		return postRepository.selectUserPosts(cat.getId());
 	}
 
 	@Override
 	public boolean deletePost(Post post) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		Post post1 = postRepository.selectSinglePost(post.getId());
+		postRepository.delete(post);
 
+		if (postRepository.selectSinglePost(post1.getId()).equals(post1)){
+			return false;
+		}
+		return true;
+	}
 }
