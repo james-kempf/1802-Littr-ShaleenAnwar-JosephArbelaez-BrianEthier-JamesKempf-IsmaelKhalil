@@ -8,6 +8,11 @@ import com.revature.model.Friendship;
 public interface FriendshipRepository {
 	
 	/**
+	 * inserts a new pending friendship, returns if successful
+	 */
+	public abstract boolean insertFriendship(Friendship friendship);
+	
+	/**
 	 * Return a list of Friendships that cure given cat is a part of
 	 */
 	public abstract List<Friendship> findAllFriendships(Cat cat);

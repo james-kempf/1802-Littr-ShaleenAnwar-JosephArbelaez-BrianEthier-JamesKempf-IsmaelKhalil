@@ -24,6 +24,12 @@ public class FriendshipRepositoryHibernate implements FriendshipRepository {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@Override
+	public boolean insertFriendship(Friendship friendship) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Friendship> findAllFriendships(Cat cat) {
