@@ -11,9 +11,9 @@ public interface PasswordTokenService {
 	public abstract PasswordToken selectPasswordToken(Cat cat);
 	
 	/**
-	 * inserts a new PasswordToken for a given cat, returns if successful
+	 * Inserts a new PasswordToken and sends the cat an email, returns if successful
 	 */
-	public abstract boolean insertPasswordToken(Cat cat);
+	public abstract boolean recoverPassword(Cat cat);
 	
 	/**
 	 * Deletes the PasswordToken of a given cat, returns if successful
