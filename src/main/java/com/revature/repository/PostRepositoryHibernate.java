@@ -40,6 +40,7 @@ public class PostRepositoryHibernate implements PostRepository {
 		return sessionFactory.getCurrentSession().createCriteria(Post.class).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Post> selectUserPosts(int catId) {
 		try {

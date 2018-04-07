@@ -30,7 +30,7 @@ public interface PostService {
 	/**
 	 * Return a List of Posts with a from a specific user
 	 */
-	public abstract List<Post> findPostsByCat(Cat cat);
+	public abstract List<Post> findPostsByCat(Cat cat, Cat search);
 	
 	/**
 	 * Delete a specific post and return if successful
