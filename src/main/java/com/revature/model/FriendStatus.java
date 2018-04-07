@@ -8,6 +8,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="FRIEND_STATUS")
 public class FriendStatus {
+	
+	/**
+	 * 1 = Pending
+	 * 2 = Approved
+	 */
 
 	@Id
 	@Column(name="FS_ID")

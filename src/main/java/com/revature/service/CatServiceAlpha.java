@@ -28,7 +28,7 @@ public class CatServiceAlpha implements CatService {
 	    {
 	    	Cat loggedCat = catRepository.findByName(cat.getUsername().toUpperCase());
 
-	    	if ( loggedCat.getPassword().equals(catRepository.getPasswordHash(cat))) 
+	    	if ( loggedCat.getPassword().equals(catRepository.getPasswordHash(cat)))
 	    	{
 	    	    return loggedCat;
 	    	}
@@ -51,9 +51,11 @@ public class CatServiceAlpha implements CatService {
 		return catRepository.findAllUsers();
 	}
 
+
 	@Override
 	public List<Cat> findAllFriends(Cat cat) {
-		return catRepository.findAllFriends(cat);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
