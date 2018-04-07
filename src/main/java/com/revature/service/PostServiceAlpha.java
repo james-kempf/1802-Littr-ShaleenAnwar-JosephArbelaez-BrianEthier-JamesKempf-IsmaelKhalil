@@ -18,15 +18,16 @@ public class PostServiceAlpha implements PostService {
 
 	@Autowired
 	PostRepository postRepository;
+
 	private static Logger logger = Logger.getLogger(PostServiceAlpha.class);
 
 	@Override
 	public boolean insertPost(Post post) {
 		logger.trace("Inserting Post.");
-		postRepository.save(post);	
 		if (post.getId() != 0){
+			postRepository.save(post);	
 			return true;
-		}else{
+		} else{
 			return false;
 		}
 	}
@@ -44,8 +45,10 @@ public class PostServiceAlpha implements PostService {
 		// Compare to previous to see if update occurred.
 
 		if (post1.equals(post2)){
+			logger.trace("PostServiceAlpha.updatePost - Post Update Failed.");
 			return false;
 		}
+		logger.trace("PostControllerAlpha.submit Post - Insert Successful");
 		return true;
 	}
 
@@ -64,11 +67,14 @@ public class PostServiceAlpha implements PostService {
 	@Override
 	public List<Post> findPostsByCat(Cat cat) {
 		logger.trace("PostServiceAlpha - Find Posts by Cat");
+		
+		// Implementation for getting all posts that a Cat can read.
 		return postRepository.selectUserPosts(cat.getId());
 	}
 
 	@Override
 	public boolean deletePost(Post post) {
+		logger.trace("PostServiceAlpha - Delete Post");
 		Post post1 = postRepository.selectSinglePost(post.getId());
 		postRepository.delete(post);
 

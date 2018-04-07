@@ -13,13 +13,13 @@ import com.revature.model.Post;
 @Repository("postRepository")
 @Transactional
 public class PostRepositoryHibernate implements PostRepository {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	public PostRepositoryHibernate() {
 	}
-	
+
 	@Override
 	public void save(Post post) {
 		sessionFactory.getCurrentSession().save(post);
@@ -29,7 +29,7 @@ public class PostRepositoryHibernate implements PostRepository {
 	public void update(Post post) {
 		sessionFactory.getCurrentSession().update(post);
 	}
-	
+
 	@Override
 	public void delete(Post post) {
 		sessionFactory.getCurrentSession().delete(post);
@@ -37,11 +37,10 @@ public class PostRepositoryHibernate implements PostRepository {
 
 	@Override
 	public Post selectSinglePost(int id) {
-		
-			return ((Post) sessionFactory.getCurrentSession().createCriteria(Post.class)
-					.add(Restrictions.idEq(id))
-					.uniqueResult());
-		
+
+		return ((Post) sessionFactory.getCurrentSession().createCriteria(Post.class)
+				.add(Restrictions.idEq(id))
+				.uniqueResult());
 	}
 
 	@Override

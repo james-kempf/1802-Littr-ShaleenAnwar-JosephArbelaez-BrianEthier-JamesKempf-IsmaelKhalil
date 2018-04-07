@@ -34,7 +34,7 @@ public class Post {
 	@JoinColumn(name="I_ID")
 	private Image image;
 	
-	@Column(name="P_Text")
+	@Column(name="P_TEXT")
 	private String text;
 	
 	public Post() {}
