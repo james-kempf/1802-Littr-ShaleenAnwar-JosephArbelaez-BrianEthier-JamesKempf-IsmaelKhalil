@@ -10,14 +10,14 @@ public interface CatService {
 	 * Inserts a new cat and returns if successful
 	 */
 	public abstract boolean insertCat(Cat cat);
+	/**
+	 * Logs a cat in
+	 * @return 
+	 */
+	public abstract Cat authenticate(Cat cat);
 	
 	/**
 	 * Update cat by ID and returns if successful
-	 */
-	public abstract boolean updateCat(Cat cat);
-	
-	/**
-	 * Return a single Cat by ID or Username
 	 */
 	public abstract Cat findCat(Cat cat);
 	
