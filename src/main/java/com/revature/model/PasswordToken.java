@@ -1,5 +1,7 @@
 package com.revature.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,29 +11,23 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="PASSWORD_TOKEN")
-public class PasswordToken {
+public class PasswordToken implements Serializable {
 	
+	private static final long serialVersionUID = -3835010810597756618L;
+
 	@Id
-	@Column(name="PT_TOKEN")
-	private String token;
-	
 	@OneToOne
 	@JoinColumn(name="C_ID")
 	private Cat cat;
 	
+	@Column(name="PT_TOKEN")
+	private String token;
+	
 	public PasswordToken() {}
 
-	public PasswordToken(String token, Cat cat) {
+	public PasswordToken(Cat cat, String token) {
 		super();
-		this.token = token;
 		this.cat = cat;
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
 		this.token = token;
 	}
 
@@ -43,9 +39,17 @@ public class PasswordToken {
 		this.cat = cat;
 	}
 
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 	@Override
 	public String toString() {
-		return "PasswordToken [token=" + token + ", cat=" + cat + "]";
+		return "PasswordToken [cat=" + cat + ", token=" + token + "]";
 	}
 
 	@Override
