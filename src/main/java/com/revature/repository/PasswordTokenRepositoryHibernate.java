@@ -38,4 +38,20 @@ public class PasswordTokenRepositoryHibernate implements PasswordTokenRepository
 		sessionFactory.getCurrentSession().delete(passwordToken);
 	}
 
+	@Override
+	public boolean updatePassword(Cat cat, PasswordToken passwordToken, String newPassword) {
+		PasswordToken storedPasswordToken = (PasswordToken) sessionFactory.getCurrentSession().createCriteria(PasswordToken.class)
+				.add(Restrictions.eq("cat", cat))
+				.uniqueResult();
+		if (passwordToken.getToken().equals(storedPasswordToken.getToken())) {
+			cat = (Cat) sessionFactory.getCurrentSession().createCriteria(Cat.class)
+				.add(Restrictions.eq("id", cat.getId()))
+				.uniqueResult();
+			cat.setPassword(newPassword);
+			sessionFactory.getCurrentSession().saveOrUpdate(cat);
+			return true;
+		}
+		return false;
+	}
+
 }

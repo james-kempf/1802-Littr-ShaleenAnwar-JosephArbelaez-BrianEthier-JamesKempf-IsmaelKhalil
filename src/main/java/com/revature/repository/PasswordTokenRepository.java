@@ -19,4 +19,9 @@ public interface PasswordTokenRepository {
 	 * Deletes a given PasswordToken
 	 */
 	public abstract void deletePasswordToken(PasswordToken passwordToken);
+	
+	/**
+	 * Updates a password for a given cat, returns if successful
+	 */
+	public abstract boolean updatePassword(Cat cat, PasswordToken passwordToken, String newPassword);
 }

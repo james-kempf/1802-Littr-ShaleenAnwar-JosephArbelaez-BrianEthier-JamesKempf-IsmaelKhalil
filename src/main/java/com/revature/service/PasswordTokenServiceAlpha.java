@@ -97,8 +97,7 @@ public class PasswordTokenServiceAlpha implements PasswordTokenService {
 	}
 
 	@Override
-	public boolean resetPassword(Cat cat) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean resetPassword(Cat cat, PasswordToken passwordToken, String newPassword) {
+		return passwordTokenRepository.updatePassword(cat, passwordToken, newPassword);
 	}
 }

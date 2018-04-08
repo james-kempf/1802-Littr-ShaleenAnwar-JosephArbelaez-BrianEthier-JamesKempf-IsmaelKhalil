@@ -23,5 +23,5 @@ public interface PasswordTokenService {
 	/**
 	 * Sends an password recovery email to the given cat, returns if successful
 	 */
-	public abstract boolean resetPassword(Cat cat);
+	public abstract boolean resetPassword(Cat cat, PasswordToken passwordToken, String newPassword);
 }
