@@ -25,6 +25,12 @@ public class PostRepositoryHibernate implements PostRepository {
 		sessionFactory.getCurrentSession().update(post);
 		
 	}
+	
+	@Override
+	public void deletePost(Post post) {
+		sessionFactory.getCurrentSession().delete(post);
+		
+	}
 
 	@Override
 	public Post selectSinglePost(int id) {
@@ -50,5 +56,6 @@ public class PostRepositoryHibernate implements PostRepository {
 			return null;
 		}
 	}
+
 
 }
