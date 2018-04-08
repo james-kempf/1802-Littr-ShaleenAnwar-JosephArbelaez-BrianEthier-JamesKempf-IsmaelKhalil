@@ -33,4 +33,5 @@ public interface CatService {
 	public abstract List<Cat> findAllCats();
 	
 	public abstract List<Cat> findAllFriends(Cat cat);
+	public abstract boolean updateCat(Cat cat);
 }

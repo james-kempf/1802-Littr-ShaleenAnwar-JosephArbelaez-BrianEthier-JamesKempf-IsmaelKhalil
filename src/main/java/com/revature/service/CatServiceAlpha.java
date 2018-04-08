@@ -19,6 +19,7 @@ public class CatServiceAlpha implements CatService {
 
 	@Override
 	public boolean insertCat(Cat cat) {
+		catRepository.save(cat);
 		return cat.getId() != 0;
 	}
 
@@ -56,6 +57,13 @@ public class CatServiceAlpha implements CatService {
 	public List<Cat> findAllFriends(Cat cat) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	public boolean updateCat(Cat cat) {
+		catRepository.update(cat);
+		return cat.getId() != 0;
 	}
 
 }
