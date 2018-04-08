@@ -7,7 +7,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.revature.model.Cat;
 import com.revature.model.Image;
 import com.revature.model.Post;
@@ -20,6 +19,7 @@ public class PostServiceAlpha implements PostService {
 	PostRepository postRepository;
 
 	private static Logger logger = Logger.getLogger(PostServiceAlpha.class);
+	//private FriendshipRepository friendshipRepository;	
 
 	@Override
 	public boolean insertPost(Post post) {
@@ -64,12 +64,19 @@ public class PostServiceAlpha implements PostService {
 		return postRepository.selectAll();
 	}
 
-	@Override
-	public List<Post> findPostsByCat(Cat cat) {
-		logger.trace("PostServiceAlpha - Find Posts by Cat");
-		
-		// Implementation for getting all posts that a Cat can read.
-		return postRepository.selectUserPosts(cat.getId());
+	public List<Post> findPostsByCat(Cat cat, Cat search) {
+		if(cat != null) {
+			if(cat.getId() == search.getId()) {
+				return postRepository.selectUserPosts(cat.getId());
+			} else if (true){
+				//check if friends
+				return postRepository.selectUserPosts(cat.getId());
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
 	}
 
 	@Override
