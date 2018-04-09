@@ -22,6 +22,10 @@ public interface FriendshipRepository {
 	 */
 	public abstract List<Cat> findAllFriends(Cat cat);
 	
+	
+	
+	
+	
 	/**
 	 * Set FriendStatus to approved, returns if successful
 	 */
