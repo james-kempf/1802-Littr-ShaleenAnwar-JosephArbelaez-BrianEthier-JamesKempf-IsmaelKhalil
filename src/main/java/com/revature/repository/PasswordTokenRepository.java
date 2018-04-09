@@ -23,5 +23,5 @@ public interface PasswordTokenRepository {
 	/**
 	 * Updates a password for a given cat, returns if successful
 	 */
-	public abstract boolean updatePassword(Cat cat, PasswordToken passwordToken, String newPassword);
+	public abstract boolean updatePassword(PasswordToken passwordToken, String newPassword);
 }

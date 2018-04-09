@@ -39,7 +39,8 @@ public class PasswordTokenRepositoryHibernate implements PasswordTokenRepository
 	}
 
 	@Override
-	public boolean updatePassword(Cat cat, PasswordToken passwordToken, String newPassword) {
+	public boolean updatePassword(PasswordToken passwordToken, String newPassword) {
+		Cat cat = passwordToken.getCat();
 		PasswordToken storedPasswordToken = (PasswordToken) sessionFactory.getCurrentSession().createCriteria(PasswordToken.class)
 				.add(Restrictions.eq("cat", cat))
 				.uniqueResult();

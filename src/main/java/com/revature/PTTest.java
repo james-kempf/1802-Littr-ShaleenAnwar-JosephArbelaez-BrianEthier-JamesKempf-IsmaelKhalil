@@ -20,13 +20,13 @@ public class PTTest {
 				"atlas",
 				"p4ssw0rd",
 				"Atlas",
-				"jamesk4321@gmail.com.com",
+				"jamesk4321@gmail.com",
 				"He flop",
 				null
 				);
-//		pts.recoverPassword(atlas);
+		pts.recoverPassword(atlas);
 		PasswordToken pt = pts.selectPasswordToken(atlas);
 		String np = "newp4ssw0rd";
-		pts.resetPassword(atlas, pt, np);
+		pts.resetPassword(pt, np);
 	}
 }
