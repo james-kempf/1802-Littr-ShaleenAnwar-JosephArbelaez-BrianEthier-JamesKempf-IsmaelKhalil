@@ -18,6 +18,7 @@
 	<!-- Package Scan -->
 	<context:component-scan base-package="com.revature.repository" />
 	<context:component-scan base-package="com.revature.service" />
+	<context:component-scan base-package="com.revature.controller" />
 	
 	<!-- Hibernate Integration with Contextual Sessions -->
 	
