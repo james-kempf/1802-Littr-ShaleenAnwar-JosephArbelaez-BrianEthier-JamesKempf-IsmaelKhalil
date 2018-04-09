@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.model.Cat;
 import com.revature.repository.CatRepository;
 
+@Service("catService")
 public class CatServiceAlpha implements CatService {
 	
 	private static Logger logger = Logger.getLogger(CatServiceAlpha.class);
@@ -19,6 +21,7 @@ public class CatServiceAlpha implements CatService {
 
 	@Override
 	public boolean insertCat(Cat cat) {
+		logger.info("In insert cat");
 		catRepository.save(cat);
 		return cat.getId() != 0;
 	}
