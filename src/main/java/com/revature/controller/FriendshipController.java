@@ -23,7 +23,7 @@ public interface FriendshipController {
 	public abstract ClientMessage approveFriendship(Friendship friendship);
 	
 	/**
-	 * Deny friend request
+	 * Deletes a friendship
 	 */
-	public abstract ClientMessage denyFriendship(Friendship friendship);
+	public abstract ClientMessage deleteFriendship(Friendship friendship);
 }
