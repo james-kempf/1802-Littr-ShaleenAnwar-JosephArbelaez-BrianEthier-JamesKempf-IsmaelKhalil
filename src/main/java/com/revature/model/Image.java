@@ -27,6 +27,12 @@ public class Image {
 		return id;
 	}
 
+	public Image(int id, String imgURL) {
+		super();
+		this.id = id;
+		this.imgURL = imgURL;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}

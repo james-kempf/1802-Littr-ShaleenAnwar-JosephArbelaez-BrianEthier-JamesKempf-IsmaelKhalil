@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class CatRepositoryHibernate implements CatRepository {
 
 	@Override
 	public void save(Cat cat) {
+		logger.info(cat.toString());
 		sessionFactory.getCurrentSession().save(cat);
 	}
 	
@@ -67,10 +69,20 @@ public class CatRepositoryHibernate implements CatRepository {
 
 	@Override
 	public List<Cat> findByNameLike(String pattern) {
-		String hql = "FROM com.revature.model.Cat WHERE catName LIKE :pattern";
-		return sessionFactory.getCurrentSession()
-				.createQuery(hql)
-				.setString("pattern", pattern)
-				.list();
+	       return (List<Cat>) sessionFactory.getCurrentSession().createCriteria(Cat.class)
+	               .add(Restrictions.like("name", pattern)).list();
+	}
+	
+	@Override
+	public List<Cat> findAllFriends(Cat cat) {
+		return (List<Cat>) sessionFactory.getCurrentSession().createCriteria(Cat.class)
+				.add(Restrictions.like("friends", cat)).list();
+	}
+
+	@Override
+	public SQLQuery getPasswordHash(Cat cat) {
+		String sql = "SELECT GET_HASH(?) AS HASH FROM DUAL";
+		return sessionFactory.getCurrentSession().createSQLQuery(sql);
+		//Using SQLQuery until we add the proper Hibernate Query
 	}
 }

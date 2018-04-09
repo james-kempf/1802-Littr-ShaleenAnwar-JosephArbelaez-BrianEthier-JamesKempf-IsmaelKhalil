@@ -53,7 +53,7 @@ public class FriendshipTest {
 		List<Friendship> friendships = friendshipService.findAllFriendships(atlas);
 		logger.info(friendships);
 		logger.info(friendshipService.approveFriendship(friendships.get(0)));
-		logger.info(friendshipService.denyFriendship(friendships.get(1)));
-		logger.info("Are they friends? " + friendshipService.findFriendshipByCat(atlas, emack));
+		logger.info(friendshipService.deleteFriendship(friendships.get(1)));
+
 	}
 }

@@ -7,45 +7,65 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Cat;
-import com.revature.model.Friendship;
 import com.revature.repository.CatRepository;
 
 @Service("catService")
 public class CatServiceAlpha implements CatService {
 	
 	private static Logger logger = Logger.getLogger(CatServiceAlpha.class);
-	
 	@Autowired
-	private CatRepository catRepository;
+	public CatRepository catRepository;
+	
+	public CatServiceAlpha() {}
+
 
 	@Override
 	public boolean insertCat(Cat cat) {
-		logger.trace("Inerting Cat");
 		catRepository.save(cat);
 		return cat.getId() != 0;
 	}
 
+
 	@Override
-	public boolean updateCat(Cat cat) {
-		// TODO Auto-generated method stub
-		return false;
+	public Cat authenticate(Cat cat) {
+	    {
+	    	Cat loggedCat = catRepository.findByName(cat.getUsername().toUpperCase());
+
+	    	if ( loggedCat.getPassword().equals(catRepository.getPasswordHash(cat)))
+	    	{
+	    	    return loggedCat;
+	    	}
+	    	return null;
+	        }
 	}
 
 	@Override
 	public Cat findCat(Cat cat) {
-		// TODO Auto-generated method stub
-		return null;
+		return catRepository.findById(cat.getId());
 	}
 
 	@Override
 	public List<Cat> findCatByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Cat>) catRepository.findByName(name);
 	}
 
 	@Override
 	public List<Cat> findAllCats() {
+		return catRepository.findAllUsers();
+	}
+
+
+	@Override
+	public List<Cat> findAllFriends(Cat cat) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	@Override
+	public boolean updateCat(Cat cat) {
+		catRepository.update(cat);
+		return cat.getId() != 0;
+	}
+
 }

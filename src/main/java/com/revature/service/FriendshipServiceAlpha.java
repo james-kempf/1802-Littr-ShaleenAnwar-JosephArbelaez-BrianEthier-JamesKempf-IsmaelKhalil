@@ -33,14 +33,10 @@ public class FriendshipServiceAlpha implements FriendshipService {
 			return friendshipRepository.approveFriendship(friendship);
 		}
 	}
-
+	
 	@Override
-	public boolean denyFriendship(Friendship friendship) {
-		if (friendship.getStatus().getId() != 1) {
-			return false;
-		} else {
-			return friendshipRepository.denyFriendship(friendship);
-		}
+	public boolean deleteFriendship(Friendship friendship) {
+		return friendshipRepository.deleteFriendship(friendship);
 	}
 
 	@Override

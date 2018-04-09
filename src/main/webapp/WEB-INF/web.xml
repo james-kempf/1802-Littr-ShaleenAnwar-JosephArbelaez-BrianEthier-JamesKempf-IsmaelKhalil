@@ -4,59 +4,27 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	<display-name>Littr</display-name>
-
-	<welcome-file-list>
-		<welcome-file>login.html</welcome-file>
-	</welcome-file-list>
-
+	
+	<!-- Location of ApplicationContext configuration -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/applicationContext.xml</param-value>
 	</context-param>
-
+	
+	<!-- Context Loader Listener (Spring Container lifecycle joins Servlet COntainer) -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
+	
+	<!-- Dispatcher Decleration -->
 	<servlet>
-		<servlet-name>DispatcherServlet</servlet-name>
+		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-
+	
 	<servlet-mapping>
-		<servlet-name>DispatcherServlet</servlet-name>
+		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
-
-	<!-- ERROR PAGES -->
-
-	<!-- For 500 (Exceptions Thrown) -->
-	<error-page>
-		<exception-type>java.lang.Throwable</exception-type>
-		<location>/oops.html</location>
-	</error-page>
-
-	<!-- 404 Error Page -->
-	<error-page>
-		<error-code>404</error-code>
-		<location>/404.html</location>
-	</error-page>
-
-	<!-- 403 Error Page -->
-	<error-page>
-		<error-code>403</error-code>
-		<location>/403.html</location>
-	</error-page>
-
-	<!-- Default Error -->
-	<error-page>
-		<exception-type>java.lang.Throwable</exception-type>
-		<location>/oops.do</location>
-	</error-page>
-
-	<!-- Session Objects will expire in 30 minutes -->
-	<session-config>
-		<session-timeout>30</session-timeout>
-	</session-config>
 </web-app>
