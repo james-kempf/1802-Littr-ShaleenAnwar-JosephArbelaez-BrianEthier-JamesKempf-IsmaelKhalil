@@ -49,8 +49,8 @@ public class PasswordTokenServiceAlpha implements PasswordTokenService {
 		String emailFromPassword = "77lPk#3h!sb2t4m";
 		String emailTo = cat.getEmail();
 		String emailSubject = "Reset Your Password";
-		String emailBody = "Please use below link to reset your password.\n"
-                +"littr.com/password-recover?id="+cat.getId()+"&token="+passwordToken.getToken();
+		String emailBody = "Use the link below to reset your password.\n"
+                + "http://ec2-54-209-177-177.compute-1.amazonaws.com/Littr/password-reset?token="+passwordToken.getToken();
 
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.gmail.com");
