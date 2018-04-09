@@ -2,6 +2,7 @@ package com.revature.controller;
 
 import static com.revature.util.ClientMessageUtil.REGISTRATION_SUCCESSFUL;
 import static com.revature.util.ClientMessageUtil.SOMETHING_WRONG;
+import static com.revature.util.ClientMessageUtil.UPDATE_SUCCESSFUL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.ajax.ClientMessage;
-import static com.revature.util.ClientMessageUtil.*;
 import com.revature.model.Cat;
 import com.revature.service.CatService;
 
