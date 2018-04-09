@@ -1,53 +1,86 @@
 package com.revature.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.revature.ajax.ClientMessage;
 import com.revature.model.Cat;
 import com.revature.model.Friendship;
 import com.revature.service.FriendshipService;
 import com.revature.util.ClientMessageUtil;
 
+@Controller("frienshipController")
+@CrossOrigin(origins = "https://localhost:4200")
 public class FriendshipControllerAlpha implements FriendshipController {
-	
+
 	@Autowired
 	FriendshipService friendshipService;
 
 	@Override
-	public Object getAllFriendships() {
+	@GetMapping("/all-friendships")
+	public @ResponseBody Object getAllFriendships() {
 		// TODO Implement authentication
-		if (true) {
-			Cat cat = new Cat();
-			return friendshipService.findAllFriendships(cat);
+		boolean loggedin = true;
+		if (!loggedin) {
+			return "login.html";
 		}
-		return ClientMessageUtil.SOMETHING_WRONG;
+		else {
+			Cat cat = new Cat();
+			try {
+				return friendshipService.findAllFriendships(cat);
+			} catch (Exception e) {
+				return ClientMessageUtil.SOMETHING_WRONG;
+			}
+		}
 	}
 
 	@Override
-	public Object getAllFriends() {
+	@GetMapping("/all-friends")
+	public @ResponseBody Object getAllFriends() {
 		// TODO Implement authentication
-		if (true) {
-			Cat cat = new Cat();
-			return friendshipService.findAllFriends(cat);
+		boolean loggedin = true;
+		if (!loggedin) {
+			return "login.html";
 		}
-		return ClientMessageUtil.SOMETHING_WRONG;
+		else {
+			Cat cat = new Cat();
+			try {
+				return friendshipService.findAllFriends(cat);
+			} catch (Exception e) {
+				return ClientMessageUtil.SOMETHING_WRONG;
+			}
+		}
 	}
 
 	@Override
-	public ClientMessage approveFriendship(Friendship friendship) {
+	@PostMapping("apprive-friendship")
+	public @ResponseBody Object approveFriendship(@RequestBody Friendship friendship) {
 		// TODO Implement authentication
-		if (true) {
+		boolean loggedin = true;
+		if (!loggedin) {
+			return "login.html";
+		}
+		else {
 			if (friendshipService.approveFriendship(friendship)) {
 				return ClientMessageUtil.FRIENDSHIP_APPROVED;
 			}
 		}
 		return ClientMessageUtil.SOMETHING_WRONG;
 	}
-	
+
 	@Override
-	public ClientMessage deleteFriendship(Friendship friendship) {
+	@PostMapping("delete-friendship")
+	public @ResponseBody Object deleteFriendship(@RequestBody Friendship friendship) {
 		// TODO Implement authentication
-		if (true) {
+		boolean loggedin = true;
+		if (!loggedin) {
+			return "login.html";
+		}
+		else {
 			if(friendshipService.deleteFriendship(friendship)) {
 				return ClientMessageUtil.FRIENDSHIP_DELETED;
 			}
