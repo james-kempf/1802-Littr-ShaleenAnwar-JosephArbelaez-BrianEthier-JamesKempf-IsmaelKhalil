@@ -17,6 +17,9 @@ public class PostServiceAlpha implements PostService {
 
 	@Autowired
 	PostRepository postRepository;
+  
+  @Autowired
+	private FriendshipService friendshipService;
 
 	private static Logger logger = Logger.getLogger(PostServiceAlpha.class);
 	//private FriendshipRepository friendshipRepository;	
@@ -68,9 +71,9 @@ public class PostServiceAlpha implements PostService {
 		if(cat != null) {
 			if(cat.getId() == search.getId()) {
 				return postRepository.selectUserPosts(cat.getId());
-			} else if (true){
+			} else if (friendshipService.findFriendshipByCat(cat, search)){
 				//check if friends
-				return postRepository.selectUserPosts(cat.getId());
+				return postRepository.selectUserPosts(search.getId());
 			} else {
 				return null;
 			}

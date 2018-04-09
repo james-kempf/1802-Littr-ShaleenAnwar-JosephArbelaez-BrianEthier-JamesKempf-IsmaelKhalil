@@ -88,4 +88,10 @@ public class FriendshipControllerAlpha implements FriendshipController {
 		return ClientMessageUtil.SOMETHING_WRONG;
 	}
 
+	@Override
+	public boolean isFriends(Cat catA, Cat catB) {
+		//TODO implement authentication
+		return friendshipService.findFriendshipByCat(catA, catB);
+	}
+
 }
