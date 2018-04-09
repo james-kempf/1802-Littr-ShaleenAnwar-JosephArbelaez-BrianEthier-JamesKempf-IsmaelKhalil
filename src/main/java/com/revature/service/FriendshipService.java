@@ -18,6 +18,14 @@ public interface FriendshipService {
 	public abstract List<Cat> findAllFriends(Cat cat);
 	
 	/**
+	 * 
+	 * @param catA -logged cat
+	 * @param catB - possible friend
+	 * @return are catA and catB friends?
+	 */
+	public abstract boolean findFriendshipByCat(Cat catA, Cat catB);
+	
+	/**
 	 * Approve friend request
 	 */
 	public abstract boolean approveFriendship(Friendship friendship);
