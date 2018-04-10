@@ -16,6 +16,11 @@ public class FriendshipServiceAlpha implements FriendshipService {
 	FriendshipRepository friendshipRepository;
 	
 	@Override
+	public boolean insertFriendship(Friendship friendship) {
+		return friendshipRepository.insertFriendship(friendship);
+	}
+	
+	@Override
 	public List<Friendship> findAllFriendships(Cat cat) {
 		return friendshipRepository.findAllFriendships(cat);
 	}

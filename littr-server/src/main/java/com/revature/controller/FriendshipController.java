@@ -1,10 +1,16 @@
 package com.revature.controller;
 
-import com.revature.model.Friendship;
-import com.revature.ajax.ClientMessage;
+import java.util.List;
+
 import com.revature.model.Cat;
+import com.revature.model.Friendship;
 
 public interface FriendshipController {
+	
+	/**
+	 * Inserts a new friendship between two cats
+	 */
+	public abstract Object insertFriendship(List<Cat> cats);
 	
 	/**
 	 * Get all friendships of current user
