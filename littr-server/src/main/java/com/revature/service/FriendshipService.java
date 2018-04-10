@@ -10,6 +10,11 @@ public interface FriendshipService {
 	public boolean insert(Friendship friendship);
 	
 	/**
+	 * Insert new friendship
+	 */
+	public boolean insertFriendship(Friendship friendship);
+	
+	/**
 	 * Returns a list of Friendships of the given cat
 	 */
 	public abstract List<Friendship> findAllFriendships(Cat cat);

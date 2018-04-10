@@ -22,10 +22,8 @@ public class FriendshipServiceAlpha implements FriendshipService {
 	@Override
 	public boolean insert(Friendship friendship) {
 		friendshipRepository.insertFriendship(friendship);
-		return friendship.getTime() != null;
-		
+		return friendship.getTime() != null;	
 	}
-	
 	
 	@Override
 	public List<Friendship> findAllFriendships(Cat cat) {
