@@ -7,6 +7,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.revature.ajax.ClientMessage;
 import com.revature.model.Cat;
 import com.revature.model.Image;
 import com.revature.model.Post;
@@ -70,14 +72,19 @@ public class PostServiceAlpha implements PostService {
 	public List<Post> findPostsByCat(Cat cat, Cat search) {
 		if(cat != null) {
 			if(cat.getId() == search.getId()) {
-				return postRepository.selectUserPosts(cat.getId());
+				logger.info("findpostbycat: same cat.");
+				return postRepository.selectUserPosts(cat);
 			} else if (friendshipService.findFriendshipByCat(cat, search)){
-				//check if friends
-				return postRepository.selectUserPosts(search.getId());
+				logger.info("findpostbycat: cats are friends.");
+				return postRepository.selectUserPosts(search);
 			} else {
+				logger.info("findpostbycat: cats are not friends.");
+				new ClientMessage(""+cat.getUsername()+ " is not friends with " + search.getUsername());
+				//need to alter to return clientMessages.
 				return null;
 			}
 		} else {
+			logger.info("findpostbycat: first cat doesnt exist.");
 			return null;
 		}
 	}
