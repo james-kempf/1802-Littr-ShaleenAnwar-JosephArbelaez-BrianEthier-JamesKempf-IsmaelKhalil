@@ -7,7 +7,7 @@ import com.revature.model.Friendship;
 
 public interface FriendshipService {
 	
-	public boolean insert(Friendship friendship);
+	
 	
 	/**
 	 * Insert new friendship

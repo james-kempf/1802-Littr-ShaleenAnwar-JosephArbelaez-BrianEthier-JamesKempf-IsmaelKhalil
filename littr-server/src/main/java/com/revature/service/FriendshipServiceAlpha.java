@@ -20,12 +20,6 @@ public class FriendshipServiceAlpha implements FriendshipService {
 	FriendshipRepository friendshipRepository;
 	
 	@Override
-	public boolean insert(Friendship friendship) {
-		friendshipRepository.insertFriendship(friendship);
-		return friendship.getTime() != null;	
-	}
-	
-	@Override
 	public List<Friendship> findAllFriendships(Cat cat) {
 		return friendshipRepository.findAllFriendships(cat);
 	}
@@ -54,5 +48,11 @@ public class FriendshipServiceAlpha implements FriendshipService {
 		List<Cat> catAFriends = friendshipRepository.findAllFriends(catA);
 		logger.info("catA friendships: " + catAFriends);
 		return catAFriends.contains(catB);
+	}
+
+	@Override
+	public boolean insertFriendship(Friendship friendship) {
+		friendshipRepository.insertFriendship(friendship);
+		return friendship.getTime() != null;	
 	}
 }

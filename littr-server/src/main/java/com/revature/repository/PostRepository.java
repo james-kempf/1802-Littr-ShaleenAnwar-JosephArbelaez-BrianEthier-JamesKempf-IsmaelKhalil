@@ -2,6 +2,7 @@ package com.revature.repository;
 
 import java.util.List;
 
+import com.revature.model.Cat;
 import com.revature.model.Post;
 
 public interface PostRepository {
@@ -11,6 +12,6 @@ public interface PostRepository {
 	void deletePost(Post post);
 	Post selectSinglePost(int id);
 	List<Post> selectAll();
-	List<Post> selectUserPosts(int catId);
+	List<Post> selectUserPosts(Cat cat);
 	
 }

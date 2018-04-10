@@ -26,14 +26,9 @@ public class FriendshipRepositoryHibernate implements FriendshipRepository {
 	
 	@Override
 	public boolean insertFriendship(Friendship friendship) {
-<<<<<<< HEAD:src/main/java/com/revature/repository/FriendshipRepositoryHibernate.java
 		logger.info(friendship.toString());
 		sessionFactory.getCurrentSession().save(friendship);
 		return friendship.getTime() != null;
-=======
-		sessionFactory.getCurrentSession().save(friendship);
-		return true;
->>>>>>> 6901f7fdb46bad08b86ecf6d7b74a88d98126932:littr-server/src/main/java/com/revature/repository/FriendshipRepositoryHibernate.java
 	}
 	
 	@SuppressWarnings("unchecked")
