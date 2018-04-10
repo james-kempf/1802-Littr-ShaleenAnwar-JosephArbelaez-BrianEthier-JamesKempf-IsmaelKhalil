@@ -7,8 +7,7 @@ import com.revature.model.Cat;
 
 public interface LoginController {
 	
-	Cat login(Cat cat);
-	public String logout(HttpServletRequest request);
-
+	public abstract Cat login(Cat cat, HttpServletRequest request);
 	
+	public abstract void logout(HttpServletRequest request);
 }
