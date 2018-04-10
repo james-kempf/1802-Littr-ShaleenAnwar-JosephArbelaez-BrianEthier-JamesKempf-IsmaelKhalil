@@ -26,7 +26,7 @@ public class FriendshipRepositoryHibernate implements FriendshipRepository {
 	
 	@Override
 	public boolean insertFriendship(Friendship friendship) {
-		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().save(friendship);
 		return true;
 	}
 	

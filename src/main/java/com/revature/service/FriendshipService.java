@@ -8,6 +8,11 @@ import com.revature.model.Friendship;
 public interface FriendshipService {
 	
 	/**
+	 * Insert new friendship
+	 */
+	public boolean insertFriendship(Friendship friendship);
+	
+	/**
 	 * Returns a list of Friendships of the given cat
 	 */
 	public abstract List<Friendship> findAllFriendships(Cat cat);
