@@ -34,7 +34,7 @@ public class DriverBrian {
 	Cat koushka = catService.findCatByName("koushka");
 	logger.info("koushka: " + koushka);
 	logger.info("friends?" + friendshipService.findFriendshipByCat(atlas, koushka));
-	
+	/*
 	Post koushPost = new Post(1, koushka, 
 			Timestamp.valueOf(LocalDateTime.now()),
 			null, "Koushka Post");
@@ -42,7 +42,7 @@ public class DriverBrian {
 	Post koushPost2 = new Post(1, koushka, 
 			Timestamp.valueOf(LocalDateTime.now()),
 			null, "A random Koushka Appears");
-	
+	*/
 	logger.info("koushka looking at koushka post: " + postService.findPostsByCat(koushka, koushka));
 	logger.info("atlas looking at koushka post: " + postService.findPostsByCat(atlas, koushka));
 	logger.info("emack looking at koushka posts: " + postService.findPostsByCat(emack, koushka));
