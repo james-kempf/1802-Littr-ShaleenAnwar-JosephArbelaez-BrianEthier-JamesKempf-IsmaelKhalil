@@ -26,8 +26,9 @@ public class FriendshipRepositoryHibernate implements FriendshipRepository {
 	
 	@Override
 	public boolean insertFriendship(Friendship friendship) {
-		// TODO Auto-generated method stub
-		return true;
+		logger.info(friendship.toString());
+		sessionFactory.getCurrentSession().save(friendship);
+		return friendship.getTime() != null;
 	}
 	
 	@SuppressWarnings("unchecked")

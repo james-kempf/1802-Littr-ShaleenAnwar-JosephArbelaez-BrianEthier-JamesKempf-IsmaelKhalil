@@ -2,6 +2,7 @@ package com.revature.service;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +13,19 @@ import com.revature.repository.FriendshipRepository;
 @Service("friendshipService")
 public class FriendshipServiceAlpha implements FriendshipService {
 	
+	private static Logger logger = Logger.getLogger(FriendshipServiceAlpha.class);
+	
+	
 	@Autowired
 	FriendshipRepository friendshipRepository;
+	
+	@Override
+	public boolean insert(Friendship friendship) {
+		friendshipRepository.insertFriendship(friendship);
+		return friendship.getTime() != null;
+		
+	}
+	
 	
 	@Override
 	public List<Friendship> findAllFriendships(Cat cat) {
@@ -42,7 +54,7 @@ public class FriendshipServiceAlpha implements FriendshipService {
 	@Override
 	public boolean findFriendshipByCat(Cat catA, Cat catB) {
 		List<Cat> catAFriends = friendshipRepository.findAllFriends(catA);
-		
+		logger.info("catA friendships: " + catAFriends);
 		return catAFriends.contains(catB);
 	}
 }

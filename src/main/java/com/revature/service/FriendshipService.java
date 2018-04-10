@@ -7,6 +7,8 @@ import com.revature.model.Friendship;
 
 public interface FriendshipService {
 	
+	public boolean insert(Friendship friendship);
+	
 	/**
 	 * Returns a list of Friendships of the given cat
 	 */
@@ -24,6 +26,8 @@ public interface FriendshipService {
 	 * @return are catA and catB friends?
 	 */
 	public abstract boolean findFriendshipByCat(Cat catA, Cat catB);
+	
+	
 	
 	/**
 	 * Approve friend request
