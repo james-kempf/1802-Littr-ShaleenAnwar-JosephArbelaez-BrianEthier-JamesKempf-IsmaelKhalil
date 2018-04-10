@@ -28,15 +28,14 @@ public class CatServiceAlpha implements CatService {
 
 	@Override
 	public Cat authenticate(Cat cat) {
-	    {
-	    	Cat loggedCat = catRepository.findByName(cat.getUsername().toUpperCase());
+	    	Cat loggedCat = catRepository.findByUsername(cat);
 
-	    	if ( loggedCat.getPassword().equals(catRepository.getPasswordHash(cat)))
-	    	{
+	    	if (loggedCat.getPassword().equals(catRepository.getPasswordHash(cat))) {
+	    		logger.info(loggedCat.toString());
 	    	    return loggedCat;
 	    	}
+	    	logger.info("invalid login");
 	    	return null;
-	        }
 	}
 
 	@Override
@@ -45,8 +44,8 @@ public class CatServiceAlpha implements CatService {
 	}
 
 	@Override
-	public List<Cat> findCatByName(String name) {
-		return (List<Cat>) catRepository.findByName(name);
+	public Cat findCatByName(String username) {
+		return catRepository.findByName(username);
 	}
 
 	@Override

@@ -20,7 +20,9 @@ public interface CatRepository {
 
 	public abstract List<Cat> findByNameLike(String pattern);
 
-	public abstract SQLQuery getPasswordHash(Cat cat);
+	public abstract String getPasswordHash(Cat cat);
 
 	public abstract List<Cat> findAllFriends(Cat cat);
+	
+	public abstract Cat findByUsername(Cat cat);
 }

@@ -8,6 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.revature.model.Cat;
 import com.revature.model.Friendship;
+import com.revature.service.CatService;
 import com.revature.service.FriendshipService;
 
 public class FriendshipTest {
@@ -19,6 +20,8 @@ public class FriendshipTest {
 				= new ClassPathXmlApplicationContext("applicationContext.xml");
 		
 		FriendshipService friendshipService = applicationContext.getBean("friendshipService", FriendshipService.class);
+		
+		CatService catService = applicationContext.getBean("catService", CatService.class);
 		
 		logger.trace("Main");
 		Cat atlas = new Cat(
@@ -46,9 +49,9 @@ public class FriendshipTest {
 				"Expert hunter",
 				null
 				);
-//		catService.insertCat(atlas);
-//		catService.insertCat(koushka);
-//		catService.insertCat(emack);
+		//catService.insertCat(atlas);
+		//catService.insertCat(koushka);
+		//catService.insertCat(emack);
 		logger.info(friendshipService.findAllFriends(atlas));
 		List<Friendship> friendships = friendshipService.findAllFriendships(atlas);
 		logger.info(friendships);

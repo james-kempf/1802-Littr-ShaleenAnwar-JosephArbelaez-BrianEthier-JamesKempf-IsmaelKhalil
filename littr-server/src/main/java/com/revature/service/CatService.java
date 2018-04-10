@@ -25,7 +25,7 @@ public interface CatService {
 	/**
 	 * Returns a list of cats with a given name
 	 */
-	public abstract List<Cat> findCatByName(String name);
+	public abstract Cat findCatByName(String name);
 	
 	/**
 	 * Returns a list of all Cats in the database

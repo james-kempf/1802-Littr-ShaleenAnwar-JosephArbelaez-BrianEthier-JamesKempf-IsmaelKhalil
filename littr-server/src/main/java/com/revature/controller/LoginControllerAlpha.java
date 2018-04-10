@@ -28,14 +28,16 @@ public class LoginControllerAlpha implements LoginController {
 	}	
 
 	@PostMapping("/login")
-	public @ResponseBody Cat login(@RequestBody Cat cat) {
-		return catService.authenticate(cat);
+	public @ResponseBody Cat login(@RequestBody Cat cat, HttpServletRequest request) {
+		logger.info(cat.toString());
+		Cat loggedCat = catService.authenticate(cat);
+		request.getSession().setAttribute("loggedCat", loggedCat);
+		return loggedCat;
 	}
 
 	@Override
-	public String logout(HttpServletRequest request) {
+	public void logout(HttpServletRequest request) {
 		request.getSession().invalidate();
-		return "login";
 	}
 
 }
