@@ -84,7 +84,7 @@ public class FriendshipControllerAlpha implements FriendshipController {
 	}
 
 	@Override
-	@PostMapping("apprive-friendship")
+	@PostMapping("approve-friendship")
 	public @ResponseBody Object approveFriendship(@RequestBody Friendship friendship) {
 		// TODO Implement authentication
 		boolean loggedin = true;

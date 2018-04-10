@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FriendService } from '../../services/friend.service';
+import { friendship } from '../../models/friendship.model';
 
 @Component({
   selector: 'app-view-friends',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewFriendsComponent implements OnInit {
 
-  constructor() { }
+  friendships: friendship[];
+
+  constructor(private friendService: FriendService) { }
 
   ngOnInit() {
   }
