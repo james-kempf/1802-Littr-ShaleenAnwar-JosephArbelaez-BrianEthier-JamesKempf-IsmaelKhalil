@@ -46,7 +46,7 @@ public class CatRepositoryHibernate implements CatRepository {
 	public Cat findByName(String name) {
 		try {
 			return (Cat) sessionFactory.getCurrentSession().createCriteria(Cat.class)
-					.add(Restrictions.like("name", name))
+					.add(Restrictions.like("username", name))
 					.list()
 					.get(0);
 		} catch (IndexOutOfBoundsException e) {
