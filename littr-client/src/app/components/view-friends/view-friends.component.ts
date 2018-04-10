@@ -9,6 +9,7 @@ import { friendship } from '../../models/friendship.model';
 })
 export class ViewFriendsComponent implements OnInit {
 
+  title = 'Friends';
   friendships: friendship[];
 
   constructor(private friendService: FriendService) { }

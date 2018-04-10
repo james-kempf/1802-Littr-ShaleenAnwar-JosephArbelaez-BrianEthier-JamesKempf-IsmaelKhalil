@@ -13,6 +13,7 @@ import { ViewFriendsComponent } from './components/view-friends/view-friends.com
 
 // Client
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FriendService } from './services/friend.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    FriendService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
