@@ -45,8 +45,8 @@ public class CatServiceAlpha implements CatService {
 	}
 
 	@Override
-	public List<Cat> findCatByName(String name) {
-		return (List<Cat>) catRepository.findByName(name);
+	public Cat findCatByName(String username) {
+		return catRepository.findByName(username);
 	}
 
 	@Override
