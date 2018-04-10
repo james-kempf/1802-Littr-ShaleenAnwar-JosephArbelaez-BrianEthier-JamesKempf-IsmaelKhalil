@@ -1,8 +1,5 @@
 package com.revature.controller;
 
-import static com.revature.util.ClientMessageUtil.LOGIN_SUCCESSFUL;
-import static com.revature.util.ClientMessageUtil.SOMETHING_WRONG;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -13,10 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.revature.ajax.ClientMessage;
 import com.revature.model.Cat;
 import com.revature.service.CatService;
-import com.revature.service.CatServiceAlpha;
 
 @Controller("loginController")
 public class LoginControllerAlpha implements LoginController {
@@ -33,14 +28,16 @@ public class LoginControllerAlpha implements LoginController {
 	}	
 
 	@PostMapping("/login")
-	public @ResponseBody Cat login(@RequestBody Cat cat) {
-		return catService.authenticate(cat);
+	public @ResponseBody Cat login(@RequestBody Cat cat, HttpServletRequest request) {
+		logger.info(cat.toString());
+		Cat loggedCat = catService.authenticate(cat);
+		request.getSession().setAttribute("loggedCat", loggedCat);
+		return loggedCat;
 	}
 
 	@Override
-	public String logout(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+	public void logout(HttpServletRequest request) {
+		request.getSession().invalidate();
 	}
 
 }
