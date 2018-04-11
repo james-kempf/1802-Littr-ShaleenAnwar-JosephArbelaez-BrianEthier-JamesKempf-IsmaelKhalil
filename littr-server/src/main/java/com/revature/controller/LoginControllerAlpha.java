@@ -6,13 +6,14 @@ import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.revature.ajax.ClientMessage;
 import com.revature.model.Cat;
 import com.revature.service.CatService;
-
 import com.revature.util.ClientMessageUtil;
 
 @Controller("loginController")
@@ -50,8 +51,10 @@ public class LoginControllerAlpha implements LoginController {
 //	}
 
 	@Override
-	public void logout(HttpServletRequest request) {
+	@GetMapping("/logout")
+	public @ResponseBody ClientMessage logout(HttpServletRequest request) {
 		request.getSession().invalidate();
+		return ClientMessageUtil.LOGOUT_SUCCESSFUL;
 	}
 
 }

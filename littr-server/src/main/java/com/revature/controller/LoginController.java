@@ -9,5 +9,5 @@ public interface LoginController {
 	
 	public abstract Object login(Cat cat, HttpServletRequest request);
 	
-	public abstract void logout(HttpServletRequest request);
+	public abstract ClientMessage logout(HttpServletRequest request);
 }

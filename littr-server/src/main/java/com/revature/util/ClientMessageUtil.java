@@ -14,4 +14,6 @@ public class ClientMessageUtil {
 	public static final ClientMessage FRIENDSHIP_DELETED = new ClientMessage("FRIENDSHIP DELETED", true);
 	public static final ClientMessage LOGIN_SUCCESSFUL = new ClientMessage("LOGIN SUCCESSFUL", true);
 	public static final ClientMessage INVALID_CREDENTIALS = new ClientMessage("INCORRECT USERNAME/PASSWORD COMBINATION", false);
+	public static final ClientMessage NOT_LOGGED_IN = new ClientMessage("PLEASE LOGIN", false);
+	public static final ClientMessage LOGOUT_SUCCESSFUL = new ClientMessage("LOGOUT_SUCCESSFUL", true);
 }
