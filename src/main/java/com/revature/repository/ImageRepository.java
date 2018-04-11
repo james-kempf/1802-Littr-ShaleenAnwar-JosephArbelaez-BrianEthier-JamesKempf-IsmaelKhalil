@@ -9,7 +9,8 @@ public interface ImageRepository {
 
 	void insertImage(Image image);
 	void deleteImage(Image image);
-	void setProfilePic(Cat cat, Image image);
+	void setProfilePic(Cat cat);
+	Image getImageById(int id);
 	List<Image> selectAllImagesByCat(Cat cat);
 	
 }
