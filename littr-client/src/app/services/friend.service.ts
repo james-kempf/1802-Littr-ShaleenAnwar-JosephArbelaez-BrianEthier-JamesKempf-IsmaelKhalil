@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Response } from '@angular/http';
 import { LITTR_URL } from '../../environments/environment.prod';
 import 'rxjs/Rx';
-import { friendship } from '../models/friendship.model';
+import { Friendship } from '../models/friendship.model';
 import { Cat } from '../models/cat.model';
 
 @Injectable()
@@ -27,12 +27,12 @@ export class FriendService {
       .get(`${LITTR_URL}/all-friendships`);
   }
 
-  public approveFriend(friendship: friendship) {
+  public approveFriend(friendship: Friendship) {
     return this.http
       .post(`${LITTR_URL}/aprrove-friendships`, friendship);
   }
 
-  public denyFriend(friendship: friendship) {
+  public denyFriend(friendship: Friendship) {
     return this.http
       .post(`${LITTR_URL}/delete-friendships`, friendship);
   }
