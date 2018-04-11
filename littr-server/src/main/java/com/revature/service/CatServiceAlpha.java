@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.revature.model.Cat;
 import com.revature.repository.CatRepository;
+import com.revature.util.ClientMessageUtil;
 
 @Service("catService")
 public class CatServiceAlpha implements CatService {
@@ -34,7 +35,7 @@ public class CatServiceAlpha implements CatService {
 	    		logger.info(loggedCat.toString());
 	    	    return loggedCat;
 	    	}
-	    	logger.info("invalid login");
+	    	logger.info(ClientMessageUtil.INVALID_CREDENTIALS);
 	    	return null;
 	}
 

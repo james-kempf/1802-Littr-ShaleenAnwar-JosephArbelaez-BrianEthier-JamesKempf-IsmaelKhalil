@@ -31,12 +31,24 @@ public class LoginControllerAlpha implements LoginController {
 	}	
 
 	@PostMapping("/login")
-	public @ResponseBody Cat login(@RequestBody Cat cat, HttpServletRequest request) {
+	public @ResponseBody Object login(@RequestBody Cat cat, HttpServletRequest request) {
 		logger.info(cat.toString());
-		Cat loggedCat = catService.authenticate(cat);
-		request.getSession().setAttribute("loggedCat", loggedCat);
-		return loggedCat;
+		if(cat == null || cat.getPassword() == null || cat.getPassword().equals("") || cat.getUsername() == null || cat.getUsername().equals("")) {
+			return ClientMessageUtil.INVALID_CREDENTIALS;
+		} else {
+			Cat loggedCat = catService.authenticate(cat);
+			if(loggedCat != null) {
+				return loggedCat;
+			} else {
+				return ClientMessageUtil.INVALID_CREDENTIALS;
+			}
+		}
 	}
+	
+//	Cat loggedCat = catService.authenticate(cat);
+//		request.getSession().setAttribute("loggedCat", loggedCat);
+//		return loggedCat;
+//	}
 
 	@Override
 	@GetMapping("/logout")
