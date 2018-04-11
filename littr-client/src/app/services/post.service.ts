@@ -11,9 +11,10 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  public createPost(post: Post, loggedCat: Cat): Observable<ClientMessage> {
+  public createPost(post: Post): Observable<ClientMessage> {
+    console.log(`executing createPost`);
     return this.http
-          .post(`${LITTR_URL}/submitPost`,{post, loggedCat})
+          .post(`${LITTR_URL}/submitPost`,post)
           .catch(this.handleError);
   }
 
@@ -30,6 +31,7 @@ export class PostService {
   }
 
   public handleError(error: Response) {
+    console.log(`handleError`);
     return Observable.throw(error.statusText);
   }
 }

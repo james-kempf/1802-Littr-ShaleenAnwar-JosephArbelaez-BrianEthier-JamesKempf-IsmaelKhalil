@@ -14,10 +14,10 @@ export class CreatePostComponent implements OnInit {
   title = 'Post Maker';
 
 //cat for testing
-koushka: Cat = new Cat(1520, 'koushka', 'p4ssw0rd',
-          'koushla','koushka@gmail.com','such purr')
+//koushka: Cat = new Cat(1520, 'koushka', 'p4ssw0rd',
+  //        'koushla','koushka@gmail.com','such purr')
 
-  createdPost: Post = new Post(0,this.koushka,null,null,'');
+  createdPost: Post = new Post(1,null,null,null,'');
   constructor(private postService: PostService) { }
 
   clientMessage: ClientMessage = new ClientMessage('', false);
@@ -26,7 +26,9 @@ koushka: Cat = new Cat(1520, 'koushka', 'p4ssw0rd',
   }
 
   public post(): void {
-    this.postService.createPost(this.createdPost, this.koushka).subscribe(
+    console.log(`executing post`);
+    console.log(`post: ${this.createdPost.text}`)
+    this.postService.createPost(this.createdPost).subscribe(
       data => this.clientMessage=data,
       error => this.clientMessage.message = 'SOMETHING WENT WRONG',
     );
