@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -20,6 +22,10 @@ public class Image {
 
 	@Column(name="I_IMAGE_URL")
 	private String imgURL;
+	
+    @OneToOne
+    @JoinColumn(name = "C_PROFILE_PIC")
+	private Cat cat;
 	
 	public Image() {}
 
@@ -45,15 +51,24 @@ public class Image {
 		this.imgURL = imgURL;
 	}
 
+	public Cat getCat() {
+		return cat;
+	}
+
+	public void setCat(Cat cat) {
+		this.cat = cat;
+	}
+
 	@Override
 	public String toString() {
-		return "Image [id=" + id + ", imgURL=" + imgURL + "]";
+		return "Image [id=" + id + ", imgURL=" + imgURL + ", cat=" + cat + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((cat == null) ? 0 : cat.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((imgURL == null) ? 0 : imgURL.hashCode());
 		return result;
@@ -68,6 +83,11 @@ public class Image {
 		if (getClass() != obj.getClass())
 			return false;
 		Image other = (Image) obj;
+		if (cat == null) {
+			if (other.cat != null)
+				return false;
+		} else if (!cat.equals(other.cat))
+			return false;
 		if (id != other.id)
 			return false;
 		if (imgURL == null) {
@@ -77,4 +97,6 @@ public class Image {
 			return false;
 		return true;
 	}
+
+
 }

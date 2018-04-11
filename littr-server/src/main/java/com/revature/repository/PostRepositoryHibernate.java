@@ -38,12 +38,6 @@ public class PostRepositoryHibernate implements PostRepository {
 	public void delete(Post post) {
 		sessionFactory.getCurrentSession().delete(post);
 	}
-	
-	@Override
-	public void deletePost(Post post) {
-		sessionFactory.getCurrentSession().delete(post);
-		
-	}
 
 	@Override
 	public Post selectSinglePost(int id) {
