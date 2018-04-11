@@ -3,6 +3,8 @@ package com.revature.controller;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,10 +31,7 @@ public class FriendshipControllerAlpha implements FriendshipController {
 	
 	@Override
 	@PostMapping("/add-friendship")
-	public @ResponseBody Object insertFriendship(@RequestBody List<Cat> cats) {
-		
-		logger.info(cats.get(0).toString());
-		logger.info(cats.get(1).toString());
+	public @ResponseBody Object insertFriendship(@RequestBody List<Cat> cats, HttpServletRequest request) {
 		Friendship friendship = new Friendship(
 				cats.get(0),
 				cats.get(1),
@@ -49,74 +48,54 @@ public class FriendshipControllerAlpha implements FriendshipController {
 
 	@Override
 	@GetMapping("/all-friendships")
-	public @ResponseBody Object getAllFriendships() {
-		// TODO Implement authentication
-		boolean loggedin = true;
-		if (!loggedin) {
-			return "login.html";
-		}
-		else {
-			Cat cat = new Cat();
-			try {
-				return friendshipService.findAllFriendships(cat);
-			} catch (Exception e) {
-				return ClientMessageUtil.SOMETHING_WRONG;
-			}
+	public @ResponseBody Object getAllFriendships(HttpServletRequest request) {
+		Cat loggedCat = (Cat) request.getSession().getAttribute("loggedCat");
+		try {
+			return friendshipService.findAllFriendships(loggedCat);
+		} catch (Exception e) {
+			return ClientMessageUtil.SOMETHING_WRONG;
 		}
 	}
 
 	@Override
 	@GetMapping("/all-friends")
-	public @ResponseBody Object getAllFriends() {
-		// TODO Implement authentication
-		boolean loggedin = true;
-		if (!loggedin) {
-			return "login.html";
-		}
-		else {
-			Cat cat = new Cat();
-			try {
-				return friendshipService.findAllFriends(cat);
-			} catch (Exception e) {
-				return ClientMessageUtil.SOMETHING_WRONG;
-			}
+	public @ResponseBody Object getAllFriends(HttpServletRequest request) {
+		Cat loggedCat = (Cat) request.getSession().getAttribute("loggedCat");
+		try {
+			return friendshipService.findAllFriends(loggedCat);
+		} catch (Exception e) {
+			return ClientMessageUtil.SOMETHING_WRONG;
 		}
 	}
 
 	@Override
 	@PostMapping("approve-friendship")
-	public @ResponseBody Object approveFriendship(@RequestBody Friendship friendship) {
-		// TODO Implement authentication
-		boolean loggedin = true;
-		if (!loggedin) {
-			return "login.html";
-		}
-		else {
+	public @ResponseBody Object approveFriendship(@RequestBody Friendship friendship, HttpServletRequest request) {
+		Cat loggedCat = (Cat) request.getSession().getAttribute("loggedCat");
+		if (loggedCat.equals(friendship.getCatA()) || loggedCat.equals(friendship.getCatB())) {
 			if (friendshipService.approveFriendship(friendship)) {
 				return ClientMessageUtil.FRIENDSHIP_APPROVED;
 			}
+			return ClientMessageUtil.SOMETHING_WRONG;
 		}
-		return ClientMessageUtil.SOMETHING_WRONG;
+		return ClientMessageUtil.NOT_LOGGED_IN;
 	}
 
 	@Override
 	@PostMapping("delete-friendship")
-	public @ResponseBody Object deleteFriendship(@RequestBody Friendship friendship) {
-		// TODO Implement authentication
-		boolean loggedin = true;
-		if (!loggedin) {
-			return "login.html";
-		}
-		else {
+	public @ResponseBody Object deleteFriendship(@RequestBody Friendship friendship, HttpServletRequest request) {
+		Cat loggedCat = (Cat) request.getSession().getAttribute("loggedCat");
+		if (loggedCat.equals(friendship.getCatA()) || loggedCat.equals(friendship.getCatB())) {
 			if(friendshipService.deleteFriendship(friendship)) {
 				return ClientMessageUtil.FRIENDSHIP_DELETED;
 			}
+			return ClientMessageUtil.SOMETHING_WRONG;
 		}
-		return ClientMessageUtil.SOMETHING_WRONG;
+		return ClientMessageUtil.NOT_LOGGED_IN;
 	}
 
 	@Override
-	public boolean isFriends(Cat catA, Cat catB) {
+	public boolean isFriends(Cat catA, Cat catB, HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		return false;
 	}
