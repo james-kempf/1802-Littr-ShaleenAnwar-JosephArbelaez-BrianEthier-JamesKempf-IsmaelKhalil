@@ -54,14 +54,14 @@ public class PostControllerAlpha implements PostController {
 
 	@PostMapping("/updatePost")
 	public @ResponseBody ClientMessage updatePost(@RequestBody Post post) {
-		logger.trace("PostControllerAlpha.updatePost");
+		logger.info("PostControllerAlpha.updatePost");
 
 		// ~*~*~* Add authentication when website is up *~*~*~
 		if (postService.updatePost(post)){
-			logger.trace("PostControllerAlpha.submit Post - Insert Successful");
+			logger.info("PostControllerAlpha.submit Post - Insert Successful");
 			return ClientMessageUtil.INSERT_SUCCESSFUL;
 		}
-		logger.trace("PostControllerAlpha.submit Post - Insert Failed.");
+		logger.info("PostControllerAlpha.submit Post - Insert Failed.");
 		return ClientMessageUtil.SOMETHING_WRONG;
 	}
 

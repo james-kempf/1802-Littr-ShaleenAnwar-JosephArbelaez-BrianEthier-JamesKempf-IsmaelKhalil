@@ -41,33 +41,33 @@ public class PostServiceAlpha implements PostService {
 
 	@Override
 	public boolean updatePost(Post post) {
-		logger.trace("Updating Post.");
+		logger.info("Updating Post.");
 		Post post2 = post;
 
 		// Find previous version of post
 		Post post1 = postRepository.selectSinglePost(post.getId());
-		logger.trace("Post present in database");
+		logger.info("Post present in database");
 
 		postRepository.update(post);
 		// Compare to previous to see if update occurred.
 
 		if (post1.equals(post2)){
-			logger.trace("PostServiceAlpha.updatePost - Post Update Failed.");
+			logger.info("PostServiceAlpha.updatePost - Post Update Failed.");
 			return false;
 		}
-		logger.trace("PostControllerAlpha.submit Post - Insert Successful");
+		logger.info("PostControllerAlpha.submit Post - Insert Successful");
 		return true;
 	}
 
 	@Override
 	public Post findPost(Post post) {
-		logger.trace("PostServiceAlpha - Find Post");
+		logger.info("PostServiceAlpha - Find Post");
 		return postRepository.selectSinglePost(post.getId());
 	}
 
 	@Override
 	public List<Post> findAllPosts() {
-		logger.trace("PostServiceAlpha - Find All Posts");
+		logger.info("PostServiceAlpha - Find All Posts");
 		return postRepository.selectAll();
 	}
 
@@ -93,7 +93,7 @@ public class PostServiceAlpha implements PostService {
 
 	@Override
 	public boolean deletePost(Post post) {
-		logger.trace("PostServiceAlpha - Delete Post");
+		logger.info("PostServiceAlpha - Delete Post");
 		Post post1 = postRepository.selectSinglePost(post.getId());
 		postRepository.delete(post);
 
