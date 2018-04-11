@@ -1,0 +1,21 @@
+<div>
+  <div class="panel-heading">
+      <span class="label label-default label-center">{{title}}</span>
+  </div>
+  <div class="panel-body">
+  <div class="list-group">
+      <div class="list-group-item list-group-item-demo">
+             <div class="form-group">
+                  <input [(ngModel)]="createdPost.text" placeholder="Post Text" class="form-control"/>
+             </div>
+      </div>
+      <div>
+          <button class="btn btn-primary btn-center" (click)="post()">Post</button>
+      </div>
+      <div>
+          {{clientMessage.message}}
+      </div>
+  </div>
+</div>
+<div class="panel-footer">
+</div>
