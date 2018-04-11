@@ -69,5 +69,12 @@
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.6.4</version>
 		</dependency>
+		
+		<!-- Amazon Web Services -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.11.312</version>
+		</dependency>
 	</dependencies>
 </project>

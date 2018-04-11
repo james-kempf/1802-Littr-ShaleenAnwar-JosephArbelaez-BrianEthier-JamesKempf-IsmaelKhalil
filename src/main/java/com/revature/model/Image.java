@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,8 +23,8 @@ public class Image {
 	@Column(name="I_IMAGE_URL")
 	private String imgURL;
 	
-	//~*~*~*~*~* Figure out how to make this a FK to CAT_ID
-	@Column(name="I_CAT_ID")
+    @OneToOne
+    @JoinColumn(name = "C_PROFILE_PIC")
 	private Cat cat;
 	
 	public Image() {}
