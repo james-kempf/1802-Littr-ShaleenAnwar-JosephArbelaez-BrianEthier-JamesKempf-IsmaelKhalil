@@ -12,13 +12,6 @@ export class FriendService {
 
   constructor(private http: HttpClient) { }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    request = request.clone({
-      withCredentials: true
-    });
-    return next.handle(request);
-  }
-
   public addFriend(cat: Cat) {
     return this.http
       .post(`${LITTR_URL}/add-friends`, cat);

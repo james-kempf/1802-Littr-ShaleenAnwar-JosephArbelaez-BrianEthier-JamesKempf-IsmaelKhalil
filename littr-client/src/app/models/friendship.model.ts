@@ -1,6 +1,6 @@
 import { Cat } from "./cat.model";
 
-export class friendship {
+export class Friendship {
 
   catA: Cat;
   catB: Cat;
