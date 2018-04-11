@@ -16,12 +16,12 @@ export class ViewFriendsComponent implements OnInit {
   constructor(private friendService: FriendService) { }
 
   ngOnInit() {
-    this.friendships[0] = new Friendship(
-      new Cat(1, 'Atlas', 'atlas', 'password', 'atlas@gmail.com', 'img'),
-      new Cat(1, 'Kouska', 'kouska', 'password', 'koushka@gmail.com', 'img'),
-      1,
-      'timestamp'
-    );
+    // this.friendships[0] = new Friendship(
+    //   new Cat(1, 'Atlas', 'atlas', 'password', 'atlas@gmail.com', 'img'),
+    //   new Cat(1, 'Kouska', 'kouska', 'password', 'koushka@gmail.com', 'img'),
+    //   1,
+    //   'timestamp'
+    // );
   }
 
 }
