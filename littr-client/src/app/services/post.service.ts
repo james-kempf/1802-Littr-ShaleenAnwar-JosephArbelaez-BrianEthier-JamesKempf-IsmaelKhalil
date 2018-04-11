@@ -7,7 +7,7 @@ import { ClientMessage } from '../models/clientMessage.model';
 import { Cat } from '../models/cat.model';
 
 @Injectable()
-export class PostServiceService {
+export class PostService {
 
   constructor(private http: HttpClient) { }
 
