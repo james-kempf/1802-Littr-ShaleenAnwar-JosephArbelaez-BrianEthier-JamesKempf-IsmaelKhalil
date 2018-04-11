@@ -26,9 +26,9 @@ koushka: Cat = new Cat(1520, 'koushka', 'p4ssw0rd',
   }
 
   public post(): void {
-    this.postService.createPost(this.createdPost).subscribe(
+    this.postService.createPost(this.createdPost, this.koushka).subscribe(
       data => this.clientMessage=data,
-      error => this.clientMessage.message = 'SOMETHING WENT WRONG'
+      error => this.clientMessage.message = 'SOMETHING WENT WRONG',
     );
   }
 

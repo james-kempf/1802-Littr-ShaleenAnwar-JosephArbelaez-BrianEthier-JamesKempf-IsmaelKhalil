@@ -11,15 +11,15 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  public createPost(post: Post): Observable<ClientMessage> {
+  public createPost(post: Post, loggedCat: Cat): Observable<ClientMessage> {
     return this.http
-          .post(`${LITTR_URL}/createPost`,post)
+          .post(`${LITTR_URL}/submitPost`,{post, loggedCat})
           .catch(this.handleError);
   }
 
   public viewCatPosts(cat: Cat): Observable<Post[]> {
     return this.http
-          .post(`${LITTR_URL}/viewCatPosts`, cat)
+          .post(`${LITTR_URL}/findAllPostByCat`, cat)
           .catch(this.handleError);
   }
 
