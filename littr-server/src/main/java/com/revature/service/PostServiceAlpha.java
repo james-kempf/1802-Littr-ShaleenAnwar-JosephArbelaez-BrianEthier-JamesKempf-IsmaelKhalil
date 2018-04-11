@@ -7,6 +7,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.revature.ajax.ClientMessage;
 import com.revature.model.Cat;
 import com.revature.model.Image;
 import com.revature.model.Post;
@@ -26,7 +28,7 @@ public class PostServiceAlpha implements PostService {
 
 	@Override
 	public boolean insertPost(Post post) {
-		logger.trace("Inserting Post.");
+		logger.info("Inserting Post.");
 		if (post.getId() != 0){
 			postRepository.save(post);	
 			return true;
@@ -37,54 +39,59 @@ public class PostServiceAlpha implements PostService {
 
 	@Override
 	public boolean updatePost(Post post) {
-		logger.trace("Updating Post.");
+		logger.info("Updating Post.");
 		Post post2 = post;
 
 		// Find previous version of post
 		Post post1 = postRepository.selectSinglePost(post.getId());
-		logger.trace("Post present in database");
+		logger.info("Post present in database");
 
 		postRepository.update(post);
 		// Compare to previous to see if update occurred.
 
 		if (post1.equals(post2)){
-			logger.trace("PostServiceAlpha.updatePost - Post Update Failed.");
+			logger.info("PostServiceAlpha.updatePost - Post Update Failed.");
 			return false;
 		}
-		logger.trace("PostControllerAlpha.submit Post - Insert Successful");
+		logger.info("PostControllerAlpha.submit Post - Insert Successful");
 		return true;
 	}
 
 	@Override
 	public Post findPost(Post post) {
-		logger.trace("PostServiceAlpha - Find Post");
+		logger.info("PostServiceAlpha - Find Post");
 		return postRepository.selectSinglePost(post.getId());
 	}
 
 	@Override
 	public List<Post> findAllPosts() {
-		logger.trace("PostServiceAlpha - Find All Posts");
+		logger.info("PostServiceAlpha - Find All Posts");
 		return postRepository.selectAll();
 	}
 
 	public List<Post> findPostsByCat(Cat cat, Cat search) {
 		if(cat != null) {
 			if(cat.getId() == search.getId()) {
-				return postRepository.selectUserPosts(cat.getId());
+				logger.info("findpostbycat: same cat.");
+				return postRepository.selectUserPosts(cat);
 			} else if (friendshipService.findFriendshipByCat(cat, search)){
-				//check if friends
-				return postRepository.selectUserPosts(search.getId());
+				logger.info("findpostbycat: cats are friends.");
+				return postRepository.selectUserPosts(search);
 			} else {
+				logger.info("findpostbycat: cats are not friends.");
+				new ClientMessage(""+cat.getUsername()+ " is not friends with " + search.getUsername());
+				//need to alter to return clientMessages.
 				return null;
 			}
 		} else {
+			logger.info("findpostbycat: first cat doesnt exist.");
 			return null;
 		}
 	}
 
 	@Override
 	public boolean deletePost(Post post) {
-		logger.trace("PostServiceAlpha - Delete Post");
+		logger.info("PostServiceAlpha - Delete Post");
 		Post post1 = postRepository.selectSinglePost(post.getId());
 		postRepository.delete(post);
 

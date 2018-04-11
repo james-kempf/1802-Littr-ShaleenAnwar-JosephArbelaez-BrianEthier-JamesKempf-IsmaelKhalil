@@ -46,7 +46,7 @@ public class CatRepositoryHibernate implements CatRepository {
 	public Cat findByName(String name) {
 		try {
 			return (Cat) sessionFactory.getCurrentSession().createCriteria(Cat.class)
-					.add(Restrictions.like("name", name))
+					.add(Restrictions.like("username", name))
 					.list()
 					.get(0);
 		} catch (IndexOutOfBoundsException e) {
@@ -80,9 +80,23 @@ public class CatRepositoryHibernate implements CatRepository {
 	}
 
 	@Override
-	public SQLQuery getPasswordHash(Cat cat) {
-		String sql = "SELECT GET_HASH(?) AS HASH FROM DUAL";
-		return sessionFactory.getCurrentSession().createSQLQuery(sql);
+	public String getPasswordHash(Cat cat) {
+		String sql = "SELECT GET_HASH(:password) AS HASH FROM DUAL";
+		return (String) sessionFactory.getCurrentSession().createSQLQuery(sql)
+				.setParameter("password", cat.getPassword())
+				.uniqueResult();
 		//Using SQLQuery until we add the proper Hibernate Query
+	}
+
+	@Override
+	public Cat findByUsername(Cat cat) {
+		try {
+			return (Cat) sessionFactory.getCurrentSession().createCriteria(Cat.class)
+					.add(Restrictions.like("username", cat.getUsername()))
+					.list()
+					.get(0);
+		} catch (IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 }

@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // Components
 import { ViewFriendsComponent } from './components/view-friends/view-friends.component';
+import { NavComponent } from './components/nav/nav.component';
 
 export const routes: Routes = [
   { path: 'view-friends', component: ViewFriendsComponent }
