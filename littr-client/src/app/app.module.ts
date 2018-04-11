@@ -14,12 +14,15 @@ import { ViewFriendsComponent } from './components/view-friends/view-friends.com
 // Client
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FriendService } from './services/friend.service';
+import { PostService } from './services/post.service';
+import { CreatePostComponent } from './components/create-post/create-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    ViewFriendsComponent
+    ViewFriendsComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { FriendService } from './services/friend.service';
     HttpClientModule
   ],
   providers: [
-    FriendService
+    FriendService,
+    PostService
   ],
   bootstrap: [AppComponent]
 })
