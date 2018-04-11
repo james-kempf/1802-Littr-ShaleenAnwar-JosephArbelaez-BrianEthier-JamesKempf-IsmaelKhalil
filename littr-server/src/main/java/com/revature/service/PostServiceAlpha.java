@@ -28,9 +28,11 @@ public class PostServiceAlpha implements PostService {
 
 	@Override
 	public boolean insertPost(Post post) {
-		logger.info("Inserting Post.");
+		post.setTimePosted(Timestamp.valueOf(LocalDateTime.now()));
+		logger.info("Inserting Post, service.");
 		if (post.getId() != 0){
 			postRepository.save(post);	
+			logger.info("post saved.");
 			return true;
 		} else{
 			return false;

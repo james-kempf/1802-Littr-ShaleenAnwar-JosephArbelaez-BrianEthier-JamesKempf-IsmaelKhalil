@@ -10,7 +10,7 @@ import com.revature.model.Post;
 
 public interface PostController {
 	
-	ClientMessage submitPost(Cat cat, Post post);
+	ClientMessage submitPost(Post post);
 	ClientMessage updatePost(Post post);
 	ClientMessage deletePost(Post post);
 	Post findPost(Cat cat, Post post);
