@@ -7,7 +7,8 @@
       <div class="panel-group">
         <div *ngFor="let friendship of friendships" class="panel panel-default">
           <div class="panel-body">
-            <div>friendship.catA.name</div>
+            <span class="col-md-8">{{friendship.catA.name}}</span>
+            <input class="btn btn-primary col-md-4 view-button" value="View" (click)="viewProfile(friendship.catA)"/> 
           </div>
         </div>
       </div>

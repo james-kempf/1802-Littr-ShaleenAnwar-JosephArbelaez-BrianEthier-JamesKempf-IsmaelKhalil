@@ -11,17 +11,21 @@ import { Cat } from '../../models/cat.model';
 export class ViewFriendsComponent implements OnInit {
 
   title = 'Friends';
-  friendships: Friendship[];
+  friendships: Friendship[] = [
+    new Friendship(
+      new Cat(1, 'Atlas', 'atlas', 'password', 'atlas@gmail.com', 'img'),
+      new Cat(1, 'Kouska', 'kouska', 'password', 'koushka@gmail.com', 'img'),
+      1,
+      'timestamp'
+    )
+  ];
 
   constructor(private friendService: FriendService) { }
 
   ngOnInit() {
-    // this.friendships[0] = new Friendship(
-    //   new Cat(1, 'Atlas', 'atlas', 'password', 'atlas@gmail.com', 'img'),
-    //   new Cat(1, 'Kouska', 'kouska', 'password', 'koushka@gmail.com', 'img'),
-    //   1,
-    //   'timestamp'
-    // );
   }
 
+  public viewProfile(cat: Cat) {
+    console.log(cat);
+  }
 }
