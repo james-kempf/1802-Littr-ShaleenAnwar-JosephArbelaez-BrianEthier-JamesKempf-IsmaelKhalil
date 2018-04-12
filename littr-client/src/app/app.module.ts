@@ -16,13 +16,15 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FriendService } from './services/friend.service';
 import { PostService } from './services/post.service';
 import { CreatePostComponent } from './components/create-post/create-post.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     ViewFriendsComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

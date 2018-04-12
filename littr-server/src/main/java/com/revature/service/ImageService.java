@@ -7,8 +7,8 @@ import com.revature.model.Image;
 
 public interface ImageService {
 	
-	public  boolean insertImage(Image image);
-	public  boolean deleteImage(Image image);
-	public  boolean setProfilePic(Cat cat, Image image);
-	public  List<Image> selectAllImagesByCat(Cat cat);
+	public boolean insertImage(Image image);
+	public boolean deleteImage(Image image);
+	public boolean setProfilePic(Cat cat, Image image);
+	public List<Image> selectAllImagesByCat(Cat cat);
 }

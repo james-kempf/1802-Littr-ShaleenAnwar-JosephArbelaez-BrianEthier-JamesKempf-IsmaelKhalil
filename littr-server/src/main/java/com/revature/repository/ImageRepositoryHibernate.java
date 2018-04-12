@@ -1,6 +1,5 @@
 package com.revature.repository;
 
-import java.io.File;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -8,14 +7,11 @@ import javax.transaction.Transactional;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.revature.model.Cat;
 import com.revature.model.Image;
-import com.revature.util.AmazonConnectionUtil;
 
 @Repository("imageRepository")
 @Transactional
@@ -23,15 +19,17 @@ public class ImageRepositoryHibernate implements ImageRepository {
 
 	private static Logger logger = Logger.getLogger(FriendshipRepositoryHibernate.class);
 
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
 	public void insertImage(Image image) {
-		AmazonS3 s3Client = new AmazonS3Client(AmazonConnectionUtil.credentials);
-		s3Client.putObject(new PutObjectRequest(AmazonConnectionUtil.bucket,
-				AmazonConnectionUtil.fileName,
-				new File(image.getImgURL())));
-		image.setImgURL(AmazonConnectionUtil.createdlink);
+//		AmazonS3 s3Client = new AmazonS3Client(AmazonConnectionUtil.credentials);
+//		s3Client.putObject(new PutObjectRequest(AmazonConnectionUtil.bucket,
+//				AmazonConnectionUtil.fileName,
+//				new File(image.getImgURL())));
+//		image.setImgURL(AmazonConnectionUtil.createdlink);
+		System.out.println(image);
 		sessionFactory.getCurrentSession().save(image);
 	}
 
@@ -60,12 +58,12 @@ public void setProfilePic(Cat cat) {
 @SuppressWarnings("unchecked")
 @Override
 public List<Image> selectAllImagesByCat(Cat cat) {
-	try {
+//	try {
 		return (List<Image>) sessionFactory.getCurrentSession().createCriteria(Image.class)
-				.add(Restrictions.eq("I_CAT_ID", cat.getId()))
+				.add(Restrictions.eq("cat", cat))
 				.list();
-	} catch (IndexOutOfBoundsException e) {
-		return null;
-	}
+//	} catch (IndexOutOfBoundsException e) {
+//		return null;
+//	}
 }
 }

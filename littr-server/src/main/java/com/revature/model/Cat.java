@@ -38,7 +38,7 @@ public class Cat {
 	private String bio;
 
 	@OneToOne
-	@JoinColumn(name="C_PROFILE_PIC")
+	@JoinColumn(name="I_ID")
 	private Image profilePic;
 	
 	public Cat() {}

@@ -20,7 +20,7 @@ public class PostServiceAlpha implements PostService {
 	@Autowired
 	PostRepository postRepository;
   
-  @Autowired
+	@Autowired
 	private FriendshipService friendshipService;
 
 	private static Logger logger = Logger.getLogger(PostServiceAlpha.class);
@@ -35,6 +35,7 @@ public class PostServiceAlpha implements PostService {
 			logger.info("post saved.");
 			return true;
 		} else{
+			logger.info("post not saved");
 			return false;
 		}
 	}
