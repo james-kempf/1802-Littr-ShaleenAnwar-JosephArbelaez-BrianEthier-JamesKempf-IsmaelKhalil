@@ -16,18 +16,17 @@ export class ProfileComponent implements OnInit {
   image = "";
   selectedFiles: FileList;
   fileUrl = "";
-  public cat: Cat = new Cat(2151,'','Wolf', 'wolf', '97F80AE3504E76D546F00B5E30A434D1', 'wolf@gmail.com', '');
-
+  //cat = getSession
   constructor(private uploadService: UploadFileService, private CatService: CatService) {}
 
   ngOnInit() {
-    this.image= this.cat.profilePic;
+    
   }
   upload(){
     const file = this.selectedFiles.item(0);
     //this.uploadService.uploadFile(file);
-    this.cat.profilePic ='https://s3.amazonaws.com/revature.1802february.littr/littr/' + file.name;
-    this.CatService.updateCat(this.cat)
+    //this.cat.profilePic ='https://s3.amazonaws.com/revature.1802february.littr/littr/' + file.name;
+    //this.CatService.updateCat(this.cat)
   }
 
   selectFile(event) {
