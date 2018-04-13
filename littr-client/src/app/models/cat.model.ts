@@ -1,4 +1,4 @@
-import { Image } from '../../models/image.model';
+import { Image } from './image.model';
 
 export class Cat {
   id: number;
