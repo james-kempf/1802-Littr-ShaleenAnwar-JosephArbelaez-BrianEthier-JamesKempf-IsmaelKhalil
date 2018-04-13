@@ -10,12 +10,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ViewFriendsComponent } from './components/view-friends/view-friends.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
 
 // Client
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
+// Services
 import { FriendService } from './services/friend.service';
 import { PostService } from './services/post.service';
-import { CreatePostComponent } from './components/create-post/create-post.component';
+
+// Interceptors
+import { CustomInterceptor } from './session/custom-interceptor';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,11 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
     HttpClientModule
   ],
   providers: [
-    FriendService,
+    FriendService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: CustomInterceptor,
+    multi: true
+  },
     PostService
   ],
   bootstrap: [AppComponent]

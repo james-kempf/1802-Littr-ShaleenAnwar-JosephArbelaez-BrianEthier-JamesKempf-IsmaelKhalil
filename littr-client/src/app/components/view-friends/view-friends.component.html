@@ -5,10 +5,13 @@
     </div>
     <div class="panel-body">
       <div class="panel-group">
-        <div *ngFor="let friendship of friendships" class="panel panel-default">
+        <div *ngFor="let friend of friends" class="panel panel-default">
           <div class="panel-body">
-            <span class="col-md-8">{{friendship.catA.name}}</span>
-            <input class="btn btn-primary col-md-4 view-button" value="View" (click)="viewProfile(friendship.catA)"/> 
+            <span>{{friend.name}}</span>
+            <div class="button-group pull-right">
+              <input class="btn btn-primary" type="button" value="View" (click)="viewProfile(friend)"/>
+              <input class="btn btn-danger" type="button" value="Remove" (click)="deleteFriend(friend)"/> 
+            </div>
           </div>
         </div>
       </div>

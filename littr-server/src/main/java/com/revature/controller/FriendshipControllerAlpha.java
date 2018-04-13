@@ -21,7 +21,7 @@ import com.revature.service.FriendshipService;
 import com.revature.util.ClientMessageUtil;
 
 @Controller("frienshipController")
-@CrossOrigin(origins = "https://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class FriendshipControllerAlpha implements FriendshipController {
 	
 	private static Logger logger = Logger.getLogger(FriendshipControllerAlpha.class);

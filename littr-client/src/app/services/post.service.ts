@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Post } from '../models/post.model';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 import { LITTR_URL } from '../../environments/environment';
 import { ClientMessage } from '../models/clientMessage.model';
 import { Cat } from '../models/cat.model';
