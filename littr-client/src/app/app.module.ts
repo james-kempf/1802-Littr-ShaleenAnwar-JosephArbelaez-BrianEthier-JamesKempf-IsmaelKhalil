@@ -10,15 +10,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ViewFriendsComponent } from './components/view-friends/view-friends.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { LoginComponent } from './components/login/login.component';
+import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { RegisterComponent } from './components/register/register.component';
+import { UpdateCatComponent } from './components/update-cat/update-cat.component';
 
 // Client
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
+// Services
 import { FriendService } from './services/friend.service';
 import { PostService } from './services/post.service';
-import { CreatePostComponent } from './components/create-post/create-post.component';
-import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
 import { PasswordRecoveryService } from './services/password-recovery.service';
-import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { CatService } from './services/cat.service';
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +34,10 @@ import { PasswordResetComponent } from './components/password-reset/password-res
     ViewFriendsComponent,
     CreatePostComponent,
     PasswordRecoveryComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    RegisterComponent,
+    UpdateCatComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +48,9 @@ import { PasswordResetComponent } from './components/password-reset/password-res
   providers: [
     FriendService,
     PostService,
-    PasswordRecoveryService
+    PasswordRecoveryService,
+    CatService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

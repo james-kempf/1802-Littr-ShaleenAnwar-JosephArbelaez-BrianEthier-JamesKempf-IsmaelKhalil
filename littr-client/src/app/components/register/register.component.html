@@ -1,0 +1,25 @@
+<div>
+  <div class="panel-heading">
+      <span class="label label-default label-center">{{title}}</span>
+  </div>
+  <div class="panel-body">
+  <div class="list-group">
+      <div class="list-group-item list-group-item-demo">
+             <div class="form-group">
+                  <input [(ngModel)]="cat.catName" placeholder="Your Cat's Name" class="form-control" />
+                  <input [(ngModel)]="cat.username" placeholder="Username" class="form-control" />
+                  <input [(ngModel)]="cat.password" placeholder="Password?" type="password" class="form-control" />
+                  <input [(ngModel)]="cat.repeatPassword" placeholder="Repeat Password?" type="password" class="form-control" />
+                  <input [(ngModel)]="cat.email" placeholder="Email?" class="form-control" />
+             </div>
+             <div>
+                 <button class="btn btn-primary btn-center" (click)="registerCat()">Register</button>
+             </div>
+             <div ng-if="clientMessage.success">
+                 {{ clientMessage.message }}
+             </div>
+      </div>
+  </div>
+</div>
+<div class="panel-footer">
+</div>
