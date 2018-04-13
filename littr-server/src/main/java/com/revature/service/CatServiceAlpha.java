@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Cat;
+import com.revature.model.Image;
 import com.revature.repository.CatRepository;
 
 @Service("catService")
@@ -66,5 +67,4 @@ public class CatServiceAlpha implements CatService {
 		catRepository.update(cat);
 		return cat.getId() != 0;
 	}
-
 }

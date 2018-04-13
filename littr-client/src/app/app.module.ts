@@ -20,6 +20,7 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 
 //Services
 import { UploadFileService } from './services/uploadFile.service';
+import { CatService } from './services/cat.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { UploadFileService } from './services/uploadFile.service';
   providers: [
     FriendService,
     PostService,
-    UploadFileService
+    UploadFileService,
+    CatService
   ],
   bootstrap: [AppComponent]
 })
