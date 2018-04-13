@@ -9,12 +9,13 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 import { RegisterComponent } from './components/register/register.component';
 import { UpdateCatComponent } from './components/update-cat/update-cat.component';
 import { LoginComponent } from './components/login/login.component'; 
+import { LogoutComponent } from './components/logout/logout.component'; 
 
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent },
   { path: 'view-friends', component: ViewFriendsComponent },
   { path: 'create-post', component: CreatePostComponent},
   { path: 'register', component: RegisterComponent},
