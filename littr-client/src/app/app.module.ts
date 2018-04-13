@@ -21,13 +21,15 @@ import { PostService } from './services/post.service';
 
 // Interceptors
 import { CustomInterceptor } from './session/custom-interceptor';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     ViewFriendsComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
