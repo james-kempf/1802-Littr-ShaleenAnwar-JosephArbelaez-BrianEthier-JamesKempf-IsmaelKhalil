@@ -57,8 +57,7 @@ public class CatServiceAlpha implements CatService {
 
 	@Override
 	public List<Cat> findAllFriends(Cat cat) {
-		// TODO Auto-generated method stub
-		return null;
+		return catRepository.findAllFriends(cat);
 	}
 
 
