@@ -18,14 +18,12 @@ export class UpdateCatComponent implements OnInit {
     this.getCatInfo();
   }
 
-  public cat: Cat = new Cat(3101,'','','','',null,'');
-
+  public cat: Cat = <Cat>JSON.parse(sessionStorage.getItem("loggedCat"));
+  
   public clientMessage: ClientMessage = new ClientMessage('',false);
 
-  catName: string = ' ';
   public getCatInfo() : void{
     console.log("calling update method")
-    this.catName="Beyonce";
     this.catService.getCat(this.cat)
     .subscribe(
       data => this.cat = data,

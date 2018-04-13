@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LoginComponent },
   { path: 'view-friends', component: ViewFriendsComponent },
   { path: 'create-post', component: CreatePostComponent},
   { path: 'profile', component: ProfileComponent},

@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   title = "Login";
+  returnUrl: string;
 
     constructor(private loginService: LoginService, private router: Router) {    }
 
@@ -19,6 +20,11 @@ export class LoginComponent {
     public catData: Cat = new Cat(0, "", "", "", "", "", null);
 
     public clientMessage: ClientMessage = new ClientMessage("", false);
+
+    public logout() {
+      this.loginService.logout();
+      this.router.navigateByUrl("/login");
+    }
 
     public login(): void {
       this.loginService.login(this.cat).subscribe(
