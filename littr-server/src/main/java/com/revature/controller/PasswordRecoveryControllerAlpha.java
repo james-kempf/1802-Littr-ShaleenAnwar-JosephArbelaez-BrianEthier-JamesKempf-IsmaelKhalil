@@ -29,12 +29,12 @@ public class PasswordRecoveryControllerAlpha implements PasswordRecoveryControll
 		logger.info("Reseting " + email);
 		Cat cat = new Cat();
 		cat.setEmail(email);
-		return passwordTokenService.recoverPassword(cat) ? ClientMessageUtil.RECOVERY_SUCCESSFUL : ClientMessageUtil.SOMETHING_WRONG;
+		return passwordTokenService.recoverPassword(cat) ? ClientMessageUtil.RECOVERY_SUCCESSFUL : ClientMessageUtil.INVALID_EMAIL;
 	}
 
 	@Override
 	@PostMapping("/password-reset")
-	public @ResponseBody ClientMessage resetPassword(@RequestBody PasswordToken passwordToken, @RequestBody String newPassword) {
-		return passwordTokenService.resetPassword(passwordToken, newPassword) ? ClientMessageUtil.RESET_SUCCESSFUL : ClientMessageUtil.SOMETHING_WRONG;
+	public @ResponseBody ClientMessage resetPassword(@RequestBody PasswordToken passwordToken) {
+		return passwordTokenService.resetPassword(passwordToken) ? ClientMessageUtil.RESET_SUCCESSFUL : ClientMessageUtil.INVALID_TOKEN;
 	}
 }

@@ -23,5 +23,5 @@ public interface PasswordTokenService {
 	/**
 	 * Resets a cat's password, returns if successful
 	 */
-	public abstract boolean resetPassword(PasswordToken passwordToken, String newPassword);
+	public abstract boolean resetPassword(PasswordToken passwordToken);
 }

@@ -19,9 +19,9 @@ export class PasswordRecoveryService {
       .catch(this.handleError);
   }
 
-  public resetPassword(passwordToken: PasswordToken, newPassword: string): Observable<ClientMessage> {
+  public resetPassword(passwordToken: PasswordToken): Observable<ClientMessage> {
     return this.http
-      .post(`${LITTR_URL}/password-reset`, {passwordToken, newPassword})
+      .post(`${LITTR_URL}/password-reset`, passwordToken)
       .catch(this.handleError);
   }
 

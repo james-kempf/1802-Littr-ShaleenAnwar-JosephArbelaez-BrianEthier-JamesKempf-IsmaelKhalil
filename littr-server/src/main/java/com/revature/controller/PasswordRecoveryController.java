@@ -14,5 +14,5 @@ public interface PasswordRecoveryController {
 	/**
 	 * Handles password reset page
 	 */
-	public abstract ClientMessage resetPassword(PasswordToken passwordToken, String newPassword);
+	public abstract ClientMessage resetPassword(PasswordToken passwordToken);
 }

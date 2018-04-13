@@ -18,6 +18,7 @@ import { PostService } from './services/post.service';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
 import { PasswordRecoveryService } from './services/password-recovery.service';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PasswordRecoveryService } from './services/password-recovery.service';
     NavComponent,
     ViewFriendsComponent,
     CreatePostComponent,
-    PasswordRecoveryComponent
+    PasswordRecoveryComponent,
+    PasswordResetComponent
   ],
   imports: [
     BrowserModule,

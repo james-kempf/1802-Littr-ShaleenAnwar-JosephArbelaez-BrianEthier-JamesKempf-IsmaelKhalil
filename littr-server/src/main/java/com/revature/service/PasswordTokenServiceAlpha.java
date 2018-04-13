@@ -97,7 +97,7 @@ public class PasswordTokenServiceAlpha implements PasswordTokenService {
 	}
 
 	@Override
-	public boolean resetPassword(PasswordToken passwordToken, String newPassword) {
-		return passwordTokenRepository.updatePassword(passwordToken, newPassword);
+	public boolean resetPassword(PasswordToken passwordToken) {
+		return passwordTokenRepository.updatePassword(passwordToken);
 	}
 }
