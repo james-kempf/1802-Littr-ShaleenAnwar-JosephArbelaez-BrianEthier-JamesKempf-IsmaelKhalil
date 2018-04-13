@@ -13,7 +13,7 @@ public interface PasswordTokenRepository {
 	/**
 	 * inserts a new PasswordToken
 	 */
-	public abstract void insertPasswordToken(PasswordToken passwordToken);
+	public abstract boolean insertPasswordToken(PasswordToken passwordToken);
 	
 	/**
 	 * Deletes a given PasswordToken

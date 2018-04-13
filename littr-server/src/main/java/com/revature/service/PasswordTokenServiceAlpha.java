@@ -43,7 +43,9 @@ public class PasswordTokenServiceAlpha implements PasswordTokenService {
 		int result = 1;
 		String token = prime * result + (cat.hashCode() + LocalDateTime.now().toString());
 		PasswordToken passwordToken = new PasswordToken(cat, token);
-		passwordTokenRepository.insertPasswordToken(passwordToken);
+		if (!passwordTokenRepository.insertPasswordToken(passwordToken)) {
+			return false;
+		}
 		
 		String emailFrom = "littr.service@gmail.com";
 		String emailFromPassword = "77lPk#3h!sb2t4m";
@@ -58,9 +60,7 @@ public class PasswordTokenServiceAlpha implements PasswordTokenService {
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
 
-		// create Authenticator object to pass in Session.getInstance argument
 		Authenticator authenticator = new Authenticator() {
-			// override the getPasswordAuthentication method
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(emailFrom, emailFromPassword);
 			}

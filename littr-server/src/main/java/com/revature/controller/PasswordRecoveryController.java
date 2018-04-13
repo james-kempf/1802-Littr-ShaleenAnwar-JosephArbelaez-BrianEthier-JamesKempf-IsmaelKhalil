@@ -9,7 +9,7 @@ public interface PasswordRecoveryController {
 	/**
 	 * Handles password recovery page
 	 */
-	public abstract ClientMessage recoverPassword(Cat cat);
+	public abstract ClientMessage recoverPassword(String email);
 	
 	/**
 	 * Handles password reset page

@@ -16,13 +16,16 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FriendService } from './services/friend.service';
 import { PostService } from './services/post.service';
 import { CreatePostComponent } from './components/create-post/create-post.component';
+import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
+import { PasswordRecoveryService } from './services/password-recovery.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     ViewFriendsComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    PasswordRecoveryComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
   ],
   providers: [
     FriendService,
-    PostService
+    PostService,
+    PasswordRecoveryService
   ],
   bootstrap: [AppComponent]
 })
