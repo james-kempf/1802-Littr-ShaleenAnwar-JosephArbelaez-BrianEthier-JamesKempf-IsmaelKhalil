@@ -30,6 +30,11 @@ public class CatInformationControllerAlpha implements CatInformationController {
 		logger.info("In Register Method");
 		return (catService).insertCat(cat) ? REGISTRATION_SUCCESSFUL : SOMETHING_WRONG;
 		}
+	
+	@PostMapping("/getCat")
+	public @ResponseBody Cat getCat(@RequestBody Cat cat) {
+		return (catService).findCat(cat);
+	}
 
 	@PostMapping("/update")
 	public @ResponseBody ClientMessage updateCat(@RequestBody Cat cat) {

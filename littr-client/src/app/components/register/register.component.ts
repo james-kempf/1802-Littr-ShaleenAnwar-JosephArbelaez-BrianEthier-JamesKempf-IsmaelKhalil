@@ -16,7 +16,7 @@ export class RegisterComponent {
     constructor(private catService: CatService) { }
 
     //For data binding
-    public cat: Cat = new Cat(0,'','','','',null);
+    public cat: Cat = new Cat(0,'','','','',null,'');
 
     //To message the user
     public clientMessage: ClientMessage = new ClientMessage('',false);

@@ -22,7 +22,16 @@ export class CatService {
       
   }
 
+  public getCat(cat: Cat):Observable<Cat> {
+    return this.http
+      .post(`${LITTR_URL}/getCat`, cat)
+      .catch(this.handleError);
+      
+  }
+
+
   public updateCat(cat: Cat): Observable<ClientMessage> {
+    console.log("service layer about to call STS")
     return  this.http
       .post(`${LITTR_URL}/update`, cat)
       .catch(this.handleError);
