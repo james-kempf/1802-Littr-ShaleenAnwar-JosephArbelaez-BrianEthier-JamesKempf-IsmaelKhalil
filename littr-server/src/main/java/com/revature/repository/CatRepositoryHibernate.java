@@ -24,7 +24,7 @@ public class CatRepositoryHibernate implements CatRepository {
 
 	@Override
 	public void save(Cat cat) {
-		logger.info(cat.toString());
+		logger.info("In save cat" + cat.getCatName());
 		sessionFactory.getCurrentSession().save(cat);
 	}
 	

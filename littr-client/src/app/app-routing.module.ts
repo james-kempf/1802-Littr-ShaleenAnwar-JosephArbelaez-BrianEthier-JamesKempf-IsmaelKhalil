@@ -6,12 +6,26 @@ import { RouterModule, Routes } from '@angular/router';
 import { ViewFriendsComponent } from './components/view-friends/view-friends.component';
 import { NavComponent } from './components/nav/nav.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
+<<<<<<< HEAD
 import { ProfileComponent } from './components/profile/profile.component'
+=======
+import { RegisterComponent } from './components/register/register.component';
+import { UpdateCatComponent } from './components/update-cat/update-cat.component';
+import { LoginComponent } from './components/login/login.component'; 
+
+>>>>>>> development
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   { path: 'view-friends', component: ViewFriendsComponent },
   { path: 'create-post', component: CreatePostComponent},
+<<<<<<< HEAD
   { path: 'profile', component: ProfileComponent}
+=======
+  { path: 'register', component: RegisterComponent},
+  { path: 'update-cat', component: UpdateCatComponent}
+>>>>>>> development
 ];
 
 @NgModule({
