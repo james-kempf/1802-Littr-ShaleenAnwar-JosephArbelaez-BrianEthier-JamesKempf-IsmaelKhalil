@@ -17,7 +17,11 @@ import { LoginComponent } from './components/login/login.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FriendService } from './services/friend.service';
 import { PostService } from './services/post.service';
+import { RegisterComponent } from './components/register/register.component';
+import { UpdateCatComponent } from './components/update-cat/update-cat.component';
+import { CatService } from './services/cat.service';
 import { LoginService } from './services/login.service';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +29,8 @@ import { LoginService } from './services/login.service';
     NavComponent,
     ViewFriendsComponent,
     CreatePostComponent,
+    RegisterComponent,
+    UpdateCatComponent,
     LoginComponent
   ],
   imports: [
@@ -36,6 +42,7 @@ import { LoginService } from './services/login.service';
   providers: [
     FriendService,
     PostService,
+    CatService,
     LoginService
   ],
   bootstrap: [AppComponent]

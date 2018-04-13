@@ -22,6 +22,7 @@ public class CatServiceAlpha implements CatService {
 
 	@Override
 	public boolean insertCat(Cat cat) {
+		logger.info("In insert cat" + cat.getCatName());
 		catRepository.save(cat);
 		return cat.getId() != 0;
 	}
