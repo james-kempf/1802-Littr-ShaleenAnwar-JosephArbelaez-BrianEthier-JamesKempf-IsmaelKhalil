@@ -1,19 +1,21 @@
+import { Image } from './image.model';
+
 export class Cat {
   id: number;
-  bio: string;
-  catName: string;
   username: string;
   password: string;
+  catName: string;
   email: string;
-  profilePic: string;
+  bio: string;
+  profilePic: Image;
 
-  constructor(id: number, catName: string, username: string, password: string, email: string, profilePic: string, bio:string) {
+  constructor(id: number, username: string, password: string, catName: string, email: string,  bio: string, profilePic: Image) {
     this.id = id;
-    this.bio = bio;
-    this.catName = catName;
     this.username = username;
     this.password = password;
+    this.catName = catName;
     this.email = email;
+    this.bio = bio;
     this.profilePic = profilePic;
   }
 }

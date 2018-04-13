@@ -8,8 +8,12 @@ import { NavComponent } from './components/nav/nav.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UpdateCatComponent } from './components/update-cat/update-cat.component';
+import { LoginComponent } from './components/login/login.component'; 
+
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   { path: 'view-friends', component: ViewFriendsComponent },
   { path: 'create-post', component: CreatePostComponent},
   { path: 'register', component: RegisterComponent},
