@@ -17,7 +17,7 @@ import com.revature.model.Cat;
 import com.revature.service.CatService;
 
 @Controller("catInfoController")
-@CrossOrigin(origins= "http://localhost:8080")
+@CrossOrigin(origins= "http://localhost:4200")
 public class CatInformationControllerAlpha implements CatInformationController {
 
 	private static Logger logger = Logger.getLogger(CatInformationController.class);

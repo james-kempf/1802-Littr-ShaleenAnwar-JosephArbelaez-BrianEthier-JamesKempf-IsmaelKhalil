@@ -16,13 +16,18 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FriendService } from './services/friend.service';
 import { PostService } from './services/post.service';
 import { CreatePostComponent } from './components/create-post/create-post.component';
+import { RegisterComponent } from './components/register/register.component';
+import { UpdateCatComponent } from './components/update-cat/update-cat.component';
+import { CatService } from './services/cat.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     ViewFriendsComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    RegisterComponent,
+    UpdateCatComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,8 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
   ],
   providers: [
     FriendService,
-    PostService
+    PostService,
+    CatService
   ],
   bootstrap: [AppComponent]
 })
