@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,16 +17,17 @@ import com.revature.model.Cat;
 import com.revature.service.CatService;
 import com.revature.util.ClientMessageUtil;
 
-@Controller("loginController")
+@Controller("loginController")	
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class LoginControllerAlpha implements LoginController {
 
 	@Autowired
 	private CatService catService;
-	
+
 	private static Logger logger = Logger.getLogger(LoginControllerAlpha.class);
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	public LoginControllerAlpha() {
 		logger.trace("Injecting session factory bean.");
 	}	
@@ -33,22 +35,18 @@ public class LoginControllerAlpha implements LoginController {
 	@PostMapping("/login")
 	public @ResponseBody Object login(@RequestBody Cat cat, HttpServletRequest request) {
 		logger.info(cat.toString());
-		if(cat == null || cat.getPassword() == null || cat.getPassword().equals("") || cat.getUsername() == null || cat.getUsername().equals("")) {
-			return ClientMessageUtil.INVALID_CREDENTIALS;
+		Cat loggedCat = catService.authenticate(cat);
+		if(loggedCat != null) {
+			return loggedCat;
 		} else {
-			Cat loggedCat = catService.authenticate(cat);
-			if(loggedCat != null) {
-				return loggedCat;
-			} else {
-				return ClientMessageUtil.INVALID_CREDENTIALS;
-			}
+			return ClientMessageUtil.INVALID_CREDENTIALS;
 		}
 	}
-	
-//	Cat loggedCat = catService.authenticate(cat);
-//		request.getSession().setAttribute("loggedCat", loggedCat);
-//		return loggedCat;
-//	}
+
+	//	Cat loggedCat = catService.authenticate(cat);
+	//		request.getSession().setAttribute("loggedCat", loggedCat);
+	//		return loggedCat;
+	//	}
 
 	@Override
 	@GetMapping("/logout")
