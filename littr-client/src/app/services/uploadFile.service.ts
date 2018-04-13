@@ -31,7 +31,7 @@ export class UploadFileService {
               }
 
               console.log('Successfully uploaded file.', data);
-              return true;
+              return file.name;
           });
     }
 }

@@ -21,13 +21,10 @@ export class ProfileComponent implements OnInit {
   upload(){
     const file = this.selectedFiles.item(0);
     this.uploadService.uploadFile(file);
-    console.log(file);
+    this.image ='https://s3.amazonaws.com/revature.1802february.littr/littr/' + file.name;
   }
 
   selectFile(event) {
     this.selectedFiles = event.target.files;
   }
-
-
-
 }
