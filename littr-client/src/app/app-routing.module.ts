@@ -6,10 +6,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { ViewFriendsComponent } from './components/view-friends/view-friends.component';
 import { NavComponent } from './components/nav/nav.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
+import { ProfileComponent } from './components/profile/profile.component'
 
 export const routes: Routes = [
   { path: 'view-friends', component: ViewFriendsComponent },
-  { path: 'create-post', component: CreatePostComponent}
+  { path: 'create-post', component: CreatePostComponent},
+  { path: 'profile', component: ProfileComponent}
 ];
 
 @NgModule({

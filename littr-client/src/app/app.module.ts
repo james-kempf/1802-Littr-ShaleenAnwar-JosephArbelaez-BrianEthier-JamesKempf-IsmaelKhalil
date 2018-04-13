@@ -10,14 +10,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ViewFriendsComponent } from './components/view-friends/view-friends.component';
+import { ProfileComponent } from './components/profile/profile.component'
 
 // Client
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FriendService } from './services/friend.service';
 import { PostService } from './services/post.service';
 import { CreatePostComponent } from './components/create-post/create-post.component';
-import { ProfileComponent } from './profile/profile.component';
 
+//Services
+import { UploadFileService } from './services/uploadFile.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,8 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   providers: [
     FriendService,
-    PostService
+    PostService,
+    UploadFileService
   ],
   bootstrap: [AppComponent]
 })

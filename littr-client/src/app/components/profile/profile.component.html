@@ -1,3 +1,47 @@
-<p>
-  profile works!
-</p>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
+</style>
+
+<body class="w3-theme-l5">
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+  <h4 class="w3-center">My Profile</h4>
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m3">
+      <!-- Profile -->
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container">
+         <p class="w3-center"><img src="{{image}}" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+         <input type="file" (change)="selectFile($event)">
+         <button class="btn btn-primary btn-success btn-center" [disabled] = "!selectedFiles" (click)="upload()">Update Picure</button>
+         <hr>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+<div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+  <hr class="w3-clear">
+  <h4>CAT NAME</h4>
+  <input id="nameText" name="nameText" placeholder="Name" class="form-control" />
+  <br>
+  <h4>CAT USERNAME</h4>
+  <input id="usernameText" name="usernameText" placeholder="Username" class="form-control" />
+  <br>
+  <h4>CAT EMAIL</h4>
+  <input id="emailText" name="emailText" placeholder="Email" class="form-control" />
+  <br>
+  <h4>CAT BIO</h4><br>
+  <input id="bioText" name="bioText" placeholder="Bio" class="form-control" />
+  </div>
+</body>
