@@ -20,6 +20,9 @@ export class LoginService {
 
   public logout() {
     sessionStorage.removeItem('')
+    return this.http
+          .get(`${LITTR_URL}/logout`)
+          .catch(this.handleError);
   }
 
   public handleError(error: Response) {
