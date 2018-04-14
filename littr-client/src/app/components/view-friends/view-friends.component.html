@@ -5,14 +5,22 @@
     </div>
     <div class="panel-body">
       <div class="panel-group">
+        <div *ngFor="let friend of friendsPending" class="panel panel-default">
+          <div class="panel-body">
+            <span>{{friend.catName}}</span>
+            <div class="button-group pull-right">
+              <input class="btn btn-success" type="button" value="Add" (click)="approveFriendship(friend)"/>
+              <input class="btn btn-danger" type="button" value="Remove" (click)="deleteFriendship(friend)"/> 
+            </div>
+          </div>
+        </div>
         <div *ngFor="let friend of friends" class="panel panel-default">
           <div class="panel-body">
-            <span>{{friend.name}}</span>
+            <span>{{friend.catName}}</span>
             <div class="button-group pull-right">
               <input class="btn btn-primary" type="button" value="View" (click)="viewProfile(friend)"/>
-              <input class="btn btn-danger" type="button" value="Remove" (click)="deleteFriend(friend)"/> 
+              <input class="btn btn-danger" type="button" value="Remove" (click)="deleteFriendship(friend)"/> 
             </div>
-            <div>friendship.catA.catName</div>
           </div>
         </div>
       </div>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.model.Cat;
@@ -50,6 +51,7 @@ public class FriendshipControllerAlpha implements FriendshipController {
 	@GetMapping("/all-friendships")
 	public @ResponseBody Object getAllFriendships(HttpServletRequest request) {
 		Cat loggedCat = (Cat) request.getSession().getAttribute("loggedCat");
+		logger.info(loggedCat);
 		try {
 			return friendshipService.findAllFriendships(loggedCat);
 		} catch (Exception e) {
@@ -69,7 +71,7 @@ public class FriendshipControllerAlpha implements FriendshipController {
 	}
 
 	@Override
-	@PostMapping("approve-friendship")
+	@PostMapping("/approve-friendship")
 	public @ResponseBody Object approveFriendship(@RequestBody Friendship friendship, HttpServletRequest request) {
 		Cat loggedCat = (Cat) request.getSession().getAttribute("loggedCat");
 		if (loggedCat.equals(friendship.getCatA()) || loggedCat.equals(friendship.getCatB())) {
@@ -82,9 +84,10 @@ public class FriendshipControllerAlpha implements FriendshipController {
 	}
 
 	@Override
-	@PostMapping("delete-friendship")
+	@PostMapping("/delete-friendship")
 	public @ResponseBody Object deleteFriendship(@RequestBody Friendship friendship, HttpServletRequest request) {
 		Cat loggedCat = (Cat) request.getSession().getAttribute("loggedCat");
+		logger.info("Deleting: " + friendship.toString());
 		if (loggedCat.equals(friendship.getCatA()) || loggedCat.equals(friendship.getCatB())) {
 			if(friendshipService.deleteFriendship(friendship)) {
 				return ClientMessageUtil.FRIENDSHIP_DELETED;

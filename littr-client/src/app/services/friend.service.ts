@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { LITTR_URL } from '../../environments/environment.prod';
+import 'rxjs/Rx';
 import { Friendship } from '../models/friendship.model';
 import { Cat } from '../models/cat.model';
 import { ClientMessage } from '../models/clientMessage.model';
+import { LITTR_URL } from '../../environments/environment';
 
 @Injectable()
 export class FriendService {
@@ -30,15 +31,16 @@ export class FriendService {
       .catch(this.handleError);
   }
 
-  public approveFriend(friendship: Friendship): Observable<ClientMessage> {
+  public approveFriendship(friendship: Friendship): Observable<ClientMessage> {
     return this.http
-      .post(`${LITTR_URL}/aprrove-friendships`, friendship)
+      .post(`${LITTR_URL}/approve-friendship`, friendship)
       .catch(this.handleError);
   }
 
   public deleteFriendship(friendship: Friendship): Observable<ClientMessage> {
+    console.log(friendship);
     return this.http
-      .post(`${LITTR_URL}/delete-friendships`, friendship)
+      .post(`${LITTR_URL}/delete-friendship`, friendship)
       .catch(this.handleError);
   }
 

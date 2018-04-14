@@ -4,6 +4,7 @@ import { Friendship } from '../../models/friendship.model';
 import { Cat } from '../../models/cat.model';
 import { Router } from '@angular/router';
 import { LOCATION_INITIALIZED } from '@angular/common';
+import { ClientMessage } from '../../models/clientMessage.model';
 
 @Component({
   selector: 'app-view-friends',
@@ -13,16 +14,23 @@ import { LOCATION_INITIALIZED } from '@angular/common';
 export class ViewFriendsComponent implements OnInit {
 
   title = 'Friends';
-  friends: Cat[];
-  friendships: Friendship[];
+  cat: Cat = <Cat>JSON.parse(sessionStorage.getItem("loggedCat"));
+  friends: Cat[] = [];
+  friendsPending: Cat[] = [];
+  friendships: Friendship[] = [];
+  clientMessage: ClientMessage
 
   constructor(private friendService: FriendService, private router: Router) { }
 
   ngOnInit() {
+    this.getFriendships();
+  }
+
+  public getFriendships() {
     this.friendService.getAllFriendships().subscribe(
       data => this.setFriends(data),
       responseError => {
-        console.log(responseError);
+        console.log('Error: ' + responseError);
       }
     );
   }
@@ -30,7 +38,19 @@ export class ViewFriendsComponent implements OnInit {
   public setFriends(data) {
     this.friendships = data;
     for (let i = 0; i < data.length; i++) {
-      this.friends[i] = data[i].catA();
+      if (data[i].catA.id !== this.cat.id) {
+        if (data[i].status.id === 1) {
+          this.friendsPending[i] = data[i].catA;
+        } else {
+          this.friends[i] = data[i].catA;
+        }
+      } else {
+        if (data[i].status.id === 1) {
+          this.friendsPending[i] = data[i].catB;
+        } else {
+          this.friends[i] = data[i].catB;
+        }
+      }
     }
   }
 
@@ -39,15 +59,50 @@ export class ViewFriendsComponent implements OnInit {
     this.router.navigateByUrl('/user?' + cat.id);
   }
 
-  public deleteFriendship(cat: Cat) {
-    console.log('DELETE: ' + cat);
-    let friendship: Friendship;
+  public approveFriendship(friend: Cat) {
+    console.log('DELETE: ' + friend);
     for (let i = 0; i < this.friendships.length; i++) {
-      if (cat == this.friendships[i].catA || cat == this.friendships[i].catB) {
-        friendship = this.friendships[i];
-        break;
+      if (friend == this.friendships[i].catA || friend == this.friendships[i].catB) {
+        this.friendService.approveFriendship(this.friendships[i])
+        .subscribe(
+        data => {
+          for (let i = 0; i < this.friendsPending.length; i++) {
+            if (friend === this.friendsPending[i]) {
+              this.friendsPending.splice(i, i + 1);
+              this.friends[this.friends.length] = friend;
+              break;
+            }
+          }
+        },
+        responseError => this.clientMessage = responseError.error
+        );
       }
     }
-    this.friendService.deleteFriendship(friendship);
+  }
+
+  public deleteFriendship(friend: Cat) {
+    console.log('DELETE: ' + friend);
+    for (let i = 0; i < this.friendships.length; i++) {
+      if (friend == this.friendships[i].catA || friend == this.friendships[i].catB) {
+        this.friendService.deleteFriendship(this.friendships[i])
+        .subscribe(
+        data => {
+          for (let i = 0; i < this.friendsPending.length; i++) {
+            if (friend === this.friendsPending[i]) {
+              this.friendsPending.splice(i, i + 1);
+              break;
+            }
+          }
+          for (let i = 0; i < this.friends.length; i++) {
+            if (friend === this.friends[i]) {
+              this.friends.splice(i, i + 1);
+              break;
+            }
+          }
+        },
+        responseError => this.clientMessage = responseError.error
+        );
+      }
+    }
   }
 }
