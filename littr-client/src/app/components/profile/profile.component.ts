@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
   }  
 
   public findAllCatPosts(): void {
-    this.PostService.findAllCatPosts(this.cat)
+    this.PostService.viewCatPosts(this.cat)
       .subscribe(
         data => this.posts = data,
         //responseError => this.clientMessage = responseError.error

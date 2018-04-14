@@ -23,12 +23,6 @@ export class PostService {
           .post(`${LITTR_URL}/findAllPostByCat`, cat)
           .catch(this.handleError);
   }
-
-  public findAllCatPosts(cat:Cat): Observable<Post[]> {
-    return this.http
-    .post(`${LITTR_URL}/findAllPost`, cat)
-    .catch(this.handleError);
-  }
   
   public editPost(post: Post): Observable<Post> {
     return this.http
