@@ -13,7 +13,7 @@
 	<mvc:annotation-driven />
 	
 	<!-- Enabling static resource locator with /* mapping -->
-	<mvc:resources mapping="static/**" location="/static/" />
+	<mvc:resources mapping="/static/**" location="/static/" />
 
 	<!-- Enable @Transactional -->
 	<tx:annotation-driven />
@@ -43,7 +43,7 @@
 			<props>
 				<prop key="hibernate.dialect" >org.hibernate.dialect.Oracle10gDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">validate</prop>
 			</props>
 		</property>
 	</bean>
