@@ -34,7 +34,7 @@ export class PasswordResetComponent implements OnInit {
 
   private resetPassword() {
     let passwordToken = new PasswordToken(
-      new Cat(0, null, null, this.password, null, null), this.token
+      new Cat(0, null, this.password, null, null, null, null), this.token
     );
     if (this.password === this.repeatPassword) {
       this.passwordRecoveryService.resetPassword(passwordToken)

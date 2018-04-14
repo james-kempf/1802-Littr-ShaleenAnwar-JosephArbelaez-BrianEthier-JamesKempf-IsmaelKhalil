@@ -15,7 +15,7 @@
       <div>
           <button class="btn btn-primary btn-center" (click)="login()">Login</button>
           <a [routerLink]="['/register']" class="btn btn-link">Register</a><br />
-          <a [routerLink]="['/password-token']" class="btn btn-link">Forgot your password?</a>
+          <a [routerLink]="['/password-recovery']" class="btn btn-link">Forgot your password?</a>
       </div>
       <div *ngIf="catData">
           {{ catData.username }}
