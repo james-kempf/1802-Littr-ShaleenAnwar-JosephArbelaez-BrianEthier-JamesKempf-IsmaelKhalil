@@ -7,5 +7,6 @@ import com.revature.model.Cat;
 
 public interface CatInformationController {
 	ClientMessage registerCat(Cat cat);
+	Cat getCat(Cat cat);
 	ClientMessage updateCat(Cat cat);
 }
