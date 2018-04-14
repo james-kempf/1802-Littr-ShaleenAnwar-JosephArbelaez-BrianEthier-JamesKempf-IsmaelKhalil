@@ -48,7 +48,13 @@ public class Post {
 		this.text = text;
 	}
 
-
+	public Post(Cat poster, Timestamp timePosted, Image image, String text) {
+		super();
+		this.poster = poster;
+		this.timePosted = timePosted;
+		this.image = image;
+		this.text = text;
+	}
 	public int getId() {
 		return id;
 	}

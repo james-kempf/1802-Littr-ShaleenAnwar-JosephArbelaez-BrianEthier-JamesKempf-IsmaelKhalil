@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.ajax.ClientMessage;
 import com.revature.model.Cat;
+import com.revature.model.Image;
 import com.revature.service.CatService;
+import com.revature.service.CatServiceAlpha;
 
 @Controller("catInfoController")
 @CrossOrigin(origins= "http://localhost:4200")
@@ -40,6 +42,4 @@ public class CatInformationControllerAlpha implements CatInformationController {
 	public @ResponseBody ClientMessage updateCat(@RequestBody Cat cat) {
 		return (catService).updateCat(cat) ? UPDATE_SUCCESSFUL : SOMETHING_WRONG;
 	}
-
-
 }

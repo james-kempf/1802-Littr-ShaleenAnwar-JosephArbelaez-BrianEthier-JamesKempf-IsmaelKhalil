@@ -3,8 +3,6 @@ package com.revature.util;
 import java.time.LocalDateTime;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.revature.model.Cat;
-import com.revature.model.Image;
 import com.revature.util.AmazonConnectionUtil;
 
 public class AmazonConnectionUtil {

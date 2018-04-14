@@ -9,7 +9,7 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 import { RegisterComponent } from './components/register/register.component';
 import { UpdateCatComponent } from './components/update-cat/update-cat.component';
 import { LoginComponent } from './components/login/login.component'; 
-
+import { ProfileComponent } from './components/profile/profile.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -18,7 +18,8 @@ export const routes: Routes = [
   { path: 'view-friends', component: ViewFriendsComponent },
   { path: 'create-post', component: CreatePostComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'update-cat', component: UpdateCatComponent}
+  { path: 'update-cat', component: UpdateCatComponent},
+  { path: 'profile', component: ProfileComponent}
 ];
 
 @NgModule({

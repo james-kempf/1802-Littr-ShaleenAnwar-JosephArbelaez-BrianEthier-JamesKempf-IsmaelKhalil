@@ -39,4 +39,5 @@ export class UpdateCatComponent implements OnInit {
       responseError => this.clientMessage = responseError.error
     );
 }
+
 }

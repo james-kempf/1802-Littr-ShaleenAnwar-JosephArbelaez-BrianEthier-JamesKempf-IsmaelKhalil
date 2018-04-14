@@ -12,6 +12,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { ViewFriendsComponent } from './components/view-friends/view-friends.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 // Client
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -21,7 +22,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { UpdateCatComponent } from './components/update-cat/update-cat.component';
 import { CatService } from './services/cat.service';
 import { LoginService } from './services/login.service';
-
+import { UploadFileService } from './services/uploadFile.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LoginService } from './services/login.service';
     CreatePostComponent,
     RegisterComponent,
     UpdateCatComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { LoginService } from './services/login.service';
     FriendService,
     PostService,
     CatService,
-    LoginService
+    LoginService,
+    UploadFileService
   ],
   bootstrap: [AppComponent]
 })

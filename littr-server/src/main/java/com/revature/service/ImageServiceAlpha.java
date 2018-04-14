@@ -2,13 +2,16 @@ package com.revature.service;
 
 import java.util.List;
 
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.model.Cat;
 import com.revature.model.Image;
 import com.revature.repository.ImageRepository;
 
+@Service("imageService")
 public class ImageServiceAlpha implements ImageService {
 
 	private static Logger logger = Logger.getLogger(CatServiceAlpha.class);
@@ -32,7 +35,6 @@ public class ImageServiceAlpha implements ImageService {
 
 	@Override
 	public boolean deleteImage(Image image) {
-		logger.trace("ImageServiceAlpha.deleteImage");
 		imageRepository.deleteImage(image);
 		if (imageRepository.getImageById(image.getId()) == null){
 			return true;
@@ -53,7 +55,7 @@ public class ImageServiceAlpha implements ImageService {
 
 	@Override
 	public List<Image> selectAllImagesByCat(Cat cat) {
-		return (List<Image>) imageRepository.getImageById(cat.getId());
+		return (List<Image>) imageRepository.selectAllImagesByCat(cat);
 	}
 
 }

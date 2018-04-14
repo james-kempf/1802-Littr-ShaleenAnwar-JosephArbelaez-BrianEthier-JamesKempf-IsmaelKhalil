@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -15,16 +15,16 @@ import javax.persistence.Table;
 public class Image {
 	
 	@Id
+	@Column(name="I_ID")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator ="imageSequence")
 	@SequenceGenerator(name="imageSequence", sequenceName="IMAGE_SEQ")
-	@Column(name="I_ID")
 	private int id;
 
 	@Column(name="I_IMAGE_URL")
 	private String imgURL;
 	
-    @OneToOne
-    @JoinColumn(name = "C_PROFILE_PIC")
+    @ManyToOne
+    @JoinColumn(name = "C_ID")
 	private Cat cat;
 	
 	public Image() {}
@@ -33,12 +33,24 @@ public class Image {
 		return id;
 	}
 
-	public Image(int id, String imgURL) {
+	public Image(int id, String imgName) {
 		super();
 		this.id = id;
-		this.imgURL = imgURL;
+		this.imgURL = imgName;
 	}
 
+	public Image(int id, String imgName, Cat cat){
+		super();
+		this.id = id;
+		this.imgURL = imgName;
+		this.cat = cat;
+	}
+	
+	public Image(String imgURL, Cat cat){
+		super();
+		this.imgURL = imgURL;
+		this.cat = cat;
+	}
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -61,7 +73,7 @@ public class Image {
 
 	@Override
 	public String toString() {
-		return "Image [id=" + id + ", imgURL=" + imgURL + ", cat=" + cat + "]";
+		return "Image [id=" + id + ", imgName=" + imgURL + ", cat=" + cat + "]";
 	}
 
 	@Override
