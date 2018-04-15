@@ -14,14 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.revature.ajax.ClientMessage;
 import com.revature.model.Cat;
 import com.revature.model.FriendStatus;
 import com.revature.model.Friendship;
 import com.revature.service.FriendshipService;
 import com.revature.util.ClientMessageUtil;
 
-@Controller("frienshipController")
-@CrossOrigin(origins = "https://localhost:4200")
+@Controller("friendshipController")
+@CrossOrigin(origins = "http://localhost:4200")
 public class FriendshipControllerAlpha implements FriendshipController {
 	
 	private static Logger logger = Logger.getLogger(FriendshipControllerAlpha.class);
@@ -31,7 +32,7 @@ public class FriendshipControllerAlpha implements FriendshipController {
 	
 	@Override
 	@PostMapping("/add-friendship")
-	public @ResponseBody Object insertFriendship(@RequestBody List<Cat> cats, HttpServletRequest request) {
+	public @ResponseBody ClientMessage insertFriendship(@RequestBody List<Cat> cats, HttpServletRequest request) {
 		Friendship friendship = new Friendship(
 				cats.get(0),
 				cats.get(1),
@@ -50,6 +51,8 @@ public class FriendshipControllerAlpha implements FriendshipController {
 	@GetMapping("/all-friendships")
 	public @ResponseBody Object getAllFriendships(HttpServletRequest request) {
 		Cat loggedCat = (Cat) request.getSession().getAttribute("loggedCat");
+		logger.info(request.getSession().getAttribute("loggedCat"));
+		logger.info(loggedCat);
 		try {
 			return friendshipService.findAllFriendships(loggedCat);
 		} catch (Exception e) {
@@ -61,15 +64,17 @@ public class FriendshipControllerAlpha implements FriendshipController {
 	@GetMapping("/all-friends")
 	public @ResponseBody Object getAllFriends(HttpServletRequest request) {
 		Cat loggedCat = (Cat) request.getSession().getAttribute("loggedCat");
+		logger.info(loggedCat);
 		try {
 			return friendshipService.findAllFriends(loggedCat);
 		} catch (Exception e) {
+			logger.info(e);
 			return ClientMessageUtil.SOMETHING_WRONG;
 		}
 	}
 
 	@Override
-	@PostMapping("approve-friendship")
+	@PostMapping("/approve-friendship")
 	public @ResponseBody Object approveFriendship(@RequestBody Friendship friendship, HttpServletRequest request) {
 		Cat loggedCat = (Cat) request.getSession().getAttribute("loggedCat");
 		if (loggedCat.equals(friendship.getCatA()) || loggedCat.equals(friendship.getCatB())) {
@@ -82,9 +87,10 @@ public class FriendshipControllerAlpha implements FriendshipController {
 	}
 
 	@Override
-	@PostMapping("delete-friendship")
+	@PostMapping("/delete-friendship")
 	public @ResponseBody Object deleteFriendship(@RequestBody Friendship friendship, HttpServletRequest request) {
 		Cat loggedCat = (Cat) request.getSession().getAttribute("loggedCat");
+		logger.info("Deleting: " + friendship.toString());
 		if (loggedCat.equals(friendship.getCatA()) || loggedCat.equals(friendship.getCatB())) {
 			if(friendshipService.deleteFriendship(friendship)) {
 				return ClientMessageUtil.FRIENDSHIP_DELETED;

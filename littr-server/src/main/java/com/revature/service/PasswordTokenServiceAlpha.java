@@ -43,14 +43,16 @@ public class PasswordTokenServiceAlpha implements PasswordTokenService {
 		int result = 1;
 		String token = prime * result + (cat.hashCode() + LocalDateTime.now().toString());
 		PasswordToken passwordToken = new PasswordToken(cat, token);
-		passwordTokenRepository.insertPasswordToken(passwordToken);
+		if (!passwordTokenRepository.insertPasswordToken(passwordToken)) {
+			return false;
+		}
 		
 		String emailFrom = "littr.service@gmail.com";
 		String emailFromPassword = "77lPk#3h!sb2t4m";
 		String emailTo = cat.getEmail();
 		String emailSubject = "Reset Your Password";
 		String emailBody = "Use the link below to reset your password.\n"
-                + "http://ec2-54-209-177-177.compute-1.amazonaws.com/Littr/password-reset?token="+passwordToken.getToken();
+                + "http://ec2-54-209-177-177.compute-1.amazonaws.com:8080/Littr/password-reset?token="+passwordToken.getToken();
 
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.gmail.com");
@@ -58,9 +60,7 @@ public class PasswordTokenServiceAlpha implements PasswordTokenService {
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
 
-		// create Authenticator object to pass in Session.getInstance argument
 		Authenticator authenticator = new Authenticator() {
-			// override the getPasswordAuthentication method
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(emailFrom, emailFromPassword);
 			}
@@ -97,7 +97,7 @@ public class PasswordTokenServiceAlpha implements PasswordTokenService {
 	}
 
 	@Override
-	public boolean resetPassword(PasswordToken passwordToken, String newPassword) {
-		return passwordTokenRepository.updatePassword(passwordToken, newPassword);
+	public boolean resetPassword(PasswordToken passwordToken) {
+		return passwordTokenRepository.updatePassword(passwordToken);
 	}
 }

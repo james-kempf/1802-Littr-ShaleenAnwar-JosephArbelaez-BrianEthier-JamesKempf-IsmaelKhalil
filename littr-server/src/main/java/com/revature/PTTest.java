@@ -27,6 +27,6 @@ public class PTTest {
 		pts.recoverPassword(atlas);
 		PasswordToken pt = pts.selectPasswordToken(atlas);
 		String np = "newp4ssw0rd";
-		pts.resetPassword(pt, np);
+		pts.resetPassword(pt);
 	}
 }
