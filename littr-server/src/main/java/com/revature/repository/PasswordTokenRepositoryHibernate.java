@@ -29,8 +29,21 @@ public class PasswordTokenRepositoryHibernate implements PasswordTokenRepository
 	}
 
 	@Override
-	public void insertPasswordToken(PasswordToken passwordToken) {
-		sessionFactory.getCurrentSession().save(passwordToken);
+	public boolean insertPasswordToken(PasswordToken passwordToken) {
+		logger.info(passwordToken.toString());
+		try {
+			passwordToken.setCat(
+					(Cat) sessionFactory.getCurrentSession().createCriteria(Cat.class)
+					.add(Restrictions.eq("email", passwordToken.getCat().getEmail()))
+					.list()
+					.get(0)
+					);
+		} catch (Exception e) {
+			logger.info("cat not found");
+			return false;
+		}
+		sessionFactory.getCurrentSession().saveOrUpdate(passwordToken);
+		return true;
 	}
 
 	@Override
@@ -39,15 +52,13 @@ public class PasswordTokenRepositoryHibernate implements PasswordTokenRepository
 	}
 
 	@Override
-	public boolean updatePassword(PasswordToken passwordToken, String newPassword) {
-		Cat cat = passwordToken.getCat();
+	public boolean updatePassword(PasswordToken passwordToken) {
+		String newPassword = passwordToken.getCat().getPassword();
 		PasswordToken storedPasswordToken = (PasswordToken) sessionFactory.getCurrentSession().createCriteria(PasswordToken.class)
-				.add(Restrictions.eq("cat", cat))
+				.add(Restrictions.eq("token", passwordToken.getToken()))
 				.uniqueResult();
-		if (passwordToken.getToken().equals(storedPasswordToken.getToken())) {
-			cat = (Cat) sessionFactory.getCurrentSession().createCriteria(Cat.class)
-				.add(Restrictions.eq("id", cat.getId()))
-				.uniqueResult();
+		if (storedPasswordToken != null && passwordToken.getToken().equals(storedPasswordToken.getToken())) {
+			Cat cat = storedPasswordToken.getCat();
 			cat.setPassword(newPassword);
 			sessionFactory.getCurrentSession().saveOrUpdate(cat);
 			return true;
