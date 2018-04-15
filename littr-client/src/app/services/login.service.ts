@@ -19,7 +19,8 @@ export class LoginService {
   }
 
   public logout() {
-    sessionStorage.removeItem('')
+    console.log("logout")
+    sessionStorage.setItem("loggedCat", "");
     return this.http
           .get(`${LITTR_URL}/logout`)
           .catch(this.handleError);

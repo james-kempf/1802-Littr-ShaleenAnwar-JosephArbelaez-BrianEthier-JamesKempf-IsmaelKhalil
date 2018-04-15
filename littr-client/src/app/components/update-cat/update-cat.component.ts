@@ -16,6 +16,7 @@ export class UpdateCatComponent implements OnInit {
   
   ngOnInit() { 
     this.getCatInfo();
+    console.log(this.cat.catName);
   }
 
   public cat: Cat = <Cat>JSON.parse(sessionStorage.getItem("loggedCat"));

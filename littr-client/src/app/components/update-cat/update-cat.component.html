@@ -12,7 +12,7 @@
                   <input [(ngModel)]="this.cat.email" placeholder="Email?" class="form-control" />
              </div>
              <div>
-                 <button class="btn btn-primary btn-center" (click)="updateCat()">Update</button>
+                 <button class="btn btn-primary btn-center" (click)="updateCat(cat)">Update</button>
              </div>
              <div *ngIf="clientMessage !== undefined">
                  {{ clientMessage.message }}

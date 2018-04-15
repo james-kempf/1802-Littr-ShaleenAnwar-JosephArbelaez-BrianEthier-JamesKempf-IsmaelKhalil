@@ -16,6 +16,7 @@ import { PasswordRecoveryComponent } from './components/password-recovery/passwo
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UpdateCatComponent } from './components/update-cat/update-cat.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 // Client
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -37,7 +38,8 @@ import { LoginService } from './services/login.service';
     PasswordResetComponent,
     RegisterComponent,
     UpdateCatComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

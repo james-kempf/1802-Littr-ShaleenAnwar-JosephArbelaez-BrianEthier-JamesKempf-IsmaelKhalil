@@ -17,6 +17,7 @@ export class RegisterComponent {
 
     //For data binding
     public cat: Cat = new Cat(0,'','','','',null,null);
+    repeatPassword: string;
 
     //To message the user
     public clientMessage: ClientMessage = new ClientMessage('',false);
