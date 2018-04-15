@@ -32,7 +32,7 @@ export class PasswordResetComponent implements OnInit {
       });
   }
 
-  private resetPassword() {
+  public resetPassword() {
     let passwordToken = new PasswordToken(
       new Cat(0, null, this.password, null, null, null, null), this.token
     );

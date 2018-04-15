@@ -18,7 +18,7 @@ import com.revature.service.CatService;
 import com.revature.util.ClientMessageUtil;
 
 @Controller("loginController")	
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8085"})
 public class LoginControllerAlpha implements LoginController {
 
 	@Autowired
