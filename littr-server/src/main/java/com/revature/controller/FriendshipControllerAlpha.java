@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.revature.ajax.ClientMessage;
 import com.revature.model.Cat;
 import com.revature.model.FriendStatus;
 import com.revature.model.Friendship;
 import com.revature.service.FriendshipService;
 import com.revature.util.ClientMessageUtil;
 
-@Controller("frienshipController")
+@Controller("friendshipController")
 @CrossOrigin(origins = "http://localhost:4200")
 public class FriendshipControllerAlpha implements FriendshipController {
 	
@@ -32,7 +32,7 @@ public class FriendshipControllerAlpha implements FriendshipController {
 	
 	@Override
 	@PostMapping("/add-friendship")
-	public @ResponseBody Object insertFriendship(@RequestBody List<Cat> cats, HttpServletRequest request) {
+	public @ResponseBody ClientMessage insertFriendship(@RequestBody List<Cat> cats, HttpServletRequest request) {
 		Friendship friendship = new Friendship(
 				cats.get(0),
 				cats.get(1),
@@ -51,6 +51,7 @@ public class FriendshipControllerAlpha implements FriendshipController {
 	@GetMapping("/all-friendships")
 	public @ResponseBody Object getAllFriendships(HttpServletRequest request) {
 		Cat loggedCat = (Cat) request.getSession().getAttribute("loggedCat");
+		logger.info(request.getSession().getAttribute("loggedCat"));
 		logger.info(loggedCat);
 		try {
 			return friendshipService.findAllFriendships(loggedCat);
@@ -63,9 +64,11 @@ public class FriendshipControllerAlpha implements FriendshipController {
 	@GetMapping("/all-friends")
 	public @ResponseBody Object getAllFriends(HttpServletRequest request) {
 		Cat loggedCat = (Cat) request.getSession().getAttribute("loggedCat");
+		logger.info(loggedCat);
 		try {
 			return friendshipService.findAllFriends(loggedCat);
 		} catch (Exception e) {
+			logger.info(e);
 			return ClientMessageUtil.SOMETHING_WRONG;
 		}
 	}

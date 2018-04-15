@@ -12,9 +12,9 @@ export class FriendService {
 
   constructor(private http: HttpClient) { }
 
-  public addFriend(cat: Cat): Observable<ClientMessage> {
+  public addFriend(cats: Cat[]): Observable<ClientMessage> {
     return this.http
-      .post(`${LITTR_URL}/add-friends`, cat)
+      .post(`${LITTR_URL}/add-friendship`, cats)
       .catch(this.handleError);
   }
 

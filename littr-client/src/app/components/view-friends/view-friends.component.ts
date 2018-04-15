@@ -36,22 +36,25 @@ export class ViewFriendsComponent implements OnInit {
   }
 
   public setFriends(data) {
+    console.log(data);
     this.friendships = data;
     for (let i = 0; i < data.length; i++) {
       if (data[i].catA.id !== this.cat.id) {
         if (data[i].status.id === 1) {
-          this.friendsPending[i] = data[i].catA;
+          this.friendsPending[this.friendsPending.length] = data[i].catA;
         } else {
-          this.friends[i] = data[i].catA;
+          this.friends[this.friends.length] = data[i].catA;
         }
       } else {
         if (data[i].status.id === 1) {
-          this.friendsPending[i] = data[i].catB;
+          this.friendsPending[this.friendsPending.length] = data[i].catB;
         } else {
-          this.friends[i] = data[i].catB;
+          this.friends[this.friends.length] = data[i].catB;
         }
       }
     }
+    console.log(this.friends);
+    console.log(this.friendsPending);
   }
 
   public viewProfile(cat: Cat) {

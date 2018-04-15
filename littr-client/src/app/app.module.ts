@@ -46,16 +46,16 @@ import { LoginService } from './services/login.service';
     HttpClientModule
   ],
   providers: [
-    FriendService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: CustomInterceptor,
-    multi: true
-  },
+    FriendService,
     PostService,
     FriendService,
     PostService,
     CatService,
-    LoginService
+    LoginService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CustomInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
