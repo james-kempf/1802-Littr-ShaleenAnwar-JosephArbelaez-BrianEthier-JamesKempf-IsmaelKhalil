@@ -62,7 +62,7 @@ export class SearchComponent implements OnInit {
         this.friends = data
         for (let i = 0; i < this.cats.length; i++) {
           for (let j = 0; j < this.friends.length; j++) {
-            if (this.cats[i].id === this.friends[j].id) {
+            if (this.cats[i].id === this.friends[j].id || this.cats[i].id === this.cat.id) {
               this.cats.splice(i, i + 1);
             }
           }
