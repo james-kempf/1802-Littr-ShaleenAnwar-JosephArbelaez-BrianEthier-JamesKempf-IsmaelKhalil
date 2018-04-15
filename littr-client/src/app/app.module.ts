@@ -17,6 +17,7 @@ import { PasswordResetComponent } from './components/password-reset/password-res
 import { RegisterComponent } from './components/register/register.component';
 import { UpdateCatComponent } from './components/update-cat/update-cat.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { SearchComponent } from './components/search/search.component';
 
 // Client
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -28,6 +29,9 @@ import { PasswordRecoveryService } from './services/password-recovery.service';
 import { CatService } from './services/cat.service';
 import { LoginService } from './services/login.service';
 
+// Interceptors
+import { CustomInterceptor } from './session/custom-interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +40,7 @@ import { LoginService } from './services/login.service';
     CreatePostComponent,
     PasswordRecoveryComponent,
     PasswordResetComponent,
+    SearchComponent,
     RegisterComponent,
     UpdateCatComponent,
     LoginComponent,
@@ -51,8 +56,14 @@ import { LoginService } from './services/login.service';
     FriendService,
     PostService,
     PasswordRecoveryService,
+    FriendService,
+    PostService,
     CatService,
-    LoginService
+    LoginService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CustomInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
