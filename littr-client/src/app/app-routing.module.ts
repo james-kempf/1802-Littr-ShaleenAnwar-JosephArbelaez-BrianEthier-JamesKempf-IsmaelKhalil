@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ViewFriendsComponent } from './components/view-friends/view-friends.component';
 import { NavComponent } from './components/nav/nav.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
+import { SearchComponent } from './components/search/search.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UpdateCatComponent } from './components/update-cat/update-cat.component';
 import { LoginComponent } from './components/login/login.component'; 
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'view-friends', component: ViewFriendsComponent },
   { path: 'create-post', component: CreatePostComponent},
+  { path: 'search', component: SearchComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'update-cat', component: UpdateCatComponent}
 ];

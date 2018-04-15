@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.revature.ajax.ClientMessage;
 import com.revature.model.Cat;
 import com.revature.model.Friendship;
 
@@ -12,7 +13,7 @@ public interface FriendshipController {
 	/**
 	 * Inserts a new friendship between two cats
 	 */
-	public abstract Object insertFriendship(List<Cat> cats, HttpServletRequest request);
+	public abstract ClientMessage insertFriendship(List<Cat> cats, HttpServletRequest request);
 	
 	/**
 	 * Get all friendships of current user

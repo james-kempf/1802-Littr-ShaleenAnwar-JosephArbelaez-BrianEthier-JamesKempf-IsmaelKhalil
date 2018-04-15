@@ -16,13 +16,18 @@ import { LogoutComponent } from './components/logout/logout.component';
 
 // Client
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
+// Services
 import { FriendService } from './services/friend.service';
 import { PostService } from './services/post.service';
+
+// Interceptors
+import { CustomInterceptor } from './session/custom-interceptor';
+import { SearchComponent } from './components/search/search.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UpdateCatComponent } from './components/update-cat/update-cat.component';
 import { CatService } from './services/cat.service';
 import { LoginService } from './services/login.service';
-
 
 @NgModule({
   declarations: [
@@ -30,6 +35,7 @@ import { LoginService } from './services/login.service';
     NavComponent,
     ViewFriendsComponent,
     CreatePostComponent,
+    SearchComponent,
     RegisterComponent,
     UpdateCatComponent,
     LoginComponent,
@@ -44,8 +50,14 @@ import { LoginService } from './services/login.service';
   providers: [
     FriendService,
     PostService,
+    FriendService,
+    PostService,
     CatService,
-    LoginService
+    LoginService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CustomInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

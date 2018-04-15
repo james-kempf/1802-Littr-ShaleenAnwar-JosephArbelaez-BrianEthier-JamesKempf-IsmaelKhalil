@@ -36,6 +36,8 @@ public class LoginControllerAlpha implements LoginController {
 	public @ResponseBody Object login(@RequestBody Cat cat, HttpServletRequest request) {
 		logger.info(cat.toString());
 		Cat loggedCat = catService.authenticate(cat);
+		request.getSession().setAttribute("loggedCat", loggedCat);
+		logger.info(request.getSession().getAttribute("loggedCat"));
 		if(loggedCat != null) {
 			return loggedCat;
 		} else {

@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 
 import { Cat } from '../models/cat.model';
 import { ClientMessage } from '../models/clientMessage.model';
-import { LITTR_URL } from '../../environments/environment.prod';
+import { LITTR_URL } from '../../environments/environment';
 
 
 @Injectable()
@@ -35,10 +35,16 @@ export class CatService {
     return  this.http
       .post(`${LITTR_URL}/update`, cat)
       .catch(this.handleError);
-}
+  }
 
-public handleError(error: Response) {
-  console.log(`handleError`);
-  return Observable.throw(error.statusText);
-}
+  public getAllCats(): Observable<Cat[]> {
+    return this.http
+      .get(`${LITTR_URL}/all-cats`)
+      .catch(this.handleError);
+  }
+
+  public handleError(error: Response) {
+    console.log(`handleError`);
+    return Observable.throw(error.statusText);
+  }
 }
