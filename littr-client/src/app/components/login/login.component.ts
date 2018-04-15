@@ -19,12 +19,7 @@ export class LoginComponent {
     public cat: Cat = new Cat(0, "", "", "", "", "", null);
     public catData: Cat = new Cat(0, "", "", "", "", "", null);
 
-    public clientMessage: ClientMessage = new ClientMessage("", false);
-
-    public logout() {
-      this.loginService.logout();
-      this.router.navigateByUrl("/login");
-    }
+    public clientMessage: ClientMessage = new ClientMessage("", false);x
 
     public login(): void {
       this.loginService.login(this.cat).subscribe(
@@ -39,11 +34,11 @@ export class LoginComponent {
           } else if (data.hasOwnProperty("message")) {
             this.clientMessage.message = (<ClientMessage>data).message
           } else {
-            this.clientMessage.message = "Invalid"
+            this.clientMessage.message = "Invalid credientials"
           }
         },
         error => {
-          this.clientMessage.message = "Something went wrong"
+          this.clientMessage.message = "Invalid credentials"
           console.log(this.cat);
         }
       )

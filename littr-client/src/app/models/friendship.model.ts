@@ -5,12 +5,12 @@ export class Friendship {
   catA: Cat;
   catB: Cat;
   status: number;
-  timestamp: string;
+  time: string;
 
-  constructor(catA: Cat, catB: Cat, status: number, timestamp: string) {
+  constructor(catA: Cat, catB: Cat, status: number, time: string) {
     this.catA = catA;
     this.catB = catB;
     this.status = status;
-    this.timestamp = timestamp
+    this.time = time;
   }
 }

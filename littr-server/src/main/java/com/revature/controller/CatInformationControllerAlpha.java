@@ -4,10 +4,13 @@ import static com.revature.util.ClientMessageUtil.REGISTRATION_SUCCESSFUL;
 import static com.revature.util.ClientMessageUtil.SOMETHING_WRONG;
 import static com.revature.util.ClientMessageUtil.UPDATE_SUCCESSFUL;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,5 +44,9 @@ public class CatInformationControllerAlpha implements CatInformationController {
 		return (catService).updateCat(cat) ? UPDATE_SUCCESSFUL : SOMETHING_WRONG;
 	}
 
-
+	@Override
+	@GetMapping("/all-cats")
+	public @ResponseBody List<Cat> findAllCats() {
+		return catService.findAllCats();
+	}
 }

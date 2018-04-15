@@ -1,5 +1,6 @@
 package com.revature.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,18 +18,23 @@ import com.revature.util.ClientMessageUtil;
 @CrossOrigin(origins = "http://localhost:4200")
 public class PasswordRecoveryControllerAlpha implements PasswordRecoveryController {
 	
+	private static Logger logger = Logger.getLogger(PasswordRecoveryControllerAlpha.class);
+	
 	@Autowired
 	PasswordTokenService passwordTokenService;
 
 	@Override
-	@PostMapping("/recover-password")
-	public @ResponseBody ClientMessage recoverPassword(@RequestBody Cat cat) {
-		return passwordTokenService.recoverPassword(cat) ? ClientMessageUtil.RECOVERY_SUCCESSFUL : ClientMessageUtil.SOMETHING_WRONG;
+	@PostMapping("/password-recovery")
+	public @ResponseBody ClientMessage recoverPassword(@RequestBody String email) {
+		logger.info("Reseting " + email);
+		Cat cat = new Cat();
+		cat.setEmail(email);
+		return passwordTokenService.recoverPassword(cat) ? ClientMessageUtil.RECOVERY_SUCCESSFUL : ClientMessageUtil.INVALID_EMAIL;
 	}
 
 	@Override
-	@PostMapping("/reset-password")
-	public @ResponseBody ClientMessage resetPassword(@RequestBody PasswordToken passwordToken, @RequestBody String newPassword) {
-		return passwordTokenService.resetPassword(passwordToken, newPassword) ? ClientMessageUtil.RESET_SUCCESSFUL : ClientMessageUtil.SOMETHING_WRONG;
+	@PostMapping("/password-reset")
+	public @ResponseBody ClientMessage resetPassword(@RequestBody PasswordToken passwordToken) {
+		return passwordTokenService.resetPassword(passwordToken) ? ClientMessageUtil.RESET_SUCCESSFUL : ClientMessageUtil.INVALID_TOKEN;
 	}
 }

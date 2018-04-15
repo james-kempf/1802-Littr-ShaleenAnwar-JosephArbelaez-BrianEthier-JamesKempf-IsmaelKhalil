@@ -18,7 +18,7 @@ import com.revature.service.CatService;
 import com.revature.util.ClientMessageUtil;
 
 @Controller("loginController")	
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8085"})
 public class LoginControllerAlpha implements LoginController {
 
 	@Autowired
@@ -36,6 +36,8 @@ public class LoginControllerAlpha implements LoginController {
 	public @ResponseBody Object login(@RequestBody Cat cat, HttpServletRequest request) {
 		logger.info(cat.toString());
 		Cat loggedCat = catService.authenticate(cat);
+		request.getSession().setAttribute("loggedCat", loggedCat);
+		logger.info(request.getSession().getAttribute("loggedCat"));
 		if(loggedCat != null) {
 			return loggedCat;
 		} else {
