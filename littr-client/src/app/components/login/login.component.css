@@ -1,0 +1,20 @@
+.button {
+    text-align: center;
+}
+
+.btn-primary {
+    width: 47%;
+    background-color: #D98600;
+}
+
+.btn-link {
+    color: black;
+}
+
+.form-control {
+    width: 50%;
+    margin: 10px auto 10px auto;
+    text-align: center;
+}
+
+

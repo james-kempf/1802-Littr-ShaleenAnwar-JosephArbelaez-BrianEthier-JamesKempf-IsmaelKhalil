@@ -7,4 +7,4 @@ export const environment = {
   production: false
 };
 
-export const LITTR_URL = 'http://localhost:8085/Littr';
+export const LITTR_URL = 'http://ec2-54-209-177-177.compute-1.amazonaws.com:8080/Littr';
