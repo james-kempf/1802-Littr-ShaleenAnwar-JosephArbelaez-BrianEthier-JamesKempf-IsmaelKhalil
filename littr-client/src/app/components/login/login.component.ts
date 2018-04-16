@@ -19,7 +19,7 @@ export class LoginComponent {
     public cat: Cat = new Cat(0, "", "", "", "", "", null);
     public catData: Cat = new Cat(0, "", "", "", "", "", null);
 
-    public clientMessage: ClientMessage = new ClientMessage("", false);x
+    public clientMessage: ClientMessage = new ClientMessage("", false);
 
     public login(): void {
       this.loginService.login(this.cat).subscribe(

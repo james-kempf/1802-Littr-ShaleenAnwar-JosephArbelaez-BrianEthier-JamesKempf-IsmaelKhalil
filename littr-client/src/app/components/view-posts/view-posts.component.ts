@@ -12,7 +12,7 @@ import { ClientMessage } from '../../models/clientMessage.model';
 export class ViewPostsComponent implements OnInit {
 
   constructor(private postService: PostService) { }
-  title = 'Friends';
+  title = 'Recent Activity';
   cat: Cat = <Cat>JSON.parse(sessionStorage.getItem("loggedCat"));
   posts: Post[] = [];
   clientMessage: ClientMessage;
