@@ -17,4 +17,5 @@ public interface PostController {
 	List<Post> findAllPosts();
 	List<Post> findAllPostsByCat(Cat cat);
 	public List<Post> findPostsByCat(Cat cat, HttpServletRequest request);
+	List<Post> findFriendsPost(Cat cat);
 }

@@ -32,6 +32,8 @@ public interface PostService {
 	 */
 	public abstract List<Post> findPostsByCat(Cat cat, Cat search);
 	
+	public abstract List<Post> findFriendsPost(Cat cat);
+	
 	/**
 	 * Delete a specific post and return if successful
 	 */
