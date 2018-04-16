@@ -65,4 +65,6 @@ public class PostRepositoryHibernate implements PostRepository {
 			return null;
 		}
 	}
+	
+	
 }
