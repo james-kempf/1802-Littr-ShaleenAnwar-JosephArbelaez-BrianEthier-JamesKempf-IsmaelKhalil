@@ -16,7 +16,7 @@
              <div class="button">
                  <button class="btn btn-primary btn-center" (click)="registerCat()">Register</button>
              </div>
-             <div ng-if="clientMessage.success">
+             <div class = "clientMessage" *ngIf= "clientMessage.success">
                  {{ clientMessage.message }}
              </div>
       </div>

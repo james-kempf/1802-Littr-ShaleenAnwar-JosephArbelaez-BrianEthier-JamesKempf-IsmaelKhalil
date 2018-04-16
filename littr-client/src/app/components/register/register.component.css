@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+.clientMessage {
+    text-align: center; 
+}
+
 .btn-primary {
     width: 50%;
     background-color: #D98600;
