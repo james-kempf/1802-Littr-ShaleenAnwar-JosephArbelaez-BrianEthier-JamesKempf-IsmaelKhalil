@@ -13,4 +13,7 @@
     text-align: center;
 }
 
-
+.panel .panel-heading {
+    background: black;
+    color: white;
+}
