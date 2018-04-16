@@ -9,7 +9,7 @@ import { ClientMessage } from '../../models/clientMessage.model';
   styleUrls: ['./update-cat.component.css']
 })
 export class UpdateCatComponent implements OnInit {
-  title = 'Update Cat';
+  title = "Update Your Cat`s Info Below:";
 
   //Constructor Injection
   constructor(private catService: CatService) { }

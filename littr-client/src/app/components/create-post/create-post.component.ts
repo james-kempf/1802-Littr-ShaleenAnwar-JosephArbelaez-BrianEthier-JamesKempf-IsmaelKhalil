@@ -11,7 +11,7 @@ import { ClientMessage } from '../../models/clientMessage.model';
 })
 export class CreatePostComponent implements OnInit {
 
-  title = 'Post Maker';
+  title = 'Create a New Post';
 
 //cat for testing
 //koushka: Cat = new Cat(1520, 'koushka', 'p4ssw0rd',

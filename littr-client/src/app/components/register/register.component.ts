@@ -10,7 +10,7 @@ import { ClientMessage } from '../../models/clientMessage.model';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-    title = 'Register Cat';
+    title = "Please Register:";
 
     //Constructor Injection
     constructor(private catService: CatService) { }

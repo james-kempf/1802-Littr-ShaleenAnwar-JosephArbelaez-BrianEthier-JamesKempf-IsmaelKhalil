@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  title = "Login";
+  title = "Welcome to Littr! Please Login:";
   returnUrl: string;
 
     constructor(private loginService: LoginService, private router: Router) {    }
