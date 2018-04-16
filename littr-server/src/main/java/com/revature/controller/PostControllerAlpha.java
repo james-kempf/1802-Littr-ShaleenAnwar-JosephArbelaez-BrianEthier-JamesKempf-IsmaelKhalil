@@ -33,15 +33,14 @@ public class PostControllerAlpha implements PostController {
 	private static Logger logger = Logger.getLogger(PostControllerAlpha.class);
 
 	@PostMapping("/submitPost")
-	public @ResponseBody ClientMessage submitPost(@RequestBody Post post) {
+	public @ResponseBody ClientMessage submitPost(@RequestBody Post post, HttpServletRequest request) {
 		logger.trace("PostControllerAlpha.submitPost");
 		//temp cat until login feature fully implimented
-		Cat loggedCat = 
-				//logged cat from jSession once login works
-				catService.findCatByName("koushka");
+		Cat loggedCat = (Cat) request.getSession().getAttribute("loggedCat");
 		logger.info("loggedCat: " + loggedCat);
 		
 		post.setPoster(loggedCat);
+		post.setId(1);
 		logger.info("post info: " + post);
 		// ~*~*~* Add authentication when website is up *~*~*~
 		if (postService.insertPost(post)) {
