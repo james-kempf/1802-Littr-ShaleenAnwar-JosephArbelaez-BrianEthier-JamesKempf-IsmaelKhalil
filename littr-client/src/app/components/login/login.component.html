@@ -18,7 +18,7 @@
           <a [routerLink]="['/register']" class="btn btn-link">Register</a>
           <a [routerLink]="['/password-recovery']" class="btn btn-link">Forgot your password?</a>
       </div>
-      <div *ngIf="clientMessage.message">
+      <div  class = "text-center client-message" *ngIf="clientMessage.message">
           {{ clientMessage.message }}
       </div>
   </div>
