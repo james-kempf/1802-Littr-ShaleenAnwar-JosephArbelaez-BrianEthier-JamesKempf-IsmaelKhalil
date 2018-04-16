@@ -2,6 +2,7 @@ package com.revature.service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.revature.ajax.ClientMessage;
 import com.revature.model.Cat;
-import com.revature.model.Image;
+import com.revature.model.Friendship;
 import com.revature.model.Post;
 import com.revature.repository.PostRepository;
 
@@ -101,5 +102,19 @@ public class PostServiceAlpha implements PostService {
 			return false;
 		}
 		return true;
+	}
+	
+	@Override
+	public List<Post> findFriendsPost(Cat cat) {
+		List<Cat> friends = friendshipService.findAllFriends(cat);
+	
+		List<Post> posts = new ArrayList<Post>();
+		logger.info("possible NPE on next line?");
+		for(int i = 0; i < friends.size(); i++) {
+			logger.info("friend # " + i );
+			posts.addAll(postRepository.selectUserPosts(friends.get(i)));
+		}
+		logger.info(posts);
+		return posts;
 	}
 }

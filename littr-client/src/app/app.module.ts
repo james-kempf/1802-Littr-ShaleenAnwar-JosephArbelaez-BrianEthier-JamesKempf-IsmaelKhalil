@@ -31,6 +31,7 @@ import { LoginService } from './services/login.service';
 
 // Interceptors
 import { CustomInterceptor } from './session/custom-interceptor';
+import { ViewPostsComponent } from './components/view-posts/view-posts.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CustomInterceptor } from './session/custom-interceptor';
     RegisterComponent,
     UpdateCatComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    ViewPostsComponent
   ],
   imports: [
     BrowserModule,

@@ -94,4 +94,9 @@ public class PostControllerAlpha implements PostController {
 		Cat loggedCat = (Cat) request.getSession().getAttribute("loggedCat");
 		return postService.findPostsByCat(loggedCat,cat);
 	}
+	
+	@PostMapping("/friendsPosts")
+	public @ResponseBody List<Post> findFriendsPost(@RequestBody Cat cat) {
+		return postService.findFriendsPost(cat);
+	}
 }

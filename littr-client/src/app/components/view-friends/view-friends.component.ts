@@ -18,7 +18,7 @@ export class ViewFriendsComponent implements OnInit {
   friends: Cat[] = [];
   friendsPending: Cat[] = [];
   friendships: Friendship[] = [];
-  clientMessage: ClientMessage
+  clientMessage: ClientMessage;
 
   constructor(private friendService: FriendService, private router: Router) { }
 

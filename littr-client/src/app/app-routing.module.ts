@@ -13,6 +13,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { UpdateCatComponent } from './components/update-cat/update-cat.component';
 import { LoginComponent } from './components/login/login.component'; 
 import { LogoutComponent } from './components/logout/logout.component'; 
+import { ViewPostsComponent } from './components/view-posts/view-posts.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -24,7 +25,8 @@ export const routes: Routes = [
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'search', component: SearchComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'update-cat', component: UpdateCatComponent}
+  { path: 'update-cat', component: UpdateCatComponent},
+  { path: 'friends-posts', component: ViewPostsComponent}
 ];
 
 @NgModule({

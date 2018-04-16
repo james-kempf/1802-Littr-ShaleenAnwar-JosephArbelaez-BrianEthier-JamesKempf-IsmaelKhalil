@@ -31,6 +31,12 @@ export class PostService {
           .catch(this.handleError);
   }
 
+  public friendsPosts(cat: Cat): Observable<Post[]> {
+    return this.http
+          .post(`${LITTR_URL}/friendsPosts`, cat)
+          .catch(this.handleError);
+  }
+
   public handleError(error: Response) {
     console.log(`handleError`);
     return Observable.throw(error.statusText);

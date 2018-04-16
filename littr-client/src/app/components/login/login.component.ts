@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  title = "Login";
+  title = "Welcome to Littr! Please Login:";
   returnUrl: string;
 
     constructor(private loginService: LoginService, private router: Router) {    }
@@ -30,7 +30,7 @@ export class LoginComponent {
             sessionStorage.setItem("loggedCat", JSON.stringify(this.catData));
             this.clientMessage.success;
             console.log(<Cat>JSON.parse(sessionStorage.getItem("loggedCat")).username);
-            this.router.navigateByUrl("/home");
+            this.router.navigateByUrl("/friends-posts");
           } else if (data.hasOwnProperty("message")) {
             this.clientMessage.message = (<ClientMessage>data).message
           } else {
